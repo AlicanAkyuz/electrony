@@ -60,16 +60,16 @@ export function onError(foundError) {
 export function validateForm() {
     return function (dispatch, getState) {
       const possibleErrors = [];
-      if (validator.isEmpty(getState().form.name)) {
+      if (validator.isEmpty(getState().ContactReducer.form.name)) {
         possibleErrors.push(1)
       };
-      if (!validator.isEmail(getState().form.email)) {
+      if (!validator.isEmail(getState().ContactReducer.form.email)) {
         possibleErrors.push(2)
       };
-      if (validator.isEmpty(getState().form.email)) {
+      if (validator.isEmpty(getState().ContactReducer.form.email)) {
         possibleErrors.push(3)
       };
-      if (validator.isEmpty(getState().form.message)) {
+      if (validator.isEmpty(getState().ContactReducer.form.message)) {
         possibleErrors.push(4)
       };
       possibleErrors.length > 0 ? dispatch(onError(possibleErrors)) : dispatch(fetchStart());
@@ -79,9 +79,9 @@ export function validateForm() {
 export function fetchStart() {
     return function (dispatch, getState) {
       const data = {
-        name: getState().form.name,
-        email: getState().form.email,
-        message: getState().form.message
+        name: getState().ContactReducer.form.name,
+        email: getState().ContactReducer.form.email,
+        message: getState().ContactReducer.form.message
       };
       dispatch(onLoading());
       fetch('http://localhost:3000/contact', {

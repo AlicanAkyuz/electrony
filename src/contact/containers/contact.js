@@ -46,6 +46,7 @@ class Contact extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.ContactReducer;
   return {
     submitted: state.submitted,
     error: state.error,

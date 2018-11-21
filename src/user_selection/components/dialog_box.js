@@ -131,23 +131,24 @@ function DialogBox(props) {
   };
 
   if (props.activeStep === 4) {
+    const values = getKeyOptions();
     titleText = props.keyTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleKeySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getKeyOptions()[0]}>{getKeyOptions()[0]}</option>
-      <option value={getKeyOptions()[1]}>{getKeyOptions()[1]}</option>
-      <option value={getKeyOptions()[2]}>{getKeyOptions()[2]}</option>
-      <option value={getKeyOptions()[3]}>{getKeyOptions()[3]}</option>
-      <option value={getKeyOptions()[4]}>{getKeyOptions()[4]}</option>
-      <option value={getKeyOptions()[5]}>{getKeyOptions()[5]}</option>
-      <option value={getKeyOptions()[6]}>{getKeyOptions()[6]}</option>
-      <option value={getKeyOptions()[7]}>{getKeyOptions()[7]}</option>
-      <option value={getKeyOptions()[8]}>{getKeyOptions()[8]}</option>
-      <option value={getKeyOptions()[9]}>{getKeyOptions()[9]}</option>
-      <option value={getKeyOptions()[10]}>{getKeyOptions()[10]}</option>
-      <option value={getKeyOptions()[11]}>{getKeyOptions()[11]}</option>
-      <option value={getKeyOptions()[12]}>{getKeyOptions()[12]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
+      <option value={values[12]}>{values[12]}</option>
     </Select>
   };
 

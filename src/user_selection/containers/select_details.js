@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
 import { connect } from 'react-redux';
-import { sendFetch } from '../../actions/fetch_actions/actions';
 import { onDialogOpen,
          onDialogClose,
          handleDanceabilitySelection,
@@ -19,6 +18,7 @@ import { onDialogOpen,
          handlePopularitySelection,
          handleTempoSelection,
          handleValenceSelection,
+         sendFetch
          } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
@@ -69,6 +69,7 @@ const styles = theme => ({
 
 class Select extends React.Component {
   render() {
+    console.log(this.props.dialogOpen);
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -133,6 +134,7 @@ class Select extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.SelectionReducer;
   return {
     activeStep: state.select.activeStep,
     dialogOpen: state.select.dialogOpen,
@@ -146,16 +148,16 @@ const mapStateToProps = state => {
     popularity: state.user_selection.popularity,
     tempo: state.user_selection.tempo,
     valence: state.user_selection.valence,
-    danceabilityTitle: state.user_selection.titles.danceability,
-    acousticnessTitle: state.user_selection.titles.acousticness,
-    energyTitle: state.user_selection.titles.energy,
-    instrumentalnessTitle: state.user_selection.titles.instrumentalness,
-    keyTitle: state.user_selection.titles.key,
-    loudnessTitle: state.user_selection.titles.loudness,
-    modeTitle: state.user_selection.titles.mode,
-    popularityTitle: state.user_selection.titles.popularity,
-    tempoTitle: state.user_selection.titles.tempo,
-    valenceTitle: state.user_selection.titles.valence,
+    danceabilityTitle: state.titles.danceability,
+    acousticnessTitle: state.titles.acousticness,
+    energyTitle: state.titles.energy,
+    instrumentalnessTitle: state.titles.instrumentalness,
+    keyTitle: state.titles.key,
+    loudnessTitle: state.titles.loudness,
+    modeTitle: state.titles.mode,
+    popularityTitle: state.titles.popularity,
+    tempoTitle: state.titles.tempo,
+    valenceTitle: state.titles.valence,
   };
 };
 
