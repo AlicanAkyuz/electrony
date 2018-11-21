@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
 import { connect } from 'react-redux';
-import { sendFetch } from '../../actions/fetch_actions/actions';
 import { onDialogOpen,
          onDialogClose,
          handleDanceabilitySelection,
@@ -70,6 +69,7 @@ const styles = theme => ({
 
 class Select extends React.Component {
   render() {
+    console.log(this.props.dialogOpen);
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -134,6 +134,7 @@ class Select extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.SelectionReducer;
   return {
     activeStep: state.select.activeStep,
     dialogOpen: state.select.dialogOpen,

@@ -126,7 +126,7 @@ export function handleValenceSelection(value) {
 };
 
 export function sendFetch() {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     dispatch(fetch_starting());
     fetch('http://localhost:3000/getTenSongs')
     .then(function(response) {

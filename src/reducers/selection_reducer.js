@@ -17,6 +17,10 @@ import {
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
+  select: {
+    activeStep: 0,
+    dialogOpen: false
+  },
     user_selection: {
       danceability: null,
       acousticness: null,

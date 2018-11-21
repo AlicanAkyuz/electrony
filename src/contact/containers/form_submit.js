@@ -128,6 +128,7 @@ class FormSubmit extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.ContactReducer;
   return {
     name: state.form.name,
     email: state.form.email,
