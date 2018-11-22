@@ -52,87 +52,92 @@ function DialogBox(props) {
 
   if (props.activeStep === 0) {
     titleText = props.danceabilityTitle;
+    const values = getFractionNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handleDanceabilitySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getFractionNumbers()[0]}>{getFractionNumbers()[0]}</option>
-      <option value={getFractionNumbers()[1]}>{getFractionNumbers()[1]}</option>
-      <option value={getFractionNumbers()[2]}>{getFractionNumbers()[2]}</option>
-      <option value={getFractionNumbers()[3]}>{getFractionNumbers()[3]}</option>
-      <option value={getFractionNumbers()[4]}>{getFractionNumbers()[4]}</option>
-      <option value={getFractionNumbers()[5]}>{getFractionNumbers()[5]}</option>
-      <option value={getFractionNumbers()[6]}>{getFractionNumbers()[6]}</option>
-      <option value={getFractionNumbers()[7]}>{getFractionNumbers()[7]}</option>
-      <option value={getFractionNumbers()[8]}>{getFractionNumbers()[8]}</option>
-      <option value={getFractionNumbers()[9]}>{getFractionNumbers()[9]}</option>
-      <option value={getFractionNumbers()[10]}>{getFractionNumbers()[10]}</option>
-      <option value={getFractionNumbers()[11]}>{getFractionNumbers()[11]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
     </Select>
   };
 
+
   if (props.activeStep === 1) {
     titleText = props.acousticnessTitle;
+    const values = getFractionNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handleAcousticnessSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getFractionNumbers()[0]}>{getFractionNumbers()[0]}</option>
-      <option value={getFractionNumbers()[1]}>{getFractionNumbers()[1]}</option>
-      <option value={getFractionNumbers()[2]}>{getFractionNumbers()[2]}</option>
-      <option value={getFractionNumbers()[3]}>{getFractionNumbers()[3]}</option>
-      <option value={getFractionNumbers()[4]}>{getFractionNumbers()[4]}</option>
-      <option value={getFractionNumbers()[5]}>{getFractionNumbers()[5]}</option>
-      <option value={getFractionNumbers()[6]}>{getFractionNumbers()[6]}</option>
-      <option value={getFractionNumbers()[7]}>{getFractionNumbers()[7]}</option>
-      <option value={getFractionNumbers()[8]}>{getFractionNumbers()[8]}</option>
-      <option value={getFractionNumbers()[9]}>{getFractionNumbers()[9]}</option>
-      <option value={getFractionNumbers()[10]}>{getFractionNumbers()[10]}</option>
-      <option value={getFractionNumbers()[11]}>{getFractionNumbers()[11]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
     </Select>
   };
 
   if (props.activeStep === 2) {
     titleText = props.energyTitle;
+    const values = getFractionNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handleEnergySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getFractionNumbers()[0]}>{getFractionNumbers()[0]}</option>
-      <option value={getFractionNumbers()[1]}>{getFractionNumbers()[1]}</option>
-      <option value={getFractionNumbers()[2]}>{getFractionNumbers()[2]}</option>
-      <option value={getFractionNumbers()[3]}>{getFractionNumbers()[3]}</option>
-      <option value={getFractionNumbers()[4]}>{getFractionNumbers()[4]}</option>
-      <option value={getFractionNumbers()[5]}>{getFractionNumbers()[5]}</option>
-      <option value={getFractionNumbers()[6]}>{getFractionNumbers()[6]}</option>
-      <option value={getFractionNumbers()[7]}>{getFractionNumbers()[7]}</option>
-      <option value={getFractionNumbers()[8]}>{getFractionNumbers()[8]}</option>
-      <option value={getFractionNumbers()[9]}>{getFractionNumbers()[9]}</option>
-      <option value={getFractionNumbers()[10]}>{getFractionNumbers()[10]}</option>
-      <option value={getFractionNumbers()[11]}>{getFractionNumbers()[11]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
     </Select>
   };
 
   if (props.activeStep === 3) {
     titleText = props.instrumentalnessTitle;
+    const values = getFractionNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handleInstrumentalnessSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getFractionNumbers()[0]}>{getFractionNumbers()[0]}</option>
-      <option value={getFractionNumbers()[1]}>{getFractionNumbers()[1]}</option>
-      <option value={getFractionNumbers()[2]}>{getFractionNumbers()[2]}</option>
-      <option value={getFractionNumbers()[3]}>{getFractionNumbers()[3]}</option>
-      <option value={getFractionNumbers()[4]}>{getFractionNumbers()[4]}</option>
-      <option value={getFractionNumbers()[5]}>{getFractionNumbers()[5]}</option>
-      <option value={getFractionNumbers()[6]}>{getFractionNumbers()[6]}</option>
-      <option value={getFractionNumbers()[7]}>{getFractionNumbers()[7]}</option>
-      <option value={getFractionNumbers()[8]}>{getFractionNumbers()[8]}</option>
-      <option value={getFractionNumbers()[9]}>{getFractionNumbers()[9]}</option>
-      <option value={getFractionNumbers()[10]}>{getFractionNumbers()[10]}</option>
-      <option value={getFractionNumbers()[11]}>{getFractionNumbers()[11]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
     </Select>
   };
 
   if (props.activeStep === 4) {
-    const values = getKeyOptions();
     titleText = props.keyTitle;
+    const values = getKeyOptions();
     menuItems =
     <Select native onChange={(event) => {props.handleKeySelection(event.target.value)}} input={<Input />} >
       <option value="" />
@@ -154,84 +159,89 @@ function DialogBox(props) {
 
   if (props.activeStep === 5) {
     titleText = props.loudnessTitle;
+    const values = getLoudnessOptions();
     menuItems =
     <Select native onChange={(event) => {props.handleLoudnessSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getLoudnessOptions()[0]}>{getLoudnessOptions()[0]}</option>
-      <option value={getLoudnessOptions()[1]}>{getLoudnessOptions()[1]}</option>
-      <option value={getLoudnessOptions()[2]}>{getLoudnessOptions()[2]}</option>
-      <option value={getLoudnessOptions()[3]}>{getLoudnessOptions()[3]}</option>
-      <option value={getLoudnessOptions()[4]}>{getLoudnessOptions()[4]}</option>
-      <option value={getLoudnessOptions()[5]}>{getLoudnessOptions()[5]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
     </Select>
   };
 
   if (props.activeStep === 6) {
     titleText = props.modeTitle;
+    const values = getModeOptions();
     menuItems =
     <Select native onChange={(event) => {props.handleModeSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getModeOptions()[0]}>{getModeOptions()[0]}</option>
-      <option value={getModeOptions()[1]}>{getModeOptions()[1]}</option>
-      <option value={getModeOptions()[2]}>{getModeOptions()[2]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
     </Select>
   };
 
   if (props.activeStep === 7) {
     titleText = props.popularityTitle;
+    const values = getPopularityNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handlePopularitySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getPopularityNumbers()[0]}>{getPopularityNumbers()[0]}</option>
-      <option value={getPopularityNumbers()[1]}>{getPopularityNumbers()[1]}</option>
-      <option value={getPopularityNumbers()[2]}>{getPopularityNumbers()[2]}</option>
-      <option value={getPopularityNumbers()[3]}>{getPopularityNumbers()[3]}</option>
-      <option value={getPopularityNumbers()[4]}>{getPopularityNumbers()[4]}</option>
-      <option value={getPopularityNumbers()[5]}>{getPopularityNumbers()[5]}</option>
-      <option value={getPopularityNumbers()[6]}>{getPopularityNumbers()[6]}</option>
-      <option value={getPopularityNumbers()[7]}>{getPopularityNumbers()[7]}</option>
-      <option value={getPopularityNumbers()[8]}>{getPopularityNumbers()[8]}</option>
-      <option value={getPopularityNumbers()[9]}>{getPopularityNumbers()[9]}</option>
-      <option value={getPopularityNumbers()[10]}>{getPopularityNumbers()[10]}</option>
-      <option value={getPopularityNumbers()[11]}>{getPopularityNumbers()[11]}</option>
-      <option value={getPopularityNumbers()[12]}>{getPopularityNumbers()[12]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
+      <option value={values[9]}>{values[9]}</option>
+      <option value={values[10]}>{values[10]}</option>
+      <option value={values[11]}>{values[11]}</option>
+      <option value={values[12]}>{values[12]}</option>
     </Select>
   };
 
   if (props.activeStep === 8) {
     titleText = props.tempoTitle;
+    const values = getBpmOptions();
     menuItems =
     <Select native onChange={(event) => {props.handleTempoSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      <option value={getBpmOptions()[0]}>{getBpmOptions()[0]}</option>
-      <option value={getBpmOptions()[1]}>{getBpmOptions()[1]}</option>
-      <option value={getBpmOptions()[2]}>{getBpmOptions()[2]}</option>
-      <option value={getBpmOptions()[3]}>{getBpmOptions()[3]}</option>
-      <option value={getBpmOptions()[4]}>{getBpmOptions()[4]}</option>
-      <option value={getBpmOptions()[5]}>{getBpmOptions()[5]}</option>
-      <option value={getBpmOptions()[6]}>{getBpmOptions()[6]}</option>
-      <option value={getBpmOptions()[7]}>{getBpmOptions()[7]}</option>
-      <option value={getBpmOptions()[8]}>{getBpmOptions()[8]}</option>
+      <option value={values[0]}>{values[0]}</option>
+      <option value={values[1]}>{values[1]}</option>
+      <option value={values[2]}>{values[2]}</option>
+      <option value={values[3]}>{values[3]}</option>
+      <option value={values[4]}>{values[4]}</option>
+      <option value={values[5]}>{values[5]}</option>
+      <option value={values[6]}>{values[6]}</option>
+      <option value={values[7]}>{values[7]}</option>
+      <option value={values[8]}>{values[8]}</option>
     </Select>
   };
 
   if (props.activeStep === 9) {
     titleText = props.valenceTitle;
+    const values = getFractionNumbers();
     menuItems =
     <Select native onChange={(event) => {props.handleValenceSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-        <option value={getFractionNumbers()[0]}>{getFractionNumbers()[0]}</option>
-        <option value={getFractionNumbers()[1]}>{getFractionNumbers()[1]}</option>
-        <option value={getFractionNumbers()[2]}>{getFractionNumbers()[2]}</option>
-        <option value={getFractionNumbers()[3]}>{getFractionNumbers()[3]}</option>
-        <option value={getFractionNumbers()[4]}>{getFractionNumbers()[4]}</option>
-        <option value={getFractionNumbers()[5]}>{getFractionNumbers()[5]}</option>
-        <option value={getFractionNumbers()[6]}>{getFractionNumbers()[6]}</option>
-        <option value={getFractionNumbers()[7]}>{getFractionNumbers()[7]}</option>
-        <option value={getFractionNumbers()[8]}>{getFractionNumbers()[8]}</option>
-        <option value={getFractionNumbers()[9]}>{getFractionNumbers()[9]}</option>
-        <option value={getFractionNumbers()[10]}>{getFractionNumbers()[10]}</option>
-        <option value={getFractionNumbers()[11]}>{getFractionNumbers()[11]}</option>
+        <option value={values[0]}>{values[0]}</option>
+        <option value={values[1]}>{values[1]}</option>
+        <option value={values[2]}>{values[2]}</option>
+        <option value={values[3]}>{values[3]}</option>
+        <option value={values[4]}>{values[4]}</option>
+        <option value={values[5]}>{values[5]}</option>
+        <option value={values[6]}>{values[6]}</option>
+        <option value={values[7]}>{values[7]}</option>
+        <option value={values[8]}>{values[8]}</option>
+        <option value={values[9]}>{values[9]}</option>
+        <option value={values[10]}>{values[10]}</option>
+        <option value={values[11]}>{values[11]}</option>
     </Select>
   };
 
