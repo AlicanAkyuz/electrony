@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
 import { connect } from 'react-redux';
+import { sendFetch } from '../../actions/playlist_actions/actions';
 import { onDialogOpen,
          onDialogClose,
          handleDanceabilitySelection,
@@ -17,8 +18,7 @@ import { onDialogOpen,
          handleModeSelection,
          handlePopularitySelection,
          handleTempoSelection,
-         handleValenceSelection,
-         sendFetch
+         handleValenceSelection
          } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
@@ -52,13 +52,14 @@ const styles = theme => ({
   },
   typographyOne: {
     fontFamily: 'Montserrat',
-    fontSize: '80px',
-    color: '#A99884'
+    fontSize: '70px',
+    fontWeight: '800',
+    color: '#c5c5c5'
   },
   typographyTwo: {
     fontFamily: 'Montserrat',
-    fontSize: '60px',
-    color: '#B0A85B'
+    fontSize: '20px',
+    color: '#c5c5c5'
   },
   stepperGrid: {
     width: '30%',
@@ -69,7 +70,6 @@ const styles = theme => ({
 
 class Select extends React.Component {
   render() {
-    console.log(this.props.dialogOpen);
     const { classes } = this.props;
     return (
       <div className={classes.root}>
@@ -84,7 +84,10 @@ class Select extends React.Component {
               Diversify Your Sound
             </Typography>
             <Typography className={classes.typographyTwo}>
-              in Ten Steps
+              Make your choices in the following 10 steps to specify the tune you love.
+            </Typography>
+            <Typography className={classes.typographyTwo}>
+              We will then curate a playlist that will surprise your ears.
             </Typography>
           </Grid>
 

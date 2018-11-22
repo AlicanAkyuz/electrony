@@ -4,6 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import PlaylistLoad from '../components/playlist_load';
 import PlaylistShow from '../components/playlist_show';
 import { connect } from 'react-redux';
+import { uploadToSpotify,
+         uploadToApplemusic,
+         uploadToDeezer
+         } from '../../actions/playlist_actions/actions';
 
 const styles = theme => ({
   root: {
@@ -37,6 +41,9 @@ class Playlist extends React.Component {
     if (this.props.playlist_success) {
       renderPlaylist =
       <PlaylistShow
+        uploadToSpotify={() => {this.props.dispatch(uploadToSpotify())}}
+        uploadToApplemusic={() => {this.props.dispatch(uploadToApplemusic())}}
+        uploadToDeezer={() => {this.props.dispatch(uploadToDeezer())}}
         artist={this.props.artist}
         album={this.props.album}
         song={this.props.song}
@@ -54,14 +61,15 @@ class Playlist extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.PlaylistReducer;
   return {
-    loading_playlist: state.user_selection_fetch.loading_playlist,
-    loading_title: state.user_selection_fetch.loading_playlist_content.title,
-    loading_content: state.user_selection_fetch.loading_playlist_content.content,
-    playlist_success: state.user_selection_fetch.playlist_success,
-    playlist_failure: state.user_selection_fetch.playlist_failure,
-    failure_title: state.user_selection_fetch.playlist_failure_content.title,
-    failure_content: state.user_selection_fetch.playlist_failure_content.content,
+    loading_playlist: state.loading_playlist,
+    loading_title: state.loading_playlist_content.title,
+    loading_content: state.loading_playlist_content.content,
+    playlist_success: state.playlist_success,
+    playlist_failure: state.playlist_failure,
+    failure_title: state.playlist_failure_content.title,
+    failure_content: state.playlist_failure_content.content,
     artist: state.song_data.artist,
     album: state.song_data.album,
     song: state.song_data.song,

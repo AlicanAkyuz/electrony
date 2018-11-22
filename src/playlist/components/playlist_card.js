@@ -30,8 +30,9 @@ const styles = playlistCardTheme => ({
   },
   number: {
     fontFamily: 'Montserrat',
+    fontWeight: '800',
     fontSize: '50px',
-    color: 'white'
+    color: '#c5c5c5'
   },
   contentGrid: {
     width: '70%',
@@ -49,24 +50,25 @@ const styles = playlistCardTheme => ({
     padding: '1%'
   },
   songText: {
-    fontSize: '40px',
-    fontFamily: 'Roboto',
+    fontSize: '30px',
+    fontFamily: 'Montserrat',
+    fontWeight: '800',
     color: '#e5e5e5'
   },
   artistText: {
-    fontSize: '18px',
+    fontSize: '15px',
     fontFamily: 'Montserrat',
-    color: '#b3cde0'
+    color: '#A99884'
   },
   albumText: {
-    fontSize: '18px',
+    fontSize: '15px',
     fontFamily: 'Montserrat',
-    color: '#b3cde0'
+    color: '#A99884'
   },
   yearText: {
-    fontSize: '18px',
+    fontSize: '15px',
     fontFamily: 'Montserrat',
-    color: '#b3cde0'
+    color: '#A99884'
   },
   cover: {
     width: 150,
@@ -89,7 +91,7 @@ function PlaylistCard(props) {
         <Grid className={classes.contentGrid} item xs={12}>
           <CardContent className={classes.content}>
             <Typography className={classes.songText}>
-              "{props.song}Paranoid Android"
+              {props.song}Paranoid Android
             </Typography>
             <Typography className={classes.artistText}>
               Artist: {props.artist} Radiohead

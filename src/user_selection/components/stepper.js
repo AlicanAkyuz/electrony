@@ -38,7 +38,6 @@ const stepperStyles = stepperStyles => ({
   },
   labelTypography: {
     useNextVariants: true,
-    marginLeft: '30%',
     fontFamily: 'Montserrat',
     fontSize: '32px',
     color: '#c5c5c5',
@@ -46,7 +45,7 @@ const stepperStyles = stepperStyles => ({
   contentTypography: {
     useNextVariants: true,
     fontFamily: 'Roboto',
-    fontSize: '18px',
+    fontSize: '16px',
     color: '#c6c6c6'
   },
   actionsContainer: {

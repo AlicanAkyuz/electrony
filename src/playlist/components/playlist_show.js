@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import PlaylistCard from './playlist_card';
+import IconButton from '@material-ui/core/IconButton';
 
 const playlistLoadStyle = playlistLoadStyle => ({
   root: {
@@ -32,16 +33,30 @@ const playlistLoadStyle = playlistLoadStyle => ({
   playlistTitleHolder: {
     display: 'flex',
     flexDirection: 'column',
-    width: '70%',
-    backgroundColor: 'black',
-    borderRadius: '10px',
+    width: '100%',
+    backgroundColor: '#000000',
     alignItems: 'center',
-    marginTop: '10%'
+    marginTop: '13%',
+    marginBottom: '1%'
   },
-  typographyOne: {
+  playlistTitle: {
+    display: 'flex',
+    flexDirection: 'row',
     fontFamily: 'Montserrat',
-    fontSize: '40px',
-    color: '#A99884'
+    fontSize: '70px',
+    fontWeight: '800',
+    color: '#7D2C1A'
+  },
+  diversified: {
+    fontFamily: 'Montserrat',
+    fontSize: '70px',
+    fontWeight: '800',
+    color: '#FEF6AF'
+  },
+  playlistTitleContent: {
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5'
   },
   playlistHolderGrid: {
     display: 'flex',
@@ -53,15 +68,40 @@ const playlistLoadStyle = playlistLoadStyle => ({
     marginBottom: '1%'
   },
   uploadTextHolder: {
-    marginTop: '3%'
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginTop: '5%',
+    marginBottom: '1%'
   },
   uploadText: {
     fontFamily: 'Montserrat',
-    fontSize: '40px',
-    color: '#A99884'
+    fontWeight: '800',
+    fontSize: '60px',
+    color: '#c5c5c5'
   },
-  uploadOptionsHolder: {
-    marginTop: '3%'
+  uploadTextContent: {
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5'
+  },
+  uploadOptionsGrid: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    marginBottom: '10%'
+  },
+  iconButton: {
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: "transparent",
+    },
+  },
+  logos: {
+    width: "210px",
+    height: "95px"
   }
 });
 
@@ -76,8 +116,14 @@ function PlaylistShow(props) {
       <Grid className={classes.gridsHolder} container spacing={24}>
 
         <Grid className={classes.playlistTitleHolder} item>
-          <Typography className={classes.typographyOne}>
-            Here is What We Have For you
+          <Typography className={classes.playlistTitle}>
+            Sound<Typography className={classes.diversified}>iversified!</Typography>
+          </Typography>
+          <Typography className={classes.playlistTitleContent}>
+            The following 10 Songs are specially geared toward your taste in music.
+          </Typography>
+          <Typography className={classes.playlistTitleContent}>
+            Enjoy these tunes that are available to you beyond genres.
           </Typography>
         </Grid>
 
@@ -96,14 +142,23 @@ function PlaylistShow(props) {
 
         <Grid className={classes.uploadTextHolder} item>
           <Typography className={classes.uploadText}>
-            Upload Your Playlist
+            Save Your Playlist
+          </Typography>
+          <Typography className={classes.uploadTextContent}>
+            Click on the icons to upload this special playlist to a music stream app of your choice.
           </Typography>
         </Grid>
 
-        <Grid className={classes.uploadOptionsHolder} item>
-          <Typography className={classes.uploadText}>
-            Spotify, Apple Music, Deezer
-          </Typography>
+        <Grid className={classes.uploadOptionsGrid} item>
+          <IconButton onClick={() => {props.uploadToSpotify()}} className={classes.iconButton}>
+              <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
+          </IconButton>
+          <IconButton onClick={() => {props.uploadToApplemusic()}} className={classes.iconButton}>
+              <img className={classes.logos} src="./apple.jpg" alt="Apple Music Logo" />
+          </IconButton>
+          <IconButton onClick={() => {props.uploadToDeezer()}} className={classes.iconButton}>
+            <img className={classes.logos} src="./deezer.jpg" alt="Deezer Logo" />
+          </IconButton>
         </Grid>
 
       </Grid>
