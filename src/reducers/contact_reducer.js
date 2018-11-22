@@ -11,29 +11,29 @@ import {
 } from '../actions/contact_actions/action_types';
 
 const initialState = {
-    form: {
-      name: '',
-      email: '',
-      message: ''
-    },
-    submitted: false,
-    error: false,
-    isLoading: false,
-    loadingContent: {
-      title: "Just a second...",
-      content: "Please wait while your message is being processed..."
-    },
-    isSuccess: false,
-    successContent: {
-      title: "Thanks!",
-      content: "Your message is received. We will contact you shortly."
-    },
-    isFailure: false,
-    failureContent: {
-      title: "There has been a problem!",
-      content: "Sorry, there has been a server problem. Please try again."
-    },
-    errorArray: []
+  form: {
+    name: '',
+    email: '',
+    message: ''
+  },
+  submitted: false,
+  error: false,
+  isLoading: false,
+  loadingContent: {
+    title: "Just a second...",
+    content: "Please wait while your message is being processed..."
+  },
+  isSuccess: false,
+  successContent: {
+    title: "Thanks!",
+    content: "Your message is received. We will contact you shortly."
+  },
+  isFailure: false,
+  failureContent: {
+    title: "There has been a problem!",
+    content: "Sorry, there has been a server problem. Please try again."
+  },
+  errorArray: []
 };
 
 function ContactReducer(state = JSON.parse(JSON.stringify(initialState)), action) {

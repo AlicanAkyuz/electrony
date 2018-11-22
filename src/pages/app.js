@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import MyButton from '../components/myButton';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -32,12 +33,6 @@ const styles = theme => ({
     fontWeight: '800',
     color: '#7D2C1A',
   },
-  d: {
-    fontFamily: 'Montserrat',
-    fontSize: '700%',
-    fontWeight: '800',
-    color: '#7D2C1A',
-  },
   iversify: {
     fontFamily: 'Montserrat',
     fontSize: '700%',
@@ -52,7 +47,7 @@ const styles = theme => ({
   introTypography: {
     fontFamily: 'Montserrat',
     fontSize: '30px',
-    color: '#A99884'
+    color: '#c5c5c5'
   },
   buttonHolder: {
     marginTop: '10%',
@@ -71,14 +66,60 @@ const styles = theme => ({
     fontSize: '50px',
     color: '#c5c5c5'
   },
-  aboutContent: {
+  aboutContentOne: {
+    textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '17px',
-    color: '#A99884',
-    paddingTop: '2%',
-    paddingRight: '7%',
-    paddingLeft: '7%',
-    paddingBottom: '2%'
+    fontSize: '20px',
+    color: '#c5c5c5',
+    marginTop: '2%',
+    paddingRight: '3%',
+    paddingLeft: '3%'
+  },
+  aboutContentTwo: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5',
+    paddingTop: '1%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+  },
+  aboutContentThree: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5',
+    paddingTop: '1%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+  },
+  aboutContentFour: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5',
+    paddingTop: '1%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+  },
+  aboutContentFive: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5',
+    paddingTop: '5%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+  },
+  aboutContentSix: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    color: '#c5c5c5',
+    paddingTop: '1%',
+    paddingRight: '5%',
+    paddingLeft: '5%',
+    marginBottom: '5%'
   },
   buttonHolderTwo: {
     marginBottom: '3%'
@@ -96,10 +137,18 @@ const styles = theme => ({
     fontSize: '50px',
     color: '#c5c5c5'
   },
-  logoImage: {
-    padding: '10%',
-    maxHeight: '300px',
-    maxWidth: '700px'
+  uploadOptionsGrid: {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    marginBottom: '10%',
+    marginTop: '5%'
+  },
+  logos: {
+    width: "210px",
+    height: "95px"
   },
   teamHolder: {
     display: 'flex',
@@ -156,113 +205,92 @@ const styles = theme => ({
   }
 });
 
-function App(props) {
-  const { classes } = props;
-
-  return (
-    <div className={classes.root}>
+class App extends React.Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
         <Grid className={classes.gridsHolder} container spacing={24}>
-
           <Grid className={classes.soundiversifyHolder} item xs={12}>
             <div className={classes.logoContainer}>
-              <Typography className={classes.soun}>
-                Soun
-              </Typography>
-              <Typography className={classes.d}>
-                 d
-              </Typography>
-              <Typography className={classes.iversify}>
-                 iversify
-              </Typography>
+              <Typography className={classes.soun}>{this.props.sound}</Typography>
+              <Typography className={classes.iversify}>{this.props.iversify}</Typography>
             </div>
           </Grid>
-
           <Grid className={classes.subTextHolder} item xs={12}>
-            <Typography className={classes.introTypography}>
-              Music Beyond Genres.
-            </Typography>
+            <Typography className={classes.introTypography}>{this.props.subTitle}</Typography>
           </Grid>
-
           <Grid className={classes.buttonHolder} item xs={12}>
             <MyButton page="/select_details" text="Diversify" position="center" />
           </Grid>
-
-
           <Grid className={classes.aboutHolder} item xs={12}>
-            <Typography className={classes.about}>
-              About
-            </Typography>
-            <Typography className={classes.aboutContent}>
-              yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence,
-              ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written..... yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a
-              widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence, ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written.......
-              <br /><br />
-              Have you ever asked someone what music genres they like? And received a quite vague answer?
-              This may be because categorizing music according to genre is inaccurate
-              and does not encompass the extent to which we establish a relationship with sounds.
-              Here at yetmusic, instead of music genres, we offer you another way
-              to describe the tunes you like.
-              We believe that music as a phenomenon
-              requires attention paid to more parameters than simple genres.
-              Hence we offer you the following 10 steps with which you can specify in detail
-              the tunes that you are looking for.
-
-              By the end, we will compile a playlist according
-              to your tastes and we are sure that you will not be able to stop listening to it!
-              <br /><br />
-            </Typography>
+            <Typography className={classes.about}>{this.props.aboutTitle}</Typography>
+            <Typography className={classes.aboutContentOne}>{this.props.aboutTop}</Typography>
+            <Typography className={classes.aboutContentTwo}>{this.props.aboutSecond}</Typography>
+            <Typography className={classes.aboutContentThree}>{this.props.aboutThird}</Typography>
+            <Typography className={classes.aboutContentFour}>{this.props.aboutFourth}</Typography>
+            <Typography className={classes.aboutContentFive}>{this.props.aboutFifth}</Typography>
+            <Typography className={classes.aboutContentSix}>{this.props.aboutSix}</Typography>
             <Grid className={classes.buttonHolderTwo} item xs={12}>
               <MyButton page="/select_details" text="Get Started" position="center" />
             </Grid>
           </Grid>
-
           <Grid className={classes.logoHolder} item xs={12}>
-            <Typography className={classes.workWith}>
-              We Work With
-            </Typography>
-            <img className={classes.logoImage} src="http://www.radiofficine.it/wp-content/uploads/2015/09/Streaming-Audio-2015-1200x500.png" alt="spotify" />
+            <Typography className={classes.workWith}>{this.props.workWithTitle}</Typography>
+            <Grid className={classes.uploadOptionsGrid} item>
+              <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
+              <img className={classes.logos} src="./apple.jpg" alt="Apple Music Logo" />
+              <img className={classes.logos} src="./deezer.jpg" alt="Deezer Music Logo" />
+            </Grid>
           </Grid>
-
           <Grid className={classes.teamHolder} item xs={12}>
-            <Typography className={classes.team}>
-              Our Team
-            </Typography>
+            <Typography className={classes.team}>{this.props.teamTitle}</Typography>
             <Grid className={classes.teamDivider} item xs={12}>
               <Grid className={classes.memberOne} item xs={12}>
                 <Avatar alt="alican_pic" src="./alican.jpg" className={classes.avatar} />
-                <Typography className={classes.names}>
-                  Alican Akyuz
-                </Typography>
-                  <Typography className={classes.memberBackground}>
-                    yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence,
-                    ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written..... yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a
-                    widespread murmur among the music enthusiasts in berlin, germany,
-                  </Typography>
+                <Typography className={classes.names}>{this.props.teamMemberOne}</Typography>
+                  <Typography className={classes.memberBackground}>{this.props.teamMemberOneBack}</Typography>
               </Grid>
               <Grid className={classes.memberTwo} item xs={12}>
                 <Avatar alt="tolga_pic" src="/tolga.jpg" className={classes.avatar} />
-                <Typography className={classes.names}>
-                  Tolga Akyuz
-                </Typography>
-                <Typography className={classes.memberBackground}>
-                  yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence,
-                  ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written..... yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a
-                  widespread murmur among the music enthusiasts in berlin, germany,
-                </Typography>
+                <Typography className={classes.names}>{this.props.teamMemberTwo}</Typography>
+                <Typography className={classes.memberBackground}>{this.props.teamMemberTwoBack}</Typography>
               </Grid>
             </Grid>
           </Grid>
-
-          <Grid className={classes.footer} item xs={12}>
-          </Grid>
-
+          <Grid className={classes.footer} item xs={12}></Grid>
         </Grid>
-    </div>
-  );
-}
+      </div>
+    );
+  };
+};
+
+const mapStateToProps = state => {
+  state = state.AppReducer;
+  return {
+    sound: state.pageTitle.sound,
+    iversify: state.pageTitle.iversify,
+    subTitle: state.pageTitle.subTitle,
+    aboutTitle: state.about.title,
+    aboutTop: state.about.topText,
+    aboutSecond: state.about.secondText,
+    aboutThird: state.about.thirdText,
+    aboutFourth: state.about.fourthText,
+    aboutFifth: state.about.fifthText,
+    aboutSix: state.about.sixthText,
+    workWithTitle: state.workWith.title,
+    teamTitle: state.team.title,
+    teamMemberOne: state.team.teamMemberOne,
+    teamMemberOneBack: state.team.teamMemberOneBack,
+    teamMemberTwo: state.team.teamMemberTwo,
+    teamMemberTwoBack: state.team.teamMemberTwoBack
+  };
+};
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+const withstyles = withStyles(styles)(App);
+const appConnected = connect(mapStateToProps)(withstyles);
+export default appConnected;
