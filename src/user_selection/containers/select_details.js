@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
 import { connect } from 'react-redux';
@@ -48,7 +47,7 @@ const styles = theme => ({
     width: '100%',
     backgroundColor: 'black',
     alignItems: 'center',
-    marginTop: '13%',
+    marginTop: '7%',
   },
   typographyOne: {
     fontFamily: 'Montserrat',
@@ -80,15 +79,15 @@ class Select extends React.Component {
           </Grid>
 
           <Grid className={classes.welcomeGrid} item>
-            <Typography className={classes.typographyOne}>
+            <p className={classes.typographyOne}>
               Diversify Your Sound
-            </Typography>
-            <Typography className={classes.typographyTwo}>
+            </p>
+            <p className={classes.typographyTwo}>
               Make your choices in the following 10 steps to specify the tune you love.
-            </Typography>
-            <Typography className={classes.typographyTwo}>
+            </p>
+            <p className={classes.typographyTwo}>
               We will then curate a playlist that will surprise your ears.
-            </Typography>
+            </p>
           </Grid>
 
           <Grid className={classes.stepperGrid} item>
