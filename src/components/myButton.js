@@ -69,7 +69,7 @@ function MyButton(props) {
     </Button>
   } else {
     button =
-    <Button variant="contained" onClick={props.sendFetch} size="large" className={classes.button}>
+    <Button variant="contained" onClick={() => console.log("alican")} size="large" className={classes.button}>
       <Link className={classes.links} to={props.page}>
         {props.text}
       </Link>

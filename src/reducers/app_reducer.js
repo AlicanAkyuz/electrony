@@ -1,8 +1,8 @@
 const initialState = {
   pageTitle: {
-    sound: "Sound",
+    sound: "SounD",
     iversify: "iversify",
-    subTitle: "Music Beyond Genres"
+    subTitle: "Music Beyond Genres. A Spotify App."
   },
   about: {
     title: "About",
