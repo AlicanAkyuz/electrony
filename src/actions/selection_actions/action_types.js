@@ -10,3 +10,4 @@ export const MODE_SELECTED = "MODE_SELECTED";
 export const POP_SELECTED = "POP_SELECTED";
 export const TEMPO_SELECTED = "TEMPO_SELECTED";
 export const VAL_SELECTED = "VAL_SELECTED";
+export const SEL_SUBMIT = "SEL_SUBMIT";

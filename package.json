@@ -9,6 +9,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mailgun-js": "^0.22.0",
+    "query-string": "^6.2.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",

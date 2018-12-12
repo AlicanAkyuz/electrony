@@ -17,17 +17,6 @@ const buttonStyle = buttonStyle => ({
       backgroundColor: "#7D1C05",
     },
   },
-  disabledButton: {
-    margin: buttonStyle.spacing.unit,
-    backgroundColor: 'gray',
-    '&:hover': {
-      backgroundColor: "gray",
-    },
-    fontFamily: 'Montserrat',
-    fontSize: '13px',
-    textTransform: 'none',
-    color: '#e5e5e5',
-  },
   noVariantButton: {
     margin: buttonStyle.spacing.unit,
     backgroundColor: 'black',
@@ -62,20 +51,6 @@ function MyButton(props) {
   const { classes } = props;
 
   let button;
-  if (props.isDisabled === "disabled") {
-    button =
-    <Button variant="contained" size="large" className={classes.disabledButton}>
-      {props.text}
-    </Button>
-  } else {
-    button =
-    <Button variant="contained" onClick={() => console.log("alican")} size="large" className={classes.button}>
-      <Link className={classes.links} to={props.page}>
-        {props.text}
-      </Link>
-    </Button>
-  }
-
   if (props.noVariant === "noVariant") {
     button =
     <Button onClick={props.sendFetch} size="medium" className={classes.noVariantButton}>

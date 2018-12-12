@@ -6,9 +6,10 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Grid from '@material-ui/core/Grid';
-import MyButton from '../../components/myButton';
+import Button from '@material-ui/core/Button';
 import { getSteps, getStepContent } from './stepper_functions';
 import DialogBox from './dialog_box';
+import queryString from 'query-string';
 
 const stepperStyles = stepperStyles => ({
   root: {
@@ -86,26 +87,44 @@ const stepperStyles = stepperStyles => ({
   },
   selectLabelIcon: {
     backgroundColor: 'orange'
-  }
+  },
+  button: {
+    margin: stepperStyles.spacing.unit,
+    backgroundColor: '#7D2C1A',
+    '&:hover': {
+      backgroundColor: "#7D1C05",
+    },
+  },
+  disabledButton: {
+    margin: stepperStyles.spacing.unit,
+    backgroundColor: 'gray',
+    '&:hover': {
+      backgroundColor: "gray",
+    },
+    fontFamily: 'Montserrat',
+    fontSize: '13px',
+    textTransform: 'none',
+    color: '#e5e5e5',
+  },
 });
 
 function SelectionStepper(props) {
   const { classes } = props;
+  let parsed = queryString.parse(window.location.hash);
+  let accessToken = parsed.access_token;
 
   let createPlaylistButton;
   props.activeStep === getSteps().length ?
     createPlaylistButton =
-      <MyButton
-        page="/playlist"
-        text="Create playlist"
-        position="center"
-        sendFetch={props.sendFetch} /> :
+    <Button variant="contained" onClick={() => props.handleSelectionSubmit(accessToken)} size="large" className={classes.button}>
+      Diversify
+    </Button> :
     createPlaylistButton =
-      <MyButton
-        page="/playlist"
-        text="Create playlist"
-        isDisabled="disabled"
-        position="center" />
+    <Button variant="contained" size="large" className={classes.disabledButton}>
+      Disabled
+    </Button>;
+
+
 
   return (
     <div className={classes.root}>

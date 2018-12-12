@@ -17,7 +17,8 @@ import { onDialogOpen,
          handleModeSelection,
          handlePopularitySelection,
          handleTempoSelection,
-         handleValenceSelection
+         handleValenceSelection,
+         handleSelectionSubmit
          } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
@@ -104,6 +105,7 @@ class Select extends React.Component {
               handlePopularitySelection={(value) => {this.props.dispatch(handlePopularitySelection(value))}}
               handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
               handleValenceSelection={(value) => {this.props.dispatch(handleValenceSelection(value))}}
+              handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
               sendFetch={() => {this.props.dispatch(sendFetch())}}
               activeStep={this.props.activeStep}
               dialogOpen={this.props.dialogOpen}
@@ -160,6 +162,7 @@ const mapStateToProps = state => {
     popularityTitle: state.titles.popularity,
     tempoTitle: state.titles.tempo,
     valenceTitle: state.titles.valence,
+    submitted: state.submitted
   };
 };
 

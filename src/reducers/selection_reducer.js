@@ -10,25 +10,27 @@ import {
   MODE_SELECTED,
   POP_SELECTED,
   TEMPO_SELECTED,
-  VAL_SELECTED
+  VAL_SELECTED,
+  SEL_SUBMIT
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
   select: {
-    activeStep: 0,
+    activeStep: 10,
     dialogOpen: false
   },
   user_selection: {
-    danceability: null,
-    acousticness: null,
-    energy: null,
-    instrumentalness: null,
-    key: null,
-    loudness: null,
-    mode: null,
-    popularity: null,
-    tempo: null,
-    valence: null
+    genre: 'rock',
+    danceability: '0.1',
+    acousticness: '0.1',
+    energy: '0.9',
+    instrumentalness: '1.0',
+    key: '4',
+    loudness: '0.9',
+    mode: '0',
+    popularity: '100',
+    tempo: '0.1',
+    valence: '0.9'
   },
   titles: {
     danceability: "Danceability",
@@ -41,7 +43,8 @@ const initialState = {
     popularity: "Popularity",
     tempo: "Tempo",
     valence: "Valence",
-  }
+  },
+  submitted: false,
 };
 
 function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
@@ -105,6 +108,11 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case VAL_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.valence = action.payload;
+      return newState;
+    }
+    case SEL_SUBMIT: {
+      const newState = Object.assign({}, state);
+      newState.submitted = action.payload;
       return newState;
     }
     default:

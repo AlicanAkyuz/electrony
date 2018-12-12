@@ -4,7 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import MyButton from '../components/myButton';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const styles = theme => ({
@@ -51,7 +53,22 @@ const styles = theme => ({
   },
   buttonHolder: {
     marginTop: '10%',
-    marginBottom: '8%'
+    marginBottom: '8%',
+    justifyContent: 'center'
+  },
+  button: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#7D2C1A',
+    '&:hover': {
+      backgroundColor: "#7D1C05",
+    },
+  },
+  links: {
+    fontFamily: 'Montserrat',
+    fontSize: '18px',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#cccccc'
   },
   aboutHolder: {
     backgroundColor: '#191919',
@@ -221,7 +238,9 @@ class App extends React.Component {
             <Typography className={classes.introTypography}>{this.props.subTitle}</Typography>
           </Grid>
           <Grid className={classes.buttonHolder} item xs={12}>
-            <MyButton page="/select_details" text="Diversify" position="center" />
+            <Button position="center" size="medium" className={classes.button}>
+              <Link className={classes.links} to="/login">Diversify</Link>
+            </Button>
           </Grid>
           <Grid className={classes.aboutHolder} item xs={12}>
             <Typography className={classes.about}>{this.props.aboutTitle}</Typography>

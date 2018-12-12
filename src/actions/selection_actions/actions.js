@@ -10,7 +10,8 @@ import {
   MODE_SELECTED,
   POP_SELECTED,
   TEMPO_SELECTED,
-  VAL_SELECTED
+  VAL_SELECTED,
+  SEL_SUBMIT
 } from './action_types';
 
 export function onDialogOpen() {
@@ -120,4 +121,32 @@ export function handleValenceSelection(value) {
         payload: value
     })
   }
+};
+
+export function handleSelectionSubmit(token) {
+  return function (dispatch, getState) {
+    const state = getState().SelectionReducer.user_selection;
+    const data = {
+      genre: `seed_genres=${state.genre}`,
+      danceability: `target_danceability=${state.danceability}`,
+      acousticness: `target_acousticness=${state.acousticness}`,
+      energy: `target_energy=${state.energy}`,
+      instrumentalness: `target_instrumentalness=${state.instrumentalness}`,
+      key: `target_key=${state.key}`,
+      loudness: `target_loudness=${state.loudness}`,
+      mode: `target_mode=${state.mode}`,
+      popularity: `target_popularity=${state.popularity}`,
+      tempo: `target_tempo=${state.tempo}`,
+      valence: `target_valence=${state.valence}`
+    };
+    const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=10';
+    const final_endpoint = `${root_endpoint}&${data.genre}&${data.danceability}&${data.acousticness}&${data.energy}&${data.instrumentalness}&${data.key}&${data.loudness}&${data.mode}&${data.popularity}&${data.tempo}&${data.valence}`
+    console.log(final_endpoint);
+    fetch(final_endpoint, {
+      headers: {'Authorization': "Bearer " + token}
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+  };
 };
