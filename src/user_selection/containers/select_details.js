@@ -4,22 +4,21 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
+import PlaylistLoad from '../components/load';
+import Playlist from '../../playlist/containers/playlist';
 import { connect } from 'react-redux';
-import { sendFetch } from '../../actions/playlist_actions/actions';
 import { onDialogOpen,
          onDialogClose,
+         handleGenreSelection,
          handleDanceabilitySelection,
-         handleAcousticnessSelection,
          handleEnergySelection,
-         handleInstrumentalnessSelection,
          handleKeySelection,
          handleLoudnessSelection,
          handleModeSelection,
-         handlePopularitySelection,
          handleTempoSelection,
-         handleValenceSelection,
+         handlePositivenessSelection,
          handleSelectionSubmit
-         } from '../../actions/selection_actions/actions';
+       } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
   root: {
@@ -71,66 +70,87 @@ const styles = theme => ({
 class Select extends React.Component {
   render() {
     const { classes } = this.props;
+
+    let body;
+    if (!this.props.loading) {
+      body =
+      <Grid className={classes.welcomeGrid} item>
+        <p className={classes.typographyOne}>
+          Diversify Your Sound
+        </p>
+        <p className={classes.typographyTwo}>
+          Make your choices in the following 10 steps to specify the tune you love.
+        </p>
+        <p className={classes.typographyTwo}>
+          We will then curate a playlist that will surprise your ears.
+        </p>
+
+
+      <Grid className={classes.stepperGrid} item>
+        <SelectionStepper
+          handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
+          handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
+          handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
+          handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
+          handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
+          handleKeySelection={(value) => {this.props.dispatch(handleKeySelection(value))}}
+          handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
+          handleModeSelection={(value) => {this.props.dispatch(handleModeSelection(value))}}
+          handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
+          handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
+          handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
+          activeStep={this.props.activeStep}
+          dialogOpen={this.props.dialogOpen}
+          genreTitle={this.props.genreTitle}
+          genre={this.props.genre}
+          danceability={this.props.danceability}
+          danceabilityTitle={this.props.danceabilityTitle}
+          energy={this.props.energy}
+          energyTitle={this.props.energyTitle}
+          key={this.props.key}
+          keyTitle={this.props.keyTitle}
+          loudness={this.props.loudness}
+          loudnessTitle={this.props.loudnessTitle}
+          mode={this.props.mode}
+          modeTitle={this.props.modeTitle}
+          tempo={this.props.tempo}
+          tempoTitle={this.props.tempoTitle}
+          positiveness={this.props.valence}
+          positivenessTitle={this.props.valenceTitle}
+        />
+      </Grid>
+      </Grid>
+  };
+
+  if (this.props.loading) {
+    body =
+      <Grid className={classes.stepperGrid} item>
+        <PlaylistLoad
+          title={this.props.loading_title}
+          content={this.props.loading_content} />
+      </Grid>
+  };
+
+  if (this.props.playlist_failure) {
+    body =
+      <PlaylistLoad
+        title={this.props.failure_title}
+        content={this.props.failure_content}
+      />
+  };
+
+  if (this.props.success) {
+    body =
+    <Playlist />
+  };
+
     return (
       <div className={classes.root}>
-
         <Grid className={classes.containerGrid} container>
           <Grid className={classes.navBarHolder} item xs={12}>
             <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
           </Grid>
-
-          <Grid className={classes.welcomeGrid} item>
-            <p className={classes.typographyOne}>
-              Diversify Your Sound
-            </p>
-            <p className={classes.typographyTwo}>
-              Make your choices in the following 10 steps to specify the tune you love.
-            </p>
-            <p className={classes.typographyTwo}>
-              We will then curate a playlist that will surprise your ears.
-            </p>
-          </Grid>
-
-          <Grid className={classes.stepperGrid} item>
-            <SelectionStepper
-              handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
-              handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
-              handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
-              handleAcousticnessSelection={(value) => {this.props.dispatch(handleAcousticnessSelection(value))}}
-              handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
-              handleInstrumentalnessSelection={(value) => {this.props.dispatch(handleInstrumentalnessSelection(value))}}
-              handleKeySelection={(value) => {this.props.dispatch(handleKeySelection(value))}}
-              handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
-              handleModeSelection={(value) => {this.props.dispatch(handleModeSelection(value))}}
-              handlePopularitySelection={(value) => {this.props.dispatch(handlePopularitySelection(value))}}
-              handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
-              handleValenceSelection={(value) => {this.props.dispatch(handleValenceSelection(value))}}
-              handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
-              sendFetch={() => {this.props.dispatch(sendFetch())}}
-              activeStep={this.props.activeStep}
-              dialogOpen={this.props.dialogOpen}
-              danceability={this.props.danceability}
-              danceabilityTitle={this.props.danceabilityTitle}
-              acousticness={this.props.acousticness}
-              acousticnessTitle={this.props.acousticnessTitle}
-              energy={this.props.energy}
-              energyTitle={this.props.energyTitle}
-              instrumentalness={this.props.instrumentalness}
-              instrumentalnessTitle={this.props.instrumentalnessTitle}
-              key={this.props.key}
-              keyTitle={this.props.keyTitle}
-              loudness={this.props.loudness}
-              loudnessTitle={this.props.loudnessTitle}
-              mode={this.props.mode}
-              modeTitle={this.props.modeTitle}
-              popularity={this.props.popularity}
-              popularityTitle={this.props.popularityTitle}
-              tempo={this.props.tempo}
-              tempoTitle={this.props.tempoTitle}
-              valence={this.props.valence}
-              valenceTitle={this.props.valenceTitle}
-            />
-          </Grid>
+          {body}
         </Grid>
       </div>
     );
@@ -142,27 +162,30 @@ const mapStateToProps = state => {
   return {
     activeStep: state.select.activeStep,
     dialogOpen: state.select.dialogOpen,
+    genre: state.user_selection.genre,
+    genreTitle: state.titles.genre,
     danceability: state.user_selection.danceability,
-    acousticness: state.user_selection.acousticness,
-    energy: state.user_selection.energy,
-    instrumentalness: state.user_selection.instrumentalness,
-    key: state.user_selection.key,
-    loudness: state.user_selection.loudness,
-    mode: state.user_selection.mode,
-    popularity: state.user_selection.popularity,
-    tempo: state.user_selection.tempo,
-    valence: state.user_selection.valence,
     danceabilityTitle: state.titles.danceability,
-    acousticnessTitle: state.titles.acousticness,
+    energy: state.user_selection.energy,
     energyTitle: state.titles.energy,
-    instrumentalnessTitle: state.titles.instrumentalness,
+    key: state.user_selection.key,
     keyTitle: state.titles.key,
+    loudness: state.user_selection.loudness,
     loudnessTitle: state.titles.loudness,
+    mode: state.user_selection.mode,
     modeTitle: state.titles.mode,
-    popularityTitle: state.titles.popularity,
+    tempo: state.user_selection.tempo,
     tempoTitle: state.titles.tempo,
-    valenceTitle: state.titles.valence,
-    submitted: state.submitted
+    positiveness: state.user_selection.valence,
+    positivenessTitle: state.titles.valence,
+    submitted: state.submitted,
+    loading: state.loading_playlist,
+    loading_title: state.loading_playlist_content.title,
+    loading_content: state.loading_playlist_content.content,
+    failure: state.playlist_failure,
+    failure_title: state.playlist_failure_content.title,
+    failure_content: state.playlist_failure_content.content,
+    success: state.playlist_success
   };
 };
 

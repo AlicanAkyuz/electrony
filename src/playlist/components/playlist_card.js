@@ -91,16 +91,16 @@ function PlaylistCard(props) {
         <Grid className={classes.contentGrid} item xs={12}>
           <CardContent className={classes.content}>
             <Typography className={classes.songText}>
-              {props.song}Paranoid Android
+              {props.song}
             </Typography>
             <Typography className={classes.artistText}>
-              Artist: {props.artist} Radiohead
+              Artist: {props.artist}
             </Typography>
             <Typography className={classes.albumText}>
-              Album: {props.album} OK Computer
+              Album: {props.album}
             </Typography>
             <Typography className={classes.yearText}>
-              Year: {props.year} 1997
+              Year: {props.year}
             </Typography>
           </CardContent>
         </Grid>
@@ -108,7 +108,7 @@ function PlaylistCard(props) {
         <Grid className={classes.cardGrid} item xs={12}>
           <CardMedia
             className={classes.cover}
-            image="https://s.newsweek.com/sites/www.newsweek.com/files/styles/lg/public/2017/05/02/okcomp.jpg"
+            image={props.image}
             title={props.song}
           />
         </Grid>
