@@ -1,50 +1,58 @@
 import {
   DIALOG_OPEN,
   DIALOG_CLOSE,
+  GENRE_SELECTED,
   DANCE_SELECTED,
-  ACOUSTIC_SELECTED,
   ENERGY_SELECTED,
-  INS_SELECTED,
   KEY_SELECTED,
   LOUD_SELECTED,
   MODE_SELECTED,
-  POP_SELECTED,
   TEMPO_SELECTED,
-  VAL_SELECTED,
-  SEL_SUBMIT
+  POS_SELECTED,
+  SEL_SUBMIT,
+  RENDER_PLAYLIST,
+  PLAYLIST_SUCCESS,
+  PLAYLIST_FAILURE
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
   select: {
-    activeStep: 10,
+    activeStep: 0,
     dialogOpen: false
   },
   user_selection: {
-    genre: 'rock',
-    danceability: '0.1',
-    acousticness: '0.1',
-    energy: '0.9',
-    instrumentalness: '1.0',
-    key: '4',
-    loudness: '0.9',
-    mode: '0',
-    popularity: '100',
-    tempo: '0.1',
-    valence: '0.9'
+    genre: '',
+    danceability: '',
+    energy: '',
+    key: '',
+    loudness: '',
+    mode: '',
+    tempo: '',
+    positiveness: ''
   },
   titles: {
+    genre: "Genres",
     danceability: "Danceability",
-    acousticness: "Acousticness",
     energy: "Energy",
-    instrumentalness: "Instrumentalness",
     key: "Key",
     loudness: "Loudness",
     mode: "Mode",
-    popularity: "Popularity",
     tempo: "Tempo",
-    valence: "Valence",
+    positiveness: "Valence",
   },
   submitted: false,
+  loading_playlist: false,
+  loading_playlist_content: {
+    title: "Creating your tune...",
+    content: "This may take a few seconds, please hold on!"
+  },
+  playlist_failure: false,
+  playlist_failure_content: {
+    title: "There has been a problem!",
+    content: "Sorry, there has been a server problem. Please try again."
+  },
+  playlist_success: false,
+  spotifyData: {}
 };
 
 function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
@@ -60,24 +68,19 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       newState.select.activeStep = state.select.activeStep + action.stepPayload
       return newState;
     }
+    case GENRE_SELECTED: {
+      const newState = Object.assign({}, state);
+      newState.user_selection.genre = action.payload;
+      return newState;
+    }
     case DANCE_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.danceability = action.payload;
       return newState;
     }
-    case ACOUSTIC_SELECTED: {
-      const newState = Object.assign({}, state);
-      newState.user_selection.acousticness = action.payload;
-      return newState;
-    }
     case ENERGY_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.energy = action.payload;
-      return newState;
-    }
-    case INS_SELECTED: {
-      const newState = Object.assign({}, state);
-      newState.user_selection.instrumentalness = action.payload;
       return newState;
     }
     case KEY_SELECTED: {
@@ -95,17 +98,12 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       newState.user_selection.mode = action.payload;
       return newState;
     }
-    case POP_SELECTED: {
-      const newState = Object.assign({}, state);
-      newState.user_selection.popularity = action.payload;
-      return newState;
-    }
     case TEMPO_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.tempo = action.payload;
       return newState;
     }
-    case VAL_SELECTED: {
+    case POS_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.valence = action.payload;
       return newState;
@@ -113,6 +111,22 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case SEL_SUBMIT: {
       const newState = Object.assign({}, state);
       newState.submitted = action.payload;
+      return newState;
+    }
+    case RENDER_PLAYLIST: {
+      const newState = Object.assign({}, state);
+      newState.loading_playlist = action.payload
+      return newState;
+    }
+    case PLAYLIST_FAILURE: {
+      const newState = Object.assign({}, state);
+      newState.playlist_failure = action.payload
+      return newState;
+    }
+    case PLAYLIST_SUCCESS: {
+      const newState = Object.assign({}, state);
+      newState.playlist_success = action.payload;
+      newState.spotifyData = action.spotifyData;
       return newState;
     }
     default:

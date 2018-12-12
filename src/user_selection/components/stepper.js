@@ -124,8 +124,6 @@ function SelectionStepper(props) {
       Disabled
     </Button>;
 
-
-
   return (
     <div className={classes.root}>
       <Grid>
@@ -140,16 +138,14 @@ function SelectionStepper(props) {
                       Step {index + 1}: {label}
                     </p>
                     <p className={classes.labelSelected}>
-                      {index === 0 ? props.danceability : null}
-                      {index === 1 ? props.acousticness : null}
+                      {index === 0 ? props.genre : null}
+                      {index === 1 ? props.danceability : null}
                       {index === 2 ? props.energy : null}
-                      {index === 3 ? props.instrumentalness : null}
-                      {index === 4 ? props.key : null}
-                      {index === 5 ? props.loudness : null}
-                      {index === 6 ? props.mode : null}
-                      {index === 7 ? props.popularity : null}
-                      {index === 8 ? props.tempo : null}
-                      {index === 9 ? props.valence : null}
+                      {index === 3 ? props.key : null}
+                      {index === 4 ? props.loudness : null}
+                      {index === 5 ? props.mode : null}
+                      {index === 6 ? props.tempo : null}
+                      {index === 7 ? props.valence : null}
                     </p>
                   </Grid>
                 </StepLabel>
@@ -168,28 +164,23 @@ function SelectionStepper(props) {
                       handleDialogOpen={props.handleDialogOpen}
                       handleDialogClose={props.handleDialogClose}
                       handleDanceabilitySelection={props.handleDanceabilitySelection}
-                      handleAcousticnessSelection={props.handleAcousticnessSelection}
+                      handleGenreSelection={props.handleGenreSelection}
                       handleEnergySelection={props.handleEnergySelection}
-                      handleInstrumentalnessSelection={props.handleInstrumentalnessSelection}
                       handleKeySelection={props.handleKeySelection}
                       handleLoudnessSelection={props.handleLoudnessSelection}
                       handleModeSelection={props.handleModeSelection}
-                      handlePopularitySelection={props.handlePopularitySelection}
                       handleTempoSelection={props.handleTempoSelection}
-                      handleValenceSelection={props.handleValenceSelection}
+                      handlePositivenessSelection={props.handlePositivenessSelection}
                       activeStep={props.activeStep}
                       dialogOpen={props.dialogOpen}
-                      danceability={props.danceability}
+                      genreTitle={props.genreTitle}
                       danceabilityTitle={props.danceabilityTitle}
-                      acousticnessTitle={props.acousticnessTitle}
                       energyTitle={props.energyTitle}
-                      instrumentalnessTitle={props.instrumentalnessTitle}
                       keyTitle={props.keyTitle}
                       loudnessTitle={props.loudnessTitle}
                       modeTitle={props.modeTitle}
-                      popularityTitle={props.popularityTitle}
                       tempoTitle={props.tempoTitle}
-                      valenceTitle={props.valenceTitle}
+                      positivenessTitle={props.valenceTitle}
                     />
                   </div>
                 </StepContent>

@@ -9,12 +9,13 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import { getFractionNumbers,
+import { getGenres,
+         getFractionNumbers,
          getBpmOptions,
          getKeyOptions,
          getLoudnessOptions,
-         getModeOptions,
-         getPopularityNumbers } from './dialog_functions';
+         getModeOptions
+       } from './dialog_functions';
 
 const styles = dialogTheme => ({
   container: {
@@ -52,18 +53,18 @@ function DialogBox(props) {
   let menuItems;
 
   if (props.activeStep === 0) {
-    titleText = props.danceabilityTitle;
+    titleText = props.genreTitle;
     menuItems =
-    <Select native onChange={(event) => {props.handleDanceabilitySelection(event.target.value)}} input={<Input />} >
+    <Select native onChange={(event) => {props.handleGenreSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
+      {getGenres().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
   };
 
   if (props.activeStep === 1) {
-    titleText = props.acousticnessTitle;
+    titleText = props.danceabilityTitle;
     menuItems =
-    <Select native onChange={(event) => {props.handleAcousticnessSelection(event.target.value)}} input={<Input />} >
+    <Select native onChange={(event) => {props.handleDanceabilitySelection(event.target.value)}} input={<Input />} >
       <option value="" />
       {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
@@ -79,15 +80,6 @@ function DialogBox(props) {
   };
 
   if (props.activeStep === 3) {
-    titleText = props.instrumentalnessTitle;
-    menuItems =
-    <Select native onChange={(event) => {props.handleInstrumentalnessSelection(event.target.value)}} input={<Input />} >
-      <option value="" />
-      {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
-    </Select>
-  };
-
-  if (props.activeStep === 4) {
     titleText = props.keyTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleKeySelection(event.target.value)}} input={<Input />} >
@@ -96,7 +88,7 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 5) {
+  if (props.activeStep === 4) {
     titleText = props.loudnessTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleLoudnessSelection(event.target.value)}} input={<Input />} >
@@ -105,7 +97,7 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 6) {
+  if (props.activeStep === 5) {
     titleText = props.modeTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleModeSelection(event.target.value)}} input={<Input />} >
@@ -114,16 +106,7 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 7) {
-    titleText = props.popularityTitle;
-    menuItems =
-    <Select native onChange={(event) => {props.handlePopularitySelection(event.target.value)}} input={<Input />} >
-      <option value="" />
-      {getPopularityNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
-    </Select>
-  };
-
-  if (props.activeStep === 8) {
+  if (props.activeStep === 6) {
     titleText = props.tempoTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleTempoSelection(event.target.value)}} input={<Input />} >
@@ -132,10 +115,10 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 9) {
-    titleText = props.valenceTitle;
+  if (props.activeStep === 7) {
+    titleText = props.positivenessTitle;
     menuItems =
-    <Select native onChange={(event) => {props.handleValenceSelection(event.target.value)}} input={<Input />} >
+    <Select native onChange={(event) => {props.handlePositivenessSelection(event.target.value)}} input={<Input />} >
       <option value="" />
       {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
