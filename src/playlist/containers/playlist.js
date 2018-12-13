@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
+import PlaylistUploadLoad from '../components/load';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
 import { playlistStore
@@ -210,6 +211,15 @@ class Playlist extends React.Component {
       </Grid>
     };
 
+    if (this.props.loading) {
+      pageContent =
+        <Grid className={classes.stepperGrid} item>
+          <PlaylistUploadLoad
+            title={this.props.loading_content_title}
+            content={this.props.loading_content_content} />
+        </Grid>
+    }
+
     return (
       <div className={classes.root}>
         <Grid className={classes.containerGrid} container>
@@ -227,6 +237,8 @@ const mapStateToProps = state => {
   state = state.PlaylistReducer;
   return {
     loading: state.loading,
+    loading_content_title: state.loading_content.title,
+    loading_content_content: state.loading_content.content,
   };
 };
 
