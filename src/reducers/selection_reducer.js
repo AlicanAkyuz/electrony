@@ -9,7 +9,6 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
-  SEL_SUBMIT,
   RENDER_PLAYLIST,
   PLAYLIST_SUCCESS,
   PLAYLIST_FAILURE
@@ -40,7 +39,6 @@ const initialState = {
     tempo: "Tempo",
     positiveness: "Valence",
   },
-  submitted: false,
   loading_playlist: false,
   loading_playlist_content: {
     title: "Creating your tune...",
@@ -106,11 +104,6 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case POS_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.valence = action.payload;
-      return newState;
-    }
-    case SEL_SUBMIT: {
-      const newState = Object.assign({}, state);
-      newState.submitted = action.payload;
       return newState;
     }
     case RENDER_PLAYLIST: {

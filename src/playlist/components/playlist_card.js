@@ -65,11 +65,6 @@ const styles = playlistCardTheme => ({
     fontFamily: 'Montserrat',
     color: '#A99884'
   },
-  yearText: {
-    fontSize: '15px',
-    fontFamily: 'Montserrat',
-    color: '#A99884'
-  },
   cover: {
     width: 150,
     height: 150
@@ -78,7 +73,6 @@ const styles = playlistCardTheme => ({
 
 function PlaylistCard(props) {
   const { classes } = props;
-
   return (
     <Card className={classes.card}>
       <Grid className={classes.gridsHolder} container spacing={24}>
@@ -98,9 +92,6 @@ function PlaylistCard(props) {
             </Typography>
             <Typography className={classes.albumText}>
               Album: {props.album}
-            </Typography>
-            <Typography className={classes.yearText}>
-              Year: {props.year}
             </Typography>
           </CardContent>
         </Grid>
