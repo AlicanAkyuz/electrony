@@ -9,6 +9,7 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
+  TOKEN,
   RENDER_PLAYLIST,
   PLAYLIST_SUCCESS,
   PLAYLIST_FAILURE
@@ -16,18 +17,18 @@ import {
 
 const initialState = {
   select: {
-    activeStep: 0,
+    activeStep: 7,
     dialogOpen: false
   },
   user_selection: {
-    genre: '',
-    danceability: '',
-    energy: '',
-    key: '',
-    loudness: '',
-    mode: '',
-    tempo: '',
-    positiveness: ''
+    genre: 'techno',
+    danceability: '1',
+    energy: '1',
+    key: 'C',
+    loudness: '-35dB',
+    mode: 'Major',
+    tempo: '81-90 BPM',
+    positiveness: '1'
   },
   titles: {
     genre: "Genres",
@@ -50,7 +51,8 @@ const initialState = {
     content: "Sorry, there has been a server problem. Please try again."
   },
   playlist_success: false,
-  spotifyData: {}
+  spotifyData: {},
+  user_token: ''
 };
 
 function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
@@ -104,6 +106,11 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case POS_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.valence = action.payload;
+      return newState;
+    }
+    case TOKEN: {
+      const newState = Object.assign({}, state);
+      newState.user_token = action.payload
       return newState;
     }
     case RENDER_PLAYLIST: {

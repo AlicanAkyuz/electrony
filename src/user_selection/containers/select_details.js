@@ -85,7 +85,6 @@ class Select extends React.Component {
           We will then curate a playlist that will surprise your ears.
         </p>
 
-
       <Grid className={classes.stepperGrid} item>
         <SelectionStepper
           handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
@@ -117,6 +116,7 @@ class Select extends React.Component {
           tempoTitle={this.props.tempoTitle}
           positiveness={this.props.valence}
           positivenessTitle={this.props.valenceTitle}
+          user_token={this.props.user_token}
         />
       </Grid>
       </Grid>
@@ -141,7 +141,7 @@ class Select extends React.Component {
 
   if (this.props.success) {
     body =
-    <Playlist tracks={this.props.spotifyData.tracks} />
+    <Playlist tracks={this.props.spotifyData.tracks} userToken={this.props.userToken} />
   };
 
     return (
@@ -186,7 +186,8 @@ const mapStateToProps = state => {
     failure_title: state.playlist_failure_content.title,
     failure_content: state.playlist_failure_content.content,
     success: state.playlist_success,
-    spotifyData: state.spotifyData
+    spotifyData: state.spotifyData,
+    userToken: state.user_token
   };
 };
 

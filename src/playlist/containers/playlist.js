@@ -7,7 +7,7 @@ import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
-import { playlistCreate
+import { playlistStore
 } from '../../actions/playlist_actions/actions';
 
 const playlistStyle = playlistStyle => ({
@@ -21,6 +21,13 @@ const playlistStyle = playlistStyle => ({
     top: 0,
     left: 0,
     right: 0
+  },
+  containerGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: 'black',
   },
   gridsHolder: {
     display: 'flex',
@@ -107,101 +114,109 @@ class Playlist extends React.Component {
   render() {
     const { classes } = this.props;
     const tracks = this.props.tracks;
-    return (
-      <div className={classes.root}>
-        <Grid className={classes.navBarHolder} item xs={12}>
-          <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
+    const user_token = this.props.userToken;
+
+    let pageContent;
+    if (!this.props.loading) {
+      pageContent =
+      <Grid className={classes.gridsHolder} container spacing={24}>
+
+        <Grid className={classes.playlistTitleHolder} item>
+          <Typography className={classes.playlistTitle}>
+            Sound<Typography className={classes.diversified}>iversified!</Typography>
+          </Typography>
+          <Typography className={classes.playlistTitleContent}>
+            The following 10 Songs are specially geared toward your taste in music.
+          </Typography>
+          <Typography className={classes.playlistTitleContent}>
+            Enjoy these tunes that are available to you beyond genres.
+          </Typography>
         </Grid>
 
-        <Grid className={classes.gridsHolder} container spacing={24}>
+        <Grid className={classes.playlistHolderGrid} item xs={12}>
+            <PlaylistCard
+              number="1"
+              song={tracks[0].name}
+              artist={tracks[0].album.artists[0].name}
+              album={tracks[0].album.name}
+              image={tracks[0].album.images[1].url} />
+            <PlaylistCard
+              number="2"
+              song={tracks[1].name}
+              artist={tracks[1].album.artists[0].name}
+              album={tracks[1].album.name}
+              image={tracks[1].album.images[1].url} />
+            <PlaylistCard
+              number="3"
+              song={tracks[2].name}
+              artist={tracks[2].album.artists[0].name}
+              album={tracks[2].album.name}
+              image={tracks[2].album.images[1].url} />
+            <PlaylistCard
+              number="4"
+              song={tracks[3].name}
+              artist={tracks[3].album.artists[0].name}
+              album={tracks[3].album.name}
+              image={tracks[3].album.images[1].url} />
+            <PlaylistCard
+              number="5"
+              song={tracks[4].name}
+              artist={tracks[4].album.artists[0].name}
+              album={tracks[4].album.name}
+              image={tracks[4].album.images[1].url} />
+            <PlaylistCard
+              number="6"
+              song={tracks[5].name}
+              artist={tracks[5].album.artists[0].name}
+              album={tracks[5].album.name}
+              image={tracks[5].album.images[1].url} />
+            <PlaylistCard
+              number="7"
+              song={tracks[6].name}
+              artist={tracks[6].album.artists[0].name}
+              album={tracks[6].album.name}
+              image={tracks[6].album.images[1].url} />
+            <PlaylistCard
+              number="8"
+              song={tracks[7].name}
+              artist={tracks[7].album.artists[0].name}
+              album={tracks[7].album.name}
+              image={tracks[7].album.images[1].url} />
+            <PlaylistCard
+              number="9"
+              song={tracks[8].name}
+              artist={tracks[8].album.artists[0].name}
+              album={tracks[8].album.name}
+              image={tracks[8].album.images[1].url} />
+            <PlaylistCard
+              number="10"
+              song={tracks[9].name}
+              artist={tracks[9].album.artists[0].name}
+              album={tracks[9].album.name}
+              image={tracks[9].album.images[1].url} />
+        </Grid>
 
-          <Grid className={classes.playlistTitleHolder} item>
-            <Typography className={classes.playlistTitle}>
-              Sound<Typography className={classes.diversified}>iversified!</Typography>
-            </Typography>
-            <Typography className={classes.playlistTitleContent}>
-              The following 10 Songs are specially geared toward your taste in music.
-            </Typography>
-            <Typography className={classes.playlistTitleContent}>
-              Enjoy these tunes that are available to you beyond genres.
-            </Typography>
+        <Grid className={classes.uploadTextHolder} item>
+          <Typography className={classes.uploadText}>
+            Save Your Playlist to Spotify
+          </Typography>
+        </Grid>
+
+        <Grid className={classes.uploadOptionsGrid} item>
+          <IconButton onClick={() => {this.props.dispatch(playlistStore(tracks, user_token))}} className={classes.iconButton}>
+              <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
+          </IconButton>
+        </Grid>
+      </Grid>
+    };
+
+    return (
+      <div className={classes.root}>
+        <Grid className={classes.containerGrid} container>
+          <Grid className={classes.navBarHolder} item xs={12}>
+            <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
           </Grid>
-
-          <Grid className={classes.playlistHolderGrid} item xs={12}>
-              <PlaylistCard
-                number="1"
-                song={tracks[0].name}
-                artist={tracks[0].album.artists[0].name}
-                album={tracks[0].album.name}
-                image={tracks[0].album.images[1].url} />
-              <PlaylistCard
-                number="2"
-                song={tracks[1].name}
-                artist={tracks[1].album.artists[0].name}
-                album={tracks[1].album.name}
-                image={tracks[1].album.images[1].url} />
-              <PlaylistCard
-                number="3"
-                song={tracks[2].name}
-                artist={tracks[2].album.artists[0].name}
-                album={tracks[2].album.name}
-                image={tracks[2].album.images[1].url} />
-              <PlaylistCard
-                number="4"
-                song={tracks[3].name}
-                artist={tracks[3].album.artists[0].name}
-                album={tracks[3].album.name}
-                image={tracks[3].album.images[1].url} />
-              <PlaylistCard
-                number="5"
-                song={tracks[4].name}
-                artist={tracks[4].album.artists[0].name}
-                album={tracks[4].album.name}
-                image={tracks[4].album.images[1].url} />
-              <PlaylistCard
-                number="6"
-                song={tracks[5].name}
-                artist={tracks[5].album.artists[0].name}
-                album={tracks[5].album.name}
-                image={tracks[5].album.images[1].url} />
-              <PlaylistCard
-                number="7"
-                song={tracks[6].name}
-                artist={tracks[6].album.artists[0].name}
-                album={tracks[6].album.name}
-                image={tracks[6].album.images[1].url} />
-              <PlaylistCard
-                number="8"
-                song={tracks[7].name}
-                artist={tracks[7].album.artists[0].name}
-                album={tracks[7].album.name}
-                image={tracks[7].album.images[1].url} />
-              <PlaylistCard
-                number="9"
-                song={tracks[8].name}
-                artist={tracks[8].album.artists[0].name}
-                album={tracks[8].album.name}
-                image={tracks[8].album.images[1].url} />
-              <PlaylistCard
-                number="10"
-                song={tracks[9].name}
-                artist={tracks[9].album.artists[0].name}
-                album={tracks[9].album.name}
-                image={tracks[9].album.images[1].url} />
-          </Grid>
-
-          <Grid className={classes.uploadTextHolder} item>
-            <Typography className={classes.uploadText}>
-              Save Your Playlist to Spotify
-            </Typography>
-          </Grid>
-
-          <Grid className={classes.uploadOptionsGrid} item>
-            <IconButton onClick={() => {this.props.dispatch(playlistCreate(tracks))}} className={classes.iconButton}>
-                <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
-            </IconButton>
-          </Grid>
-
+          {pageContent}
         </Grid>
       </div>
     )
@@ -209,8 +224,9 @@ class Playlist extends React.Component {
 };
 
 const mapStateToProps = state => {
+  state = state.PlaylistReducer;
   return {
-
+    loading: state.loading,
   };
 };
 
