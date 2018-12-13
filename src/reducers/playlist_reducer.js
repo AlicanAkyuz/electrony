@@ -1,14 +1,20 @@
 import {
   STORE_PLAYLIST,
+  LOADING,
   USER_INFO,
-  LOADING
+  PLAYLIST_ENDPOINT
 } from '../actions/playlist_actions/action_types';
 
 const initialState = {
   playlistData: [],
   token: '',
   user_info: {},
-  loading: false
+  playlist_endpoint : '',
+  loading: false,
+  loading_content: {
+    title: "Loading Your Playlist",
+    content: "Just a second..."
+  }
 };
 
 function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
@@ -27,6 +33,11 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case LOADING: {
       const newState = Object.assign({}, state);
       newState.loading = action.payload
+      return newState;
+    }
+    case PLAYLIST_ENDPOINT: {
+      const newState = Object.assign({}, state);
+      newState.playlist_endpoint = action.payload
       return newState;
     }
     default:
