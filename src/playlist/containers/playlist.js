@@ -7,6 +7,8 @@ import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
+import { playlistCreate
+} from '../../actions/playlist_actions/actions';
 
 const playlistStyle = playlistStyle => ({
   root: {
@@ -82,11 +84,6 @@ const playlistStyle = playlistStyle => ({
     fontSize: '60px',
     color: '#c5c5c5'
   },
-  uploadTextContent: {
-    fontFamily: 'Montserrat',
-    fontSize: '20px',
-    color: '#c5c5c5'
-  },
   uploadOptionsGrid: {
     width: '100%',
     display: 'flex',
@@ -107,91 +104,9 @@ const playlistStyle = playlistStyle => ({
 });
 
 class Playlist extends React.Component {
-  componentDidMount() {
-    const songZero = {
-      name: this.props.spotifyData.tracks[0].name,
-      api_id: this.props.spotifyData.tracks[0].id,
-      api_href: this.props.spotifyData.tracks[0].href,
-      album: this.props.spotifyData.tracks[0].album.name,
-      artist: this.props.spotifyData.tracks[0].album.artists[0].name,
-      image: this.props.spotifyData.tracks[0].album.images[1].url
-    };
-    const songOne = {
-      name: this.props.spotifyData.tracks[1].name,
-      api_id: this.props.spotifyData.tracks[1].id,
-      api_href: this.props.spotifyData.tracks[1].href,
-      album: this.props.spotifyData.tracks[1].album.name,
-      artist: this.props.spotifyData.tracks[1].album.artists[0].name,
-      image: this.props.spotifyData.tracks[1].album.images[1].url
-    };
-    const songTwo = {
-      name: this.props.spotifyData.tracks[2].name,
-      api_id: this.props.spotifyData.tracks[2].id,
-      api_href: this.props.spotifyData.tracks[2].href,
-      album: this.props.spotifyData.tracks[2].album.name,
-      artist: this.props.spotifyData.tracks[2].album.artists[0].name,
-      image: this.props.spotifyData.tracks[2].album.images[1].url
-    };
-    const songThree = {
-      name: this.props.spotifyData.tracks[3].name,
-      api_id: this.props.spotifyData.tracks[3].id,
-      api_href: this.props.spotifyData.tracks[3].href,
-      album: this.props.spotifyData.tracks[3].album.name,
-      artist: this.props.spotifyData.tracks[3].album.artists[0].name,
-      image: this.props.spotifyData.tracks[3].album.images[1].url
-    };
-    const songFour = {
-      name: this.props.spotifyData.tracks[4].name,
-      api_id: this.props.spotifyData.tracks[4].id,
-      api_href: this.props.spotifyData.tracks[4].href,
-      album: this.props.spotifyData.tracks[4].album.name,
-      artist: this.props.spotifyData.tracks[4].album.artists[0].name,
-      image: this.props.spotifyData.tracks[4].album.images[1].url
-    };
-    const songFive = {
-      name: this.props.spotifyData.tracks[5].name,
-      api_id: this.props.spotifyData.tracks[5].id,
-      api_href: this.props.spotifyData.tracks[5].href,
-      album: this.props.spotifyData.tracks[5].album.name,
-      artist: this.props.spotifyData.tracks[5].album.artists[0].name,
-      image: this.props.spotifyData.tracks[5].album.images[1].url
-    };
-    const songSix = {
-      name: this.props.spotifyData.tracks[6].name,
-      api_id: this.props.spotifyData.tracks[6].id,
-      api_href: this.props.spotifyData.tracks[6].href,
-      album: this.props.spotifyData.tracks[6].album.name,
-      artist: this.props.spotifyData.tracks[6].album.artists[0].name,
-      image: this.props.spotifyData.tracks[6].album.images[1].url
-    };
-    const songSeven = {
-      name: this.props.spotifyData.tracks[7].name,
-      api_id: this.props.spotifyData.tracks[7].id,
-      api_href: this.props.spotifyData.tracks[7].href,
-      album: this.props.spotifyData.tracks[7].album.name,
-      artist: this.props.spotifyData.tracks[7].album.artists[0].name,
-      image: this.props.spotifyData.tracks[7].album.images[1].url
-    };
-    const songEight = {
-      name: this.props.spotifyData.tracks[8].name,
-      api_id: this.props.spotifyData.tracks[8].id,
-      api_href: this.props.spotifyData.tracks[8].href,
-      album: this.props.spotifyData.tracks[8].album.name,
-      artist: this.props.spotifyData.tracks[8].album.artists[0].name,
-      image: this.props.spotifyData.tracks[8].album.images[1].url
-    };
-    const songNine = {
-      name: this.props.spotifyData.tracks[9].name,
-      api_id: this.props.spotifyData.tracks[9].id,
-      api_href: this.props.spotifyData.tracks[9].href,
-      album: this.props.spotifyData.tracks[9].album.name,
-      artist: this.props.spotifyData.tracks[9].album.artists[0].name,
-      image: this.props.spotifyData.tracks[9].album.images[1].url
-    };
-  };
-
   render() {
     const { classes } = this.props;
+    const tracks = this.props.tracks;
     return (
       <div className={classes.root}>
         <Grid className={classes.navBarHolder} item xs={12}>
@@ -212,6 +127,81 @@ class Playlist extends React.Component {
             </Typography>
           </Grid>
 
+          <Grid className={classes.playlistHolderGrid} item xs={12}>
+              <PlaylistCard
+                number="1"
+                song={tracks[0].name}
+                artist={tracks[0].album.artists[0].name}
+                album={tracks[0].album.name}
+                image={tracks[0].album.images[1].url} />
+              <PlaylistCard
+                number="2"
+                song={tracks[1].name}
+                artist={tracks[1].album.artists[0].name}
+                album={tracks[1].album.name}
+                image={tracks[1].album.images[1].url} />
+              <PlaylistCard
+                number="3"
+                song={tracks[2].name}
+                artist={tracks[2].album.artists[0].name}
+                album={tracks[2].album.name}
+                image={tracks[2].album.images[1].url} />
+              <PlaylistCard
+                number="4"
+                song={tracks[3].name}
+                artist={tracks[3].album.artists[0].name}
+                album={tracks[3].album.name}
+                image={tracks[3].album.images[1].url} />
+              <PlaylistCard
+                number="5"
+                song={tracks[4].name}
+                artist={tracks[4].album.artists[0].name}
+                album={tracks[4].album.name}
+                image={tracks[4].album.images[1].url} />
+              <PlaylistCard
+                number="6"
+                song={tracks[5].name}
+                artist={tracks[5].album.artists[0].name}
+                album={tracks[5].album.name}
+                image={tracks[5].album.images[1].url} />
+              <PlaylistCard
+                number="7"
+                song={tracks[6].name}
+                artist={tracks[6].album.artists[0].name}
+                album={tracks[6].album.name}
+                image={tracks[6].album.images[1].url} />
+              <PlaylistCard
+                number="8"
+                song={tracks[7].name}
+                artist={tracks[7].album.artists[0].name}
+                album={tracks[7].album.name}
+                image={tracks[7].album.images[1].url} />
+              <PlaylistCard
+                number="9"
+                song={tracks[8].name}
+                artist={tracks[8].album.artists[0].name}
+                album={tracks[8].album.name}
+                image={tracks[8].album.images[1].url} />
+              <PlaylistCard
+                number="10"
+                song={tracks[9].name}
+                artist={tracks[9].album.artists[0].name}
+                album={tracks[9].album.name}
+                image={tracks[9].album.images[1].url} />
+          </Grid>
+
+          <Grid className={classes.uploadTextHolder} item>
+            <Typography className={classes.uploadText}>
+              Save Your Playlist to Spotify
+            </Typography>
+          </Grid>
+
+          <Grid className={classes.uploadOptionsGrid} item>
+            <IconButton onClick={() => {this.props.dispatch(playlistCreate(tracks))}} className={classes.iconButton}>
+                <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
+            </IconButton>
+          </Grid>
+
         </Grid>
       </div>
     )
@@ -220,7 +210,7 @@ class Playlist extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    spotifyData: state.SelectionReducer.spotifyData
+
   };
 };
 

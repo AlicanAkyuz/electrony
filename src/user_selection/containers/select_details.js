@@ -141,7 +141,7 @@ class Select extends React.Component {
 
   if (this.props.success) {
     body =
-    <Playlist />
+    <Playlist tracks={this.props.spotifyData.tracks} />
   };
 
     return (
@@ -185,7 +185,8 @@ const mapStateToProps = state => {
     failure: state.playlist_failure,
     failure_title: state.playlist_failure_content.title,
     failure_content: state.playlist_failure_content.content,
-    success: state.playlist_success
+    success: state.playlist_success,
+    spotifyData: state.spotifyData
   };
 };
 
