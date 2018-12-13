@@ -110,8 +110,8 @@ const stepperStyles = stepperStyles => ({
 
 function SelectionStepper(props) {
   const { classes } = props;
-  let parsed = queryString.parse(window.location.hash);
-  let accessToken = parsed.access_token;
+  const parsed = queryString.parse(window.location.hash);
+  const accessToken = parsed.access_token;
 
   let createPlaylistButton;
   props.activeStep === getSteps().length ?
