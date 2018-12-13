@@ -9,6 +9,7 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
+  TOKEN,
   RENDER_PLAYLIST,
   PLAYLIST_SUCCESS,
   PLAYLIST_FAILURE
@@ -109,6 +110,10 @@ export function handlePositivenessSelection(value) {
 export function handleSelectionSubmit(token) {
   return function (dispatch, getState) {
     dispatch(fetch_starting());
+    dispatch({
+        type: TOKEN,
+        payload: token,
+    });
     const state = getState().SelectionReducer.user_selection;
     const data = {
       genre: state.genre.toLowerCase(),
@@ -215,7 +220,7 @@ export function handleSelectionSubmit(token) {
       tempoFloat = 1.0
     };
 
-    const finalValues = {
+    const params = {
       genre: `seed_genres=${genreString}`,
       danceability: `target_danceability=${data.danceability}`,
       energy: `target_energy=${data.energy}`,
@@ -227,7 +232,7 @@ export function handleSelectionSubmit(token) {
     };
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=10';
-    const final_endpoint = `${root_endpoint}&${finalValues.genre}&${finalValues.danceability}&${finalValues.energy}&${finalValues.key}&${finalValues.loudness}&${finalValues.mode}&${finalValues.tempo}&${finalValues.valence}`
+    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.valence}`
 
     fetch(final_endpoint, {
       headers: {'Authorization': "Bearer " + token}
