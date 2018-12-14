@@ -2,7 +2,7 @@ import {
       STORE_PLAYLIST,
       LOADING,
       USER_INFO,
-      PLAYLIST_ENDPOINT
+      PLAYLIST_ID
 } from './action_types';
 
 export function playlistStore(spotifyData, token) {
@@ -52,8 +52,8 @@ export function playlistCreate() {
     const params = `${user_id}/playlists`;
     const final_endpoint = `${root_endpoint}${params}`;
     const body_data = {
-      name: "Alican Diversified",
-      description: "Your 10 songs that electrfies your vibe"
+      name: "Alican's 9 Amazing Songs",
+      description: "9 songs that electrifies your vibe. @Created by Soundiversify."
     };
 
     fetch(final_endpoint, {
@@ -64,15 +64,14 @@ export function playlistCreate() {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => {
-      if (res.ok) {
-        const playlist_endpoint = res.url;
-        dispatch({
-            type: PLAYLIST_ENDPOINT,
-            payload: playlist_endpoint,
-        });
-        dispatch(pushTracks());
-      }
+    .then(response => response.json())
+    .then(function(data) {
+      const playlist_id = data.id;
+      dispatch({
+          type: PLAYLIST_ID,
+          payload: playlist_id,
+      });
+      dispatch(pushTracks());
     })
     .catch(error => {
       console.error('Error:', error)
@@ -83,28 +82,40 @@ export function playlistCreate() {
 export function pushTracks() {
   return function (dispatch, getState) {
     const state = getState().PlaylistReducer;
-
-    const track_id_one = state.playlistData[0].uri;
-    const track_id_two = state.playlistData[1].uri;
-    const track_id_three = state.playlistData[2].uri;
-    const track_id_four = state.playlistData[3].uri;
-    const track_id_five = state.playlistData[4].uri;
-    const track_id_six = state.playlistData[5].uri;
-    const track_id_seven = state.playlistData[6].uri;
-    const track_id_eight = state.playlistData[7].uri;
-    const track_id_nine = state.playlistData[8].uri;
-    const track_id_ten = state.playlistData[9].uri;
+    const one = state.playlistData[0].uri;
+    const two = state.playlistData[1].uri;
+    const three = state.playlistData[2].uri;
+    const four = state.playlistData[3].uri;
+    const five = state.playlistData[4].uri;
+    const six = state.playlistData[5].uri;
+    const seven = state.playlistData[6].uri;
+    const eight = state.playlistData[7].uri;
+    const nine = state.playlistData[8].uri;
+    const ten = state.playlistData[9].uri;
 
     const token = state.token;
-    const user_id = state.user_info.id;
+
+    const root_endpoint = "https://api.spotify.com/v1/playlists/";
+    const playlist_id = state.playlist_id;
+    const tracks = `/tracks?uris=${one},${two},${three},${four},${five},${six},${seven},${eight},${nine},${ten}`
+    const final_endpoint = `${root_endpoint}${playlist_id}${tracks}`
+
+    fetch(final_endpoint, {
+      method: 'POST',
+      headers: {
+        'Authorization': "Bearer " + token,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if (res.ok) {
+        console.log("success");
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error)
+    });
 
 
-    const playlist_endpoint = state.playlist_endpoint;
-    const params = `${user_id}/playlists`;
-    const final_endpoint = `${playlist_endpoint}`
-
-    const coreboyle_olacak = "https://api.spotify.com/v1/playlists/";
-    const sonra_playlistid_lazım = "7oi0w0SLbJ4YyjrOxhZbUv/";
-    const sonra_tracks_plus_track_URIs = "tracks?uris=spotify%3Atrack%3A4iV5W9uYEdYUVa79Axb7Rh,spotify%3Atrack%3A1301WleyT98MSxVHPZCA6M";
   };
 };
