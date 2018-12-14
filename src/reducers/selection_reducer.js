@@ -17,18 +17,18 @@ import {
 
 const initialState = {
   select: {
-    activeStep: 7,
+    activeStep: 0,
     dialogOpen: false
   },
   user_selection: {
-    genre: 'techno',
-    danceability: '1',
-    energy: '1',
-    key: 'C',
-    loudness: '-35dB',
-    mode: 'Major',
-    tempo: '81-90 BPM',
-    positiveness: '1'
+    genre: '',
+    danceability: '',
+    energy: '',
+    key: '',
+    loudness: '',
+    mode: '',
+    tempo: '',
+    positiveness: ''
   },
   titles: {
     genre: "Genres",
