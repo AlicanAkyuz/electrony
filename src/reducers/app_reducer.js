@@ -1,9 +1,6 @@
 const initialState = {
-  pageTitle: {
-    sound: "SounD",
-    iversify: "iversify",
-    subTitle: "Music Beyond Genres. A Spotify App."
-  },
+  app_title: "Electronify",
+  app_subtitle: "A playlist curator for electronic music lovers.",
   about: {
     title: "About",
     topText: "Soundiversify is an app that curates music according to the complexities that informs human aural perception.",
