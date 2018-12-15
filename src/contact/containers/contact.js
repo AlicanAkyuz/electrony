@@ -13,28 +13,28 @@ class Contact extends React.Component {
     };
 
     if (this.props.error) {
-      renderForm = <FormSubmit errorFound="errorFound" />;
+      renderForm = <FormSubmit errorFound="errorFound" />
     };
 
     if (this.props.loading) {
       renderForm = <AfterForm
         textHeader={this.props.loadingContent.title}
         textContent={this.props.loadingContent.content}
-        loading={this.props.loading} />;
+        loading={this.props.loading} />
     };
 
     if (this.props.success) {
       renderForm = <AfterForm
         textHeader={this.props.successContent.title}
         textContent={this.props.successContent.content}
-        onReset={() => {this.props.dispatch(onReset())}} />;
+        onReset={() => {this.props.dispatch(onReset())}} />
     };
 
     if (this.props.failure) {
       renderForm = <AfterForm
         textHeader={this.props.failureContent.title}
         textContent={this.props.failureContent.content}
-        onReset={() => {this.props.dispatch(onReset())}} />;
+        onReset={() => {this.props.dispatch(onReset())}} />
     };
 
     return (

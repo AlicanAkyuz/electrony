@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import NavBar from '../components/navbar';
+import NavBar from './navbar';
 
 const styles = theme => ({
   root: {
@@ -75,7 +75,7 @@ function Login(props) {
             </h3>
           </Grid>
 
-          <IconButton onClick={() => window.location = 'http://localhost:3000/login'} className={classes.iconButton}>
+          <IconButton onClick={() => window.location = 'http://localhost:3000/login'}>
             <img className={classes.spotify_logo} src="./spotify.gif" alt="Spotify Logo" />
           </IconButton>
 

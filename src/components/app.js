@@ -43,10 +43,10 @@ const styles = theme => ({
   button: {
     height: '45px',
     width: '150px',
-    backgroundColor: '#4A7023',
-    borderRadius: '8px',
+    backgroundColor: '#00611C',
+    borderRadius: '5px',
     '&:hover': {
-      backgroundColor: "#00611C",
+      backgroundColor: "#4A7023",
     },
   },
   links: {
