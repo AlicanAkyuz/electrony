@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -25,8 +24,8 @@ const styles = theme => ({
     marginTop: '8%'
   },
   electronifyTitle: {
-    fontFamily: 'Roboto',
-    fontSize: '160px',
+    fontFamily: 'Montserrat',
+    fontSize: '140px',
     fontWeight: '800',
     color: '#4A7023',
   },
@@ -42,8 +41,8 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   button: {
-    height: '50px',
-    width: '160px',
+    height: '45px',
+    width: '150px',
     backgroundColor: '#4A7023',
     borderRadius: '8px',
     '&:hover': {

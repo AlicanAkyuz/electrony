@@ -11,6 +11,7 @@ const navBarStyle = navBarStyle => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
+    backgroundColor: 'black'
   },
   logoGridHolder: {
     width: '50%',
@@ -20,8 +21,8 @@ const navBarStyle = navBarStyle => ({
     paddingLeft: '7%'
   },
   logoTitle: {
-    fontFamily: 'Roboto',
-    fontSize: '40px',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
     fontWeight: '800',
     color: '#4A7023',
   },
@@ -40,7 +41,7 @@ const navBarStyle = navBarStyle => ({
   },
   links: {
     fontFamily: 'Roboto',
-    fontSize: '15px',
+    fontSize: '14px',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
