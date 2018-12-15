@@ -49,15 +49,10 @@ const styles = theme => ({
     alignItems: 'center',
     marginTop: '7%',
   },
-  typographyOne: {
-    fontFamily: 'Montserrat',
-    fontSize: '70px',
+  welcomeText: {
+    fontFamily: 'Roboto',
+    fontSize: '35px',
     fontWeight: '800',
-    color: '#c5c5c5'
-  },
-  typographyTwo: {
-    fontFamily: 'Montserrat',
-    fontSize: '20px',
     color: '#c5c5c5'
   },
   stepperGrid: {
@@ -75,16 +70,10 @@ class Select extends React.Component {
     if (!this.props.loading) {
       body =
       <Grid className={classes.welcomeGrid} item>
-        <p className={classes.typographyOne}>
-          Diversify Your Sound
-        </p>
-        <p className={classes.typographyTwo}>
-          Make your choices in the following 10 steps to specify the tune you love.
-        </p>
-        <p className={classes.typographyTwo}>
-          We will then curate a playlist that will surprise your ears.
-        </p>
-
+        <h1 className={classes.welcomeText}>
+          Good! Now, follow the steps below to surprise your ears
+        </h1>
+        <hr style={{width: '150px'}} />
       <Grid className={classes.stepperGrid} item>
         <SelectionStepper
           handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
@@ -148,7 +137,7 @@ class Select extends React.Component {
       <div className={classes.root}>
         <Grid className={classes.containerGrid} container>
           <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
+            <NavBar pageOne="/about" textOne="ABOUT" pageTwo="/contact" textTwo="CONTACT" />
           </Grid>
           {body}
         </Grid>

@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import NavBar from '../components/navbar';
+import IconButton from '@material-ui/core/IconButton';
+import NavBar from './navbar';
 
 const styles = aboutTheme => ({
   root: {
@@ -93,29 +92,15 @@ const styles = aboutTheme => ({
     paddingRight: '5%',
     paddingLeft: '10%',
   },
-  buttonHolder: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '-3%',
-    paddingBottom: '5%',
-  },
-  button: {
-    height: '45px',
-    width: '150px',
-    backgroundColor: '#4A7023',
-    borderRadius: '8px',
+  github_logo: {
+    width: "30px",
+    height: "30px",
+    borderRadius: '25px',
+    backgroundColor: '#0c0c0c',
     '&:hover': {
-      backgroundColor: "#00611C",
+      backgroundColor: "#323232",
     },
   },
-  links: {
-    fontFamily: 'Roboto',
-    fontSize: '17px',
-    fontWeight: '400',
-    textDecoration: 'none',
-    textTransform: 'none',
-    color: '#F0FFF0'
-  }
 });
 
 export function About(props) {
@@ -125,7 +110,7 @@ export function About(props) {
       <Grid className={classes.containerGrid} container spacing={12}>
 
         <Grid className={classes.navBarHolder} item xs={12}>
-          <NavBar pageOne="/login" textOne="DISCOVER" pageTwo="/contact" textTwo="CONTACT" />
+          <NavBar pageOne="/login" textOne="GET STARTED" pageTwo="/contact" textTwo="CONTACT" />
         </Grid>
 
         <Grid className={classes.aboutHolder} item xs={12}>
@@ -166,6 +151,9 @@ export function About(props) {
               <h3 className={classes.names}>
                 Mehmet Tansu Isikli
               </h3>
+              <IconButton onClick={() => window.location = 'https://github.com/mtisikli'}>
+                <img className={classes.github_logo} src="./github.png" alt="github Logo" />
+              </IconButton>
               <h4 className={classes.memberBackground}>
                 Background background background background background background background background
                 background background background background background background background background
@@ -179,6 +167,9 @@ export function About(props) {
               <h3 className={classes.names}>
                 Alican Akyuz
               </h3>
+              <IconButton onClick={() => window.location = 'https://github.com/AlicanAkyuz'}>
+                <img className={classes.github_logo} src="./github.png" alt="github Logo" />
+              </IconButton>
               <h4 className={classes.memberBackground}>
                 Background background background background background background background background
                 background background background background background background background background
@@ -192,6 +183,9 @@ export function About(props) {
               <h3 className={classes.names}>
                 Tolga Akyuz
               </h3>
+              <IconButton onClick={() => window.location = 'https://github.com/tolgaakyuz'}>
+                <img className={classes.github_logo} src="./github.png" alt="github Logo" />
+              </IconButton>
               <h4 className={classes.memberBackground}>
                 Background background background background background background background background
                 background background background background background background background background
@@ -201,15 +195,7 @@ export function About(props) {
             </Grid>
 
           </Grid>
-
-          <Grid className={classes.buttonHolder} item xs={12}>
-            <Button position="center" size="medium" className={classes.button}>
-              <Link className={classes.links} to="/login">GET STARTED</Link>
-            </Button>
-          </Grid>
-
         </Grid>
-
       </Grid>
     </div>
   )

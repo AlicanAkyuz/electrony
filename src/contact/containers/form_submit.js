@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -17,12 +16,11 @@ const styles = submitTheme => ({
   root: {
     flexGrow: 1,
     height: '720px',
-    backgroundColor: '#191919'
+    backgroundColor: '#C1CDC1'
   },
   containerGrid: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#c6c6c6',
     alignItems: 'center'
   },
   navBarHolder: {
@@ -40,7 +38,17 @@ const styles = submitTheme => ({
   },
   buttonHolder: {
     marginBottom: '5%'
-  }
+  },
+  button: {
+    height: '45px',
+    width: '150px',
+    color: '#F0FFF0',
+    backgroundColor: '#00611C',
+    borderRadius: '5px',
+    '&:hover': {
+      backgroundColor: "#4A7023",
+    },
+  },
 });
 
 class FormSubmit extends React.Component {
@@ -92,32 +100,44 @@ class FormSubmit extends React.Component {
         <Grid className={classes.containerGrid} container >
 
           <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/select_details" textOne="Discover" pageTwo="/about" textTwo="About" />
+            <NavBar pageOne="/login" textOne="GET STARTED" pageTwo="/about" textTwo="ABOUT" />
           </Grid>
 
           <Grid className={classes.textGrid} item xs={12}>
-            <FormControl required >
-              <TextField name="name" label="Name" required margin="normal"
-                         value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
-
+            <TextField name="name"
+                       label="Name"
+                       required
+                       margin="normal"
+                       value={this.props.name}
+                       onChange={this.handleChange}
+                       error={!!showNameError} />
             <FormHelperText error>{showNameError}</FormHelperText>
-            </FormControl>
 
-            <FormControl required >
-                <TextField name="email" label="Email" required margin="normal"
-                           value={this.props.email} onChange={this.handleChange} error={!!showEmailError} />
-              <FormHelperText error>{showEmailError}</FormHelperText>
-            </FormControl>
+            <TextField name="email"
+                       label="Email"
+                       required
+                       margin="normal"
+                       value={this.props.email}
+                       onChange={this.handleChange}
+                       error={!!showEmailError} />
+            <FormHelperText error>{showEmailError}</FormHelperText>
 
-            <FormControl required >
-              <TextField name="message" label="Message" multiline required rows="8" margin="normal"
-                         value={this.props.message} onChange={this.handleChange} error={!!showMessageError} />
-              <FormHelperText error>{showMessageError}</FormHelperText>
-            </FormControl>
+            <TextField name="message"
+                       label="Message"
+                       multiline
+                       required
+                       margin="normal"
+                       rows="8"
+                       value={this.props.message}
+                       onChange={this.handleChange}
+                       error={!!showMessageError} />
+            <FormHelperText error>{showMessageError}</FormHelperText>
           </Grid>
 
           <Grid className={classes.buttonHolder} item xs={12}>
-            <Button onClick={this.handleSubmit} variant="outlined" type="submit">Submit</Button>
+            <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>
+              Submit
+            </Button>
           </Grid>
 
         </Grid>

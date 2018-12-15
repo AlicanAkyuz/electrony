@@ -16,27 +16,27 @@ const navBarStyle = navBarStyle => ({
   logoGridHolder: {
     width: '50%',
     minWidth: '50%',
-    paddingTop: '1%',
+    paddingTop: '1.5%',
     paddingBottom: '1%',
     paddingLeft: '7%'
   },
   logoTitle: {
     fontFamily: 'Montserrat',
-    fontSize: '20px',
+    fontSize: '22px',
     fontWeight: '800',
     color: '#4A7023',
   },
   buttonsGridHolder: {
     display: 'flex',
-    marginLeft: '30%',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingTop: '1%',
     width: '50%',
     minWidth: '50%',
   },
   button: {
     marginLeft: '3%',
-    height: '30px',
-    width: '80px',
+    height: '40px',
+    width: '140px',
     borderRadius: '8px',
   },
   links: {
