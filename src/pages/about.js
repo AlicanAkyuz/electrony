@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 import NavBar from '../components/navbar';
 import MyButton from '../components/myButton';
 
@@ -34,6 +36,59 @@ const styles = aboutTheme => ({
   },
   buttonHolder: {
     marginBottom: '5%'
+  },
+  teamHolder: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100%',
+    backgroundColor: '#191919',
+  },
+  team: {
+    marginTop: '2%',
+    marginBottom: '2%',
+    fontFamily: 'Montserrat',
+    fontWeight: '800',
+    fontSize: '50px',
+    color: '#c5c5c5'
+  },
+  teamDivider: {
+    display: 'flex',
+    flexFlow: 'row, wrap',
+    justifyContent: 'center',
+    width: '100%',
+    height: '70%',
+    marginBottom: '5%'
+  },
+  avatar: {
+    width: 180,
+    height: 180,
+  },
+  names: {
+    marginTop: '5%',
+    fontFamily: 'Montserrat',
+    fontSize: '22px',
+    fontWeight: '800',
+    color: '#c5c5c5'
+  },
+  memberOne: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  memberTwo: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  memberBackground: {
+    fontFamily: 'Montserrat',
+    color: '#A99884',
+    fontSize: '16px',
+    paddingTop: '3%',
+    paddingRight: '5%',
+    paddingLeft: '10%',
+    paddingBottom: '2%'
   }
 });
 
@@ -76,6 +131,22 @@ export function About(props) {
           yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence,
           ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written..... yet, music was created by akyüz brothers in december, 2018. the idea of the project derived from a
           widespread murmur among the music enthusiasts in berlin, germany, that one cannot access the kind of music one seeks. hence, ideas were collected, the project was drawn, and an algorithm that accurately pinpoints one’s music taste was written.......
+        </Grid>
+
+        <Grid className={classes.teamHolder} item xs={12}>
+          <Typography className={classes.team}>{this.props.teamTitle}</Typography>
+          <Grid className={classes.teamDivider} item xs={12}>
+            <Grid className={classes.memberOne} item xs={12}>
+              <Avatar alt="alican_pic" src="./alican.jpg" className={classes.avatar} />
+              <Typography className={classes.names}>{this.props.teamMemberOne}</Typography>
+                <Typography className={classes.memberBackground}>{this.props.teamMemberOneBack}</Typography>
+            </Grid>
+            <Grid className={classes.memberTwo} item xs={12}>
+              <Avatar alt="tolga_pic" src="/tolga.jpg" className={classes.avatar} />
+              <Typography className={classes.names}>{this.props.teamMemberTwo}</Typography>
+              <Typography className={classes.memberBackground}>{this.props.teamMemberTwoBack}</Typography>
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid className={classes.buttonHolder} item xs={12}>

@@ -2,23 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import NavBar from '../components/navbar';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
-    height: '720px',
-    backgroundColor: 'black'
+    height: '705px',
+    backgroundColor: '#000'
   },
   containerGrid: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: 'black',
   },
   navBarHolder: {
     width: '100%',
@@ -27,36 +25,22 @@ const styles = theme => ({
     left: 0,
     right: 0
   },
-  welcomeGrid: {
-    display: 'flex',
-    flexDirection: 'column',
+  textsHolder: {
     width: '100%',
-    backgroundColor: 'black',
-    alignItems: 'center',
-    marginTop: '7%',
+    textAlign: 'center',
+    marginTop: '5%',
   },
-  typographyOne: {
-    fontFamily: 'Montserrat',
+  titleText: {
+    fontFamily: 'Roboto',
     fontSize: '70px',
     fontWeight: '800',
-    color: '#c5c5c5'
+    color: '#CFDBC5'
   },
-  typographyTwo: {
+  contentText: {
     fontFamily: 'Montserrat',
     fontSize: '20px',
-    color: '#c5c5c5'
-  },
-  buttonHolder: {
-    marginTop: '5%',
-    marginBottom: '8%',
-    justifyContent: 'center'
-  },
-  button: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#7D2C1A',
-    '&:hover': {
-      backgroundColor: "#7D1C05",
-    },
+    fontWeight: '400',
+    color: '#CFDBC5'
   },
   links: {
     fontFamily: 'Montserrat',
@@ -65,56 +49,41 @@ const styles = theme => ({
     textTransform: 'none',
     color: '#cccccc'
   },
+  spotify_logo: {
+    width: "245px",
+    height: "190px"
+  },
 });
 
-class Select extends React.Component {
-  render() {
-    const { classes } = this.props;
+function Login(props) {
+  const { classes } = props;
     return (
       <div className={classes.root}>
-
         <Grid className={classes.containerGrid} container>
+
           <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
+            <NavBar pageOne="/about" textOne="ABOUT" pageTwo="/contact" textTwo="CONTACT" />
           </Grid>
 
-          <Grid className={classes.welcomeGrid} item>
-            <p className={classes.typographyOne}>
-              Diversify Your Sound
-            </p>
-            <p className={classes.typographyTwo}>
-              Make your choices in the following 10 steps to specify the tune you love.
-            </p>
-            <p className={classes.typographyTwo}>
-              We will then curate a playlist that will surprise your ears.
-            </p>
-            <p className={classes.typographyTwo}>
-              To use our service, please login to your Spotify account:
-            </p>
+          <Grid className={classes.textsHolder} item>
+            <h1 className={classes.titleText}>
+              How it works?
+            </h1>
+            <h3 className={classes.contentText}>
+              We ask you 9 questions to help you specify the kind of vibes you are looking for. <br /> <br />
+              We then generate the best playlist depending on your choices. <br /> <br />
+              We work with Spotify. So, go ahead and login by clicking the logo below!
+            </h3>
           </Grid>
 
-          <Grid className={classes.buttonHolder} item xs={12}>
-            <Button variant="contained" onClick={() => window.location = 'http://localhost:3000/login'} size="large" className={classes.button}>
-              Login to Spotify
-            </Button>
-          </Grid>
+          <IconButton onClick={() => window.location = 'http://localhost:3000/login'} className={classes.iconButton}>
+            <img className={classes.spotify_logo} src="./spotify.gif" alt="Spotify Logo" />
+          </IconButton>
+
         </Grid>
       </div>
     );
-  };
+
 };
 
-const mapStateToProps = state => {
-  state = state.SelectionReducer;
-  return {
-
-  };
-};
-
-Select.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const withstyles = withStyles(styles)(Select);
-const selectConnected = connect(mapStateToProps)(withstyles);
-export default selectConnected;
+export default withStyles(styles)(Login);
