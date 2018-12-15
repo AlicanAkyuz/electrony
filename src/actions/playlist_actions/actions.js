@@ -170,12 +170,7 @@ export function pushTracks() {
     const ten = state[9].uri;
 
     const token = getState().PlaylistReducer.token;
-    const root_endpoint = "https://api.spotify.com/v1/playlists/";
     const playlist_id = getState().PlaylistReducer.playlist_id;
-    const tracks = `/tracks?uris=${one},${two},${three},${four},${five},${six},${seven},${eight},${nine},${ten}`
-    const final_endpoint = `${root_endpoint}${playlist_id}${tracks}`
-
-
     const tracks_object = {
       "uris": [one, two, three, four, five, six, seven, eight, nine, ten]
     };
