@@ -1,22 +1,28 @@
 import {
       STORE_PLAYLIST,
-      LOADING,
       USER_INFO,
-      PLAYLIST_ID
+      PLAYLIST_ID,
+      LOADING,
+      NAME_BOX,
+      NAME_CHANGED,
+      DESCRIPTION_CHANGED,
+      CHECK_BOX,
+      NAME_SUBMIT,
+      SUCCESS
 } from './action_types';
 
-export function playlistStore(spotifyData, token) {
+export function store_playlist_info(spotifyData, token) {
   return function (dispatch, getState) {
     dispatch({
         type: STORE_PLAYLIST,
         payload: spotifyData,
         token: token
     });
-    dispatch(fetch_beginnig());
+    dispatch(playlist_loading());
   }
 };
 
-export function fetch_beginnig() {
+export function playlist_loading() {
   return function (dispatch) {
     dispatch({
         type: LOADING,
@@ -34,27 +40,96 @@ export function getUserID() {
     })
     .then(response => response.json())
     .then(function(user_info) {
+      const user_name = user_info.display_name;
       dispatch({
           type: USER_INFO,
           payload: user_info,
+          payloadTwo: user_name
       })
-      dispatch(playlistCreate());
+      dispatch(playlist_name_box());
     })
     .catch(error => console.error('Error:', error));
   };
 };
 
+export function playlist_name_box() {
+  return function (dispatch, getState) {
+    dispatch({
+        type: NAME_BOX,
+        payload: true,
+    })
+  }
+};
+
+export function handleNameChange(value) {
+  return function (dispatch) {
+    dispatch({
+        type: NAME_CHANGED,
+        payload: value,
+    })
+  }
+};
+
+export function handleDescriptionChange(value) {
+  return function (dispatch) {
+    dispatch({
+        type: DESCRIPTION_CHANGED,
+        payload: value,
+    })
+  }
+};
+
+export function handleClickBox() {
+  return function (dispatch, getState) {
+    let value = null;
+    if (getState().PlaylistReducer.check_box_state === false) {
+      value = true
+    } else if (getState().PlaylistReducer.check_box_state === true) {
+      value = false
+    };
+    dispatch({
+        type: CHECK_BOX,
+        payload: value,
+    })
+  }
+};
+
+export function handleNameSubmit() {
+  return function (dispatch) {
+    dispatch({
+        type: NAME_SUBMIT,
+        payload: false,
+    })
+    dispatch(playlistCreate());
+  }
+};
+
 export function playlistCreate() {
   return function (dispatch, getState) {
-    const token = getState().PlaylistReducer.token;
-    const user_id = getState().PlaylistReducer.user_info.id;
+    const state = getState().PlaylistReducer;
+
+    const token = state.token;
+
+    const user_id = state.user_info.id;
+    const playlist_name = state.playlist_name;
+    const playlist_description = state.playlist_description;
+    let playlist_state = true;
+    if (state.check_box_state === true) {
+      playlist_state = false
+    };
+
     const root_endpoint = "https://api.spotify.com/v1/users/";
     const params = `${user_id}/playlists`;
     const final_endpoint = `${root_endpoint}${params}`;
+
     const body_data = {
-      name: "Alican's 9 Amazing Songs",
-      description: "9 songs that electrifies your vibe. @Created by Soundiversify."
+      name: playlist_name,
+      public: playlist_state,
+      description: `${playlist_description} @Created by Soundiversify.`
     };
+
+
+
 
     fetch(final_endpoint, {
       method: 'POST',
@@ -66,6 +141,7 @@ export function playlistCreate() {
     })
     .then(response => response.json())
     .then(function(data) {
+      console.log(data)
       const playlist_id = data.id;
       dispatch({
           type: PLAYLIST_ID,
@@ -81,41 +157,47 @@ export function playlistCreate() {
 
 export function pushTracks() {
   return function (dispatch, getState) {
-    const state = getState().PlaylistReducer;
-    const one = state.playlistData[0].uri;
-    const two = state.playlistData[1].uri;
-    const three = state.playlistData[2].uri;
-    const four = state.playlistData[3].uri;
-    const five = state.playlistData[4].uri;
-    const six = state.playlistData[5].uri;
-    const seven = state.playlistData[6].uri;
-    const eight = state.playlistData[7].uri;
-    const nine = state.playlistData[8].uri;
-    const ten = state.playlistData[9].uri;
+    const state = getState().PlaylistReducer.playlistData;
+    const one = state[0].uri;
+    const two = state[1].uri;
+    const three = state[2].uri;
+    const four = state[3].uri;
+    const five = state[4].uri;
+    const six = state[5].uri;
+    const seven = state[6].uri;
+    const eight = state[7].uri;
+    const nine = state[8].uri;
+    const ten = state[9].uri;
 
-    const token = state.token;
-
+    const token = getState().PlaylistReducer.token;
     const root_endpoint = "https://api.spotify.com/v1/playlists/";
-    const playlist_id = state.playlist_id;
+    const playlist_id = getState().PlaylistReducer.playlist_id;
     const tracks = `/tracks?uris=${one},${two},${three},${four},${five},${six},${seven},${eight},${nine},${ten}`
     const final_endpoint = `${root_endpoint}${playlist_id}${tracks}`
 
-    fetch(final_endpoint, {
+
+    const tracks_object = {
+      "uris": [one, two, three, four, five, six, seven, eight, nine, ten]
+    };
+
+    fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks?`, {
       method: 'POST',
+      body: JSON.stringify(tracks_object),
       headers: {
         'Authorization': "Bearer " + token,
         'Content-Type': 'application/json'
       }
     })
-    .then(res => {
-      if (res.ok) {
-        console.log("success");
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error)
-    });
-
-
+    .then(res => {if (res.ok) {dispatch(playlist_success())}})
+    .catch(error => {console.error('Error:', error)});
   };
+};
+
+export function playlist_success() {
+  return function (dispatch) {
+    dispatch({
+        type: SUCCESS,
+        payload: true,
+    })
+  }
 };
