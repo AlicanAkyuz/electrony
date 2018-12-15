@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ResetButton from './reset_button';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const afterformStyle = afterformStyle => ({
   container: {
@@ -11,14 +12,14 @@ const afterformStyle = afterformStyle => ({
     flexDirection: 'column',
     backgroundColor: '#191919',
     width: '100%',
-    height: '730px',
-    marginTop: '-3%'
+    height: '710px',
   },
   textHeader: {
-    marginTop: '15%',
+    marginTop: '10%',
     fontSize: '60px',
-    fontFamily: 'Montserrat',
-    color: '#005b96'
+    fontFamily: 'Roboto',
+    fontWeight: '800',
+    color: '#4A7023'
   },
   textContent: {
     fontSize: '20px',
@@ -26,14 +27,27 @@ const afterformStyle = afterformStyle => ({
     color: '#e5e5e5',
     marginBottom: '10%'
   },
+  button: {
+    height: '50px',
+    width: '160px',
+    backgroundColor: '#00611C',
+    borderRadius: '5px',
+    '&:hover': {
+      backgroundColor: "#4A7023",
+    },
+  },
+  links: {
+    fontFamily: 'Roboto',
+    fontSize: '17px',
+    fontWeight: '400',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#F0FFF0'
+  },
   progress: {
-    color: '#005b96',
+    color: '#4A7023',
   },
 });
-
-AfterForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 function AfterForm(props) {
   const { classes } = props;
@@ -41,7 +55,10 @@ function AfterForm(props) {
   let showCircle;
 
   if (props.onReset) {
-    showButton = <ResetButton page="/select_details" text="go discover" onReset={props.onReset} />;
+    showButton =
+      <Button onClick={props.onReset} className={classes.button} size="large" variant="contained">
+        <Link className={classes.links} to="/login">GO BACK</Link>
+      </Button>
   };
 
   if (props.loading) {
@@ -58,5 +75,9 @@ function AfterForm(props) {
     </div>
   )
 }
+
+AfterForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(afterformStyle)(AfterForm);
