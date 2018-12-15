@@ -5,10 +5,16 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
+import PlaylistDetailsBox from '../components/playlist_details_box';
 import PlaylistUploadLoad from '../components/load';
+import PlaylistSuccess from '../components/playlist_success';
 import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
-import { playlistStore
+import { store_playlist_info,
+         handleNameChange,
+         handleDescriptionChange,
+         handleClickBox,
+         handleNameSubmit
 } from '../../actions/playlist_actions/actions';
 
 const playlistStyle = playlistStyle => ({
@@ -118,7 +124,7 @@ class Playlist extends React.Component {
     const user_token = this.props.userToken;
 
     let pageContent;
-    if (!this.props.loading) {
+    if (!this.props.playlist_loading) {
       pageContent =
       <Grid className={classes.gridsHolder} container spacing={24}>
 
@@ -204,19 +210,42 @@ class Playlist extends React.Component {
         </Grid>
 
         <Grid className={classes.uploadOptionsGrid} item>
-          <IconButton onClick={() => {this.props.dispatch(playlistStore(tracks, user_token))}} className={classes.iconButton}>
+          <IconButton onClick={() => {this.props.dispatch(store_playlist_info(tracks, user_token))}} className={classes.iconButton}>
               <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
           </IconButton>
         </Grid>
       </Grid>
     };
 
-    if (this.props.loading) {
+    if (this.props.playlist_loading) {
       pageContent =
         <Grid className={classes.stepperGrid} item>
           <PlaylistUploadLoad
             title={this.props.loading_content_title}
             content={this.props.loading_content_content} />
+        </Grid>
+    }
+
+    if (this.props.name_box) {
+      pageContent =
+        <Grid className={classes.stepperGrid} item>
+          <PlaylistDetailsBox
+            userName={this.props.user_name}
+            playlistName={this.props.playlist_name}
+            playlistDescription={this.props.playlist_description}
+            checkBoxState={this.props.check_box_state}
+            handleNameChange={(value) => {this.props.dispatch(handleNameChange(value))}}
+            handleDescriptionChange={(value) => {this.props.dispatch(handleDescriptionChange(value))}}
+            handleClickBox={() => {this.props.dispatch(handleClickBox())}}
+            handleNameSubmit={() => {this.props.dispatch(handleNameSubmit())}}
+          />
+        </Grid>
+    }
+
+    if (this.props.playlist_success) {
+      pageContent =
+        <Grid className={classes.stepperGrid} item>
+          <PlaylistSuccess />
         </Grid>
     }
 
@@ -236,9 +265,15 @@ class Playlist extends React.Component {
 const mapStateToProps = state => {
   state = state.PlaylistReducer;
   return {
-    loading: state.loading,
+    user_name: state.user_name,
+    playlist_loading: state.playlist_loading,
     loading_content_title: state.loading_content.title,
     loading_content_content: state.loading_content.content,
+    name_box: state.name_box,
+    playlist_name: state.playlist_name,
+    playlist_description: state.playlist_description,
+    check_box_state: state.check_box_state,
+    playlist_success: state.playlist_success
   };
 };
 

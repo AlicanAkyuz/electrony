@@ -105,7 +105,7 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     }
     case POS_SELECTED: {
       const newState = Object.assign({}, state);
-      newState.user_selection.valence = action.payload;
+      newState.user_selection.positiveness = action.payload;
       return newState;
     }
     case TOKEN: {

@@ -1,4 +1,10 @@
 export const STORE_PLAYLIST = "STORE_PLAYLIST";
-export const LOADING = "LOADING";
 export const USER_INFO = "USER_INFO";
 export const PLAYLIST_ID = "PLAYLIST_ID";
+export const LOADING = "LOADING";
+export const NAME_BOX = "NAME_BOX";
+export const NAME_CHANGED = "NAME_CHANGED";
+export const DESCRIPTION_CHANGED = "DESCRIPTION_CHANGED";
+export const CHECK_BOX = "CHECK_BOX";
+export const NAME_SUBMIT = "NAME_SUBMIT";
+export const SUCCESS = "SUCCESS";
