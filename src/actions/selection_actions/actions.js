@@ -123,7 +123,7 @@ export function handleSelectionSubmit(token) {
       loudness: state.loudness,
       mode: state.mode,
       tempo: state.tempo,
-      valence: state.valence,
+      positiveness: state.positiveness,
     };
 
     let genreString;
@@ -228,11 +228,11 @@ export function handleSelectionSubmit(token) {
       loudness: `target_loudness=${loudnessFloat}`,
       mode: `target_mode=${modeNumber}`,
       tempo: `target_tempo=${tempoFloat}`,
-      valence: `target_valence=${data.valence}`
+      positiveness: `target_valence=${data.positiveness}`
     };
 
-    const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=10';
-    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.valence}`
+    const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=40';
+    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.positiveness}`
 
     fetch(final_endpoint, {
       headers: {'Authorization': "Bearer " + token}
