@@ -109,14 +109,10 @@ export function playlistCreate() {
     const state = getState().PlaylistReducer;
 
     const token = state.token;
-
     const user_id = state.user_info.id;
     const playlist_name = state.playlist_name;
     const playlist_description = state.playlist_description;
-    let playlist_state = true;
-    if (state.check_box_state === true) {
-      playlist_state = false
-    };
+    const playlist_state = !state.check_box_state;
 
     const root_endpoint = "https://api.spotify.com/v1/users/";
     const params = `${user_id}/playlists`;
@@ -127,9 +123,6 @@ export function playlistCreate() {
       public: playlist_state,
       description: `${playlist_description} @Created by Soundiversify.`
     };
-
-
-
 
     fetch(final_endpoint, {
       method: 'POST',

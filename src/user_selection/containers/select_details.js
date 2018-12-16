@@ -7,7 +7,9 @@ import SelectionStepper from '../components/stepper.js';
 import PlaylistLoad from '../components/load';
 import Playlist from '../../playlist/containers/playlist';
 import { connect } from 'react-redux';
-import { onDialogOpen,
+import queryString from 'query-string';
+import { getUserData,
+         onDialogOpen,
          onDialogClose,
          handleGenreSelection,
          handleDanceabilitySelection,
@@ -63,15 +65,26 @@ const styles = theme => ({
 });
 
 class Select extends React.Component {
+  componentDidMount() {
+    const parsed = queryString.parse(window.location.hash);
+    const accessToken = parsed.access_token;
+    this.props.dispatch(getUserData(accessToken))
+  };
+
   render() {
     const { classes } = this.props;
+    const userName = this.props.user_name;
+    const userFavArtists = this.props.user_fav_artists;
 
     let body;
     if (!this.props.loading) {
       body =
       <Grid className={classes.welcomeGrid} item>
         <h1 className={classes.welcomeText}>
-          Good! Now, follow the steps below to surprise your ears
+          Good, {userName}! Now, let's get you what you want! 
+        </h1>
+        <h1 className={classes.welcomeText}>
+          Follow the steps below to surprise your ears.
         </h1>
         <hr style={{width: '150px'}} />
       <Grid className={classes.stepperGrid} item>
@@ -87,6 +100,7 @@ class Select extends React.Component {
           handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
           handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
           handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
+          userToken={this.props.user_token}
           activeStep={this.props.activeStep}
           dialogOpen={this.props.dialogOpen}
           genreTitle={this.props.genreTitle}
@@ -105,7 +119,6 @@ class Select extends React.Component {
           tempoTitle={this.props.tempoTitle}
           positiveness={this.props.valence}
           positivenessTitle={this.props.valenceTitle}
-          user_token={this.props.user_token}
         />
       </Grid>
       </Grid>
@@ -130,7 +143,7 @@ class Select extends React.Component {
 
   if (this.props.success) {
     body =
-    <Playlist tracks={this.props.spotifyData.tracks} userToken={this.props.userToken} />
+    <Playlist tracks={this.props.tracks} userToken={this.props.user_token} />
   };
 
     return (
@@ -149,6 +162,9 @@ class Select extends React.Component {
 const mapStateToProps = state => {
   state = state.SelectionReducer;
   return {
+    user_token: state.spotify_data.user_token,
+    user_name: state.spotify_data.user_name,
+    tracks: state.spotify_data.tracks,
     activeStep: state.select.activeStep,
     dialogOpen: state.select.dialogOpen,
     genre: state.user_selection.genre,
@@ -175,8 +191,6 @@ const mapStateToProps = state => {
     failure_title: state.playlist_failure_content.title,
     failure_content: state.playlist_failure_content.content,
     success: state.playlist_success,
-    spotifyData: state.spotifyData,
-    userToken: state.user_token
   };
 };
 
