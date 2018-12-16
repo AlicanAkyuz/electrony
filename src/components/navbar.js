@@ -21,8 +21,8 @@ const navBarStyle = navBarStyle => ({
     paddingLeft: '7%'
   },
   logoTitle: {
-    fontFamily: 'Montserrat',
-    fontSize: '22px',
+    fontFamily: 'Roboto',
+    fontSize: '25px',
     fontWeight: '800',
     color: '#4A7023',
   },

@@ -100,7 +100,7 @@ class FormSubmit extends React.Component {
         <Grid className={classes.containerGrid} container >
 
           <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/login" textOne="GET STARTED" pageTwo="/about" textTwo="ABOUT" />
+            <NavBar pageOne="/select_details" textOne="GET STARTED" pageTwo="/about" textTwo="ABOUT" />
           </Grid>
 
           <Grid className={classes.textGrid} item xs={12}>

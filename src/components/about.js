@@ -110,7 +110,7 @@ export function About(props) {
       <Grid className={classes.containerGrid} container spacing={12}>
 
         <Grid className={classes.navBarHolder} item xs={12}>
-          <NavBar pageOne="/login" textOne="GET STARTED" pageTwo="/contact" textTwo="CONTACT" />
+          <NavBar pageOne="/select_details" textOne="GET STARTED" pageTwo="/contact" textTwo="CONTACT" />
         </Grid>
 
         <Grid className={classes.aboutHolder} item xs={12}>

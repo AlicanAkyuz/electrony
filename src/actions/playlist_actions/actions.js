@@ -2,7 +2,7 @@ import {
       STORE_PLAYLIST,
       USER_INFO,
       PLAYLIST_ID,
-      LOADING,
+      CHARGING,
       NAME_BOX,
       NAME_CHANGED,
       DESCRIPTION_CHANGED,
@@ -25,7 +25,7 @@ export function store_playlist_info(spotifyData, token) {
 export function playlist_loading() {
   return function (dispatch) {
     dispatch({
-        type: LOADING,
+        type: CHARGING,
         payload: true,
     })
     dispatch(getUserID());
