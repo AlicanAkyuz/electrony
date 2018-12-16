@@ -1,4 +1,6 @@
 import {
+  USER_DATA,
+  USER_FAVS,
   DIALOG_OPEN,
   DIALOG_CLOSE,
   GENRE_SELECTED,
@@ -9,11 +11,30 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
-  TOKEN,
   RENDER_PLAYLIST,
   PLAYLIST_SUCCESS,
   PLAYLIST_FAILURE
 } from './action_types';
+
+export function getUserData(token) {
+  return function (dispatch) {
+    fetch("https://api.spotify.com/v1/me", {
+      headers: {'Authorization': "Bearer " + token}
+    })
+    .then(response => response.json())
+    .then(function(userData) {
+      dispatch({
+          type: USER_DATA,
+          payload: {
+            token: token,
+            user_name: userData.display_name,
+            user_id: userData.id
+          }
+      });
+    })
+    .catch(error => console.error('Error:', error));
+  }
+};
 
 export function onDialogOpen() {
   return function (dispatch) {
@@ -107,13 +128,11 @@ export function handlePositivenessSelection(value) {
   }
 };
 
-export function handleSelectionSubmit(token) {
+export function handleSelectionSubmit() {
   return function (dispatch, getState) {
     dispatch(fetch_starting());
-    dispatch({
-        type: TOKEN,
-        payload: token,
-    });
+
+    const token = getState().SelectionReducer.spotify_data.user_token;
     const state = getState().SelectionReducer.user_selection;
     const data = {
       genre: state.genre.toLowerCase(),
@@ -270,7 +289,7 @@ export function playlist_success(spotifyData) {
     dispatch({
         type: PLAYLIST_SUCCESS,
         payload: true,
-        spotifyData: spotifyData
+        tracks: spotifyData.tracks
     })
   }
 };

@@ -1,4 +1,5 @@
 import {
+  USER_DATA,
   DIALOG_OPEN,
   DIALOG_CLOSE,
   GENRE_SELECTED,
@@ -9,7 +10,6 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
-  TOKEN,
   RENDER_PLAYLIST,
   PLAYLIST_SUCCESS,
   PLAYLIST_FAILURE
@@ -51,12 +51,23 @@ const initialState = {
     content: "Sorry, there has been a server problem. Please try again."
   },
   playlist_success: false,
-  spotifyData: {},
-  user_token: ''
+  spotify_data: {
+    user_token: '',
+    user_name: '',
+    user_id: '',
+    tracks: {}
+  }
 };
 
 function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
   switch (action.type) {
+    case USER_DATA: {
+      const newState = Object.assign({}, state);
+      newState.spotify_data.user_token = action.payload.token;
+      newState.spotify_data.user_name = action.payload.user_name;
+      newState.spotify_data.user_id = action.payload.user_id;
+      return newState;
+    }
     case DIALOG_OPEN: {
       const newState = Object.assign({}, state);
       newState.select.dialogOpen = action.payload
@@ -108,11 +119,6 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       newState.user_selection.positiveness = action.payload;
       return newState;
     }
-    case TOKEN: {
-      const newState = Object.assign({}, state);
-      newState.user_token = action.payload
-      return newState;
-    }
     case RENDER_PLAYLIST: {
       const newState = Object.assign({}, state);
       newState.loading_playlist = action.payload
@@ -126,7 +132,7 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case PLAYLIST_SUCCESS: {
       const newState = Object.assign({}, state);
       newState.playlist_success = action.payload;
-      newState.spotifyData = action.spotifyData;
+      newState.spotify_data.tracks = action.tracks;
       return newState;
     }
     default:

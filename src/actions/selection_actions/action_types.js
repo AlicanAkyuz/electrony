@@ -1,3 +1,4 @@
+export const USER_DATA = "USER_DATA";
 export const DIALOG_OPEN = "DIALOG_OPEN";
 export const DIALOG_CLOSE = "DIALOG_CLOSE";
 export const GENRE_SELECTED = "GENRE_SELECTED";
@@ -8,7 +9,6 @@ export const LOUD_SELECTED = "LOUD_SELECTED";
 export const MODE_SELECTED = "MODE_SELECTED";
 export const TEMPO_SELECTED = "TEMPO_SELECTED";
 export const POS_SELECTED = "VAL_SELECTED";
-export const TOKEN = "TOKEN";
 export const RENDER_PLAYLIST = "RENDER_PLAYLIST";
 export const PLAYLIST_SUCCESS = "PLAYLIST_SUCCESS";
 export const PLAYLIST_FAILURE = "PLAYLIST_FAILURE";
