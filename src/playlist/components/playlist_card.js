@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 
 const styles = playlistCardTheme => ({
   card: {
@@ -23,7 +22,7 @@ const styles = playlistCardTheme => ({
   },
   numberGrid: {
     width: '10%',
-    backgroundColor: '#7D2C1A',
+    backgroundColor: '#5F755E',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
@@ -51,19 +50,21 @@ const styles = playlistCardTheme => ({
   },
   songText: {
     fontSize: '30px',
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontWeight: '800',
     color: '#e5e5e5'
   },
   artistText: {
+    marginTop: '1%',
     fontSize: '15px',
     fontFamily: 'Montserrat',
-    color: '#A99884'
+    color: '#C1CDC1'
   },
   albumText: {
+    marginTop: '1%',
     fontSize: '15px',
     fontFamily: 'Montserrat',
-    color: '#A99884'
+    color: '#C1CDC1'
   },
   cover: {
     width: 150,
@@ -76,23 +77,24 @@ function PlaylistCard(props) {
   return (
     <Card className={classes.card}>
       <Grid className={classes.gridsHolder} container spacing={24}>
+
         <Grid className={classes.numberGrid} item xs={12}>
-          <Typography className={classes.number}>
+          <h1 className={classes.number}>
             {props.number}
-          </Typography>
+          </h1>
         </Grid>
 
         <Grid className={classes.contentGrid} item xs={12}>
           <CardContent className={classes.content}>
-            <Typography className={classes.songText}>
+            <text className={classes.songText}>
               {props.song}
-            </Typography>
-            <Typography className={classes.artistText}>
+            </text>
+            <text className={classes.artistText}>
               Artist: {props.artist}
-            </Typography>
-            <Typography className={classes.albumText}>
+            </text>
+            <text className={classes.albumText}>
               Album: {props.album}
-            </Typography>
+            </text>
           </CardContent>
         </Grid>
 
@@ -103,6 +105,7 @@ function PlaylistCard(props) {
             title={props.song}
           />
         </Grid>
+
       </Grid>
     </Card>
   );
