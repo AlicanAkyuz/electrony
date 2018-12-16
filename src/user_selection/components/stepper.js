@@ -32,7 +32,7 @@ const stepperStyles = stepperStyles => ({
   },
   step: {
     borderRadius: '5px',
-    backgroundColor: '#353F3E',
+    backgroundColor: '#353F3E'
   },
   label: {
     width: '100%',
@@ -48,11 +48,8 @@ const stepperStyles = stepperStyles => ({
     fontWeight: '400',
     color: '#c6c6c6'
   },
-  buttonHolder: {
-    borderRadius: '15px',
-    marginTop: '3%',
-  },
   selectButton: {
+    marginRight: '2%',
     height: '45px',
     width: '150px',
     backgroundColor: '#00611C',
@@ -67,6 +64,10 @@ const stepperStyles = stepperStyles => ({
     textDecoration: 'none',
     textTransform: 'none',
     color: '#F0FFF0'
+  },
+  buttonHolder: {
+    borderRadius: '15px',
+    marginTop: '3%',
   },
   doneButton: {
     margin: stepperStyles.spacing.unit,
