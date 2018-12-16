@@ -2,7 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -21,10 +20,10 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: '8%'
+    marginTop: '7%'
   },
   electronifyTitle: {
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontSize: '140px',
     fontWeight: '800',
     color: '#4A7023',
@@ -34,7 +33,14 @@ const styles = theme => ({
     fontSize: '25px',
     fontWeight: '400',
     color: '#C1CDC1',
-    marginTop: '5%'
+  },
+  explanation: {
+    marginTop: '5%',
+    fontFamily: 'Roboto',
+    textAlign: 'center',
+    fontSize: '18px',
+    fontWeight: '400',
+    color: '#CFDBC5'
   },
   buttonHolder: {
     display: 'flex',
@@ -48,13 +54,9 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-  },
-  links: {
     fontFamily: 'Roboto',
     fontSize: '17px',
     fontWeight: '400',
-    textDecoration: 'none',
-    textTransform: 'none',
     color: '#F0FFF0'
   }
 });
@@ -67,10 +69,16 @@ function App(props) {
         <Grid className={classes.electronify} item xs={12}>
           <b className={classes.electronifyTitle}>Electronify</b>
           <b className={classes.subTitle}>A playlist generator for electronic music lovers.</b>
+          <b className={classes.explanation}>
+            Electronify guides you to specify the kind of electronic tunes you love.
+            and creates a playlist based on your choices. <br /> <br />
+            Electronify works for Spotify. Go ahead and login to get started.
+          </b>
         </Grid>
+
         <Grid className={classes.buttonHolder} item xs={12}>
-          <Button position="center" size="medium" className={classes.button}>
-            <Link className={classes.links} to="/login">GET STARTED</Link>
+          <Button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>
+            Login
           </Button>
         </Grid>
       </Grid>

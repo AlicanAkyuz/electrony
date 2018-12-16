@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Typography from '@material-ui/core/Typography';
 import { getGenres,
          getFractionNumbers,
          getBpmOptions,
@@ -25,22 +24,19 @@ const styles = dialogTheme => ({
   formControl: {
     margin: dialogTheme.spacing.unit,
     minWidth: 400,
-    backgroundColor: '#e5e5e5',
+    backgroundColor: '#CFDBC5',
     borderRadius: '5px'
-  },
-  extendedIcon: {
-    marginRight: dialogTheme.spacing.unit,
   },
   dialogHolder: {
     backgroundColor: '#191919',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: '0px'
   },
   popUpTitle: {
-    useNextVariants: true,
     fontFamily: 'Roboto',
     fontSize: '18px',
-    color: '#e5e5e5'
+    color: '#CFDBC5'
   },
   dialogContent: {
     backgroundColor:'#191919',
@@ -128,16 +124,14 @@ function DialogBox(props) {
     <div>
       <Dialog className={classes.dialogBox} open={props.dialogOpen}>
         <DialogTitle className={classes.dialogHolder}>
-          <Typography className={classes.popUpTitle}>
+          <h2 className={classes.popUpTitle}>
             {titleText}
-          </Typography>
+          </h2>
         </DialogTitle>
         <DialogContent className={classes.dialogContent}>
-          <form className={classes.container}>
-            <FormControl onChange={() => {props.handleDialogClose()}} className={classes.formControl}>
-              {menuItems}
-            </FormControl>
-          </form>
+          <FormControl onChange={() => {props.handleDialogClose()}} className={classes.formControl}>
+            {menuItems}
+          </FormControl>
         </DialogContent>
       </Dialog>
     </div>

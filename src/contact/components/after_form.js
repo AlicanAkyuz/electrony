@@ -15,7 +15,7 @@ const afterformStyle = afterformStyle => ({
     height: '710px',
   },
   textHeader: {
-    marginTop: '10%',
+    marginTop: '8%',
     fontSize: '60px',
     fontFamily: 'Roboto',
     fontWeight: '800',
@@ -57,7 +57,7 @@ function AfterForm(props) {
   if (props.onReset) {
     showButton =
       <Button onClick={props.onReset} className={classes.button} size="large" variant="contained">
-        <Link className={classes.links} to="/login">GO BACK</Link>
+        <Link className={classes.links} to="/select_details">GO BACK</Link>
       </Button>
   };
 

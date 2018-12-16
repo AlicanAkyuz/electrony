@@ -56,9 +56,9 @@ const styles = theme => ({
     color: '#c5c5c5'
   },
   stepperGrid: {
-    width: '30%',
+    width: '100%',
     marginTop: '3%',
-    marginBottom: '3%'
+    marginBottom: '5%'
   }
 });
 

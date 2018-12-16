@@ -2,7 +2,7 @@ import {
   STORE_PLAYLIST,
   USER_INFO,
   PLAYLIST_ID,
-  LOADING,
+  CHARGING,
   NAME_BOX,
   NAME_CHANGED,
   DESCRIPTION_CHANGED,
@@ -21,8 +21,8 @@ const initialState = {
   playlist_description: "",
   check_box_state: false,
   playlist_id : '',
-  playlist_loading: false,
-  loading_content: {
+  playlist_charging: false,
+  playlist_charging_content: {
     title: "Loading Your Playlist",
     content: "Just a second..."
   },
@@ -37,7 +37,7 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       newState.token = action.token
       return newState;
     }
-    case LOADING: {
+    case CHARGING: {
       const newState = Object.assign({}, state);
       newState.playlist_loading = action.payload
       return newState;

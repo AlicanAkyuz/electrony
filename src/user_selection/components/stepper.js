@@ -14,94 +14,79 @@ import queryString from 'query-string';
 const stepperStyles = stepperStyles => ({
   root: {
     width: '100%',
-    minWidth: '50%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    textAlign: 'center',
     backgroundColor: 'black'
   },
-  buttonHolder: {
-    borderRadius: '15px'
-  },
   stepperBody: {
-    backgroundColor: 'black',
-    minWidth: '650px'
+    backgroundColor: '#353F3E',
+    borderRadius: '10px',
+    minWidth: '80%',
+  },
+  stepLabel: {
+    height: '60px',
+    borderRadius: '10px',
+    backgroundColor: '#0c0c0c',
+    textAlign: 'center'
   },
   step: {
     borderRadius: '5px',
-    backgroundColor: 'black',
-  },
-  stepLabel: {
-    height: '100px',
-    borderRadius: '3px',
-    backgroundColor: '#191919',
-  },
-  labelHolder: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'flex-start'
+    backgroundColor: '#353F3E',
   },
   label: {
-    width: '70%',
+    width: '100%',
+    fontFamily: 'Roboto',
+    fontSize: '25px',
+    fontWeight: '400',
+    color: '#c6c6c6',
+  },
+  contentText: {
     fontFamily: 'Montserrat',
-    fontSize: '32px',
-    color: '#c5c5c5',
-  },
-  labelSelected: {
-    width: '30%',
-    fontFamily: 'Roboto',
-    fontSize: '32px',
     textAlign: 'center',
-    color: '#7D2C1A',
-  },
-  contentTypography: {
-    fontFamily: 'Roboto',
     fontSize: '16px',
+    fontWeight: '400',
     color: '#c6c6c6'
   },
-  actionsContainer: {
-    marginTop: stepperStyles.spacing.unit * 4,
-    marginBottom: stepperStyles.spacing.unit * 2,
+  buttonHolder: {
+    borderRadius: '15px',
+    marginTop: '3%',
   },
   selectButton: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '2%',
+    height: '45px',
+    width: '150px',
+    backgroundColor: '#00611C',
     border: 'none',
     borderRadius: '5px',
-    backgroundColor: '#7D2C1A',
     '&:hover': {
-      backgroundColor: "#7D1C05",
+      backgroundColor: "#4A7023",
     },
-  },
-  selectTypography: {
-    useNextVariants: true,
     fontFamily: 'Roboto',
-    fontSize: '18px',
+    fontSize: '17px',
+    fontWeight: '400',
+    textDecoration: 'none',
     textTransform: 'none',
-    color: '#cccccc',
-    marginRight: '15px',
-    marginLeft: '15px',
-    marginTop: '5px',
-    marginBottom: '5px',
+    color: '#F0FFF0'
   },
-  selectLabelIcon: {
-    backgroundColor: 'orange'
-  },
-  button: {
+  doneButton: {
     margin: stepperStyles.spacing.unit,
-    backgroundColor: '#7D2C1A',
+    backgroundColor: '#00611C',
     '&:hover': {
-      backgroundColor: "#7D1C05",
+      backgroundColor: "#4A7023",
     },
+    fontFamily: 'Roboto',
+    fontSize: '16px',
+    textTransform: 'none',
+    color: '#e5e5e5',
   },
-  disabledButton: {
+  disabledDoneButton: {
     margin: stepperStyles.spacing.unit,
     backgroundColor: 'gray',
     '&:hover': {
       backgroundColor: "gray",
     },
-    fontFamily: 'Montserrat',
+    fontFamily: 'Roboto',
     fontSize: '13px',
     textTransform: 'none',
     color: '#e5e5e5',
@@ -116,79 +101,60 @@ function SelectionStepper(props) {
   let createPlaylistButton;
   props.activeStep === getSteps().length ?
     createPlaylistButton =
-    <Button variant="contained" onClick={() => props.handleSelectionSubmit(accessToken)} size="large" className={classes.button}>
-      Diversify
+    <Button variant="contained" onClick={() => props.handleSelectionSubmit(accessToken)} size="large" className={classes.doneButton}>
+      GIVE ME SONGS!
     </Button> :
     createPlaylistButton =
-    <Button variant="contained" size="large" className={classes.disabledButton}>
-      Disabled
+    <Button variant="contained" size="large" className={classes.disabledDoneButton}>
+      MAKE YOUR CHOICES!
     </Button>;
 
   return (
     <div className={classes.root}>
-      <Grid>
-        <Stepper className={classes.stepperBody} activeStep={props.activeStep} orientation="vertical">
-          {getSteps().map((label, index) => {
-            return (
-              <Step className={classes.step} key={label}>
+      <Stepper className={classes.stepperBody} activeStep={props.activeStep} orientation="vertical">
+        {getSteps().map((label, index) => {
+          return (
+            <Step className={classes.step} key={label}>
 
-                <StepLabel icon className={classes.stepLabel}>
-                  <Grid className={classes.labelHolder} item xs={12}>
-                    <p className={classes.label}>
-                      Step {index + 1}: {label}
-                    </p>
-                    <p className={classes.labelSelected}>
-                      {index === 0 ? props.genre : null}
-                      {index === 1 ? props.danceability : null}
-                      {index === 2 ? props.energy : null}
-                      {index === 3 ? props.key : null}
-                      {index === 4 ? props.loudness : null}
-                      {index === 5 ? props.mode : null}
-                      {index === 6 ? props.tempo : null}
-                      {index === 7 ? props.valence : null}
-                    </p>
-                  </Grid>
-                </StepLabel>
+              <StepLabel icon className={classes.stepLabel}>
+                  <h2 className={classes.label}>Step {index + 1}: {label}</h2>
+              </StepLabel>
 
-                <StepContent className={classes.stepContent}>
-                  <p className={classes.contentTypography}>
-                    {getStepContent(index)}
-                  </p>
-                  <div className={classes.actionsContainer}>
-                    <button className={classes.selectButton} onClick={() => {props.handleDialogOpen()}} >
-                      <p className={classes.selectTypography}>
-                        Select
-                      </p>
-                    </button>
-                    <DialogBox
-                      handleDialogOpen={props.handleDialogOpen}
-                      handleDialogClose={props.handleDialogClose}
-                      handleDanceabilitySelection={props.handleDanceabilitySelection}
-                      handleGenreSelection={props.handleGenreSelection}
-                      handleEnergySelection={props.handleEnergySelection}
-                      handleKeySelection={props.handleKeySelection}
-                      handleLoudnessSelection={props.handleLoudnessSelection}
-                      handleModeSelection={props.handleModeSelection}
-                      handleTempoSelection={props.handleTempoSelection}
-                      handlePositivenessSelection={props.handlePositivenessSelection}
-                      activeStep={props.activeStep}
-                      dialogOpen={props.dialogOpen}
-                      genreTitle={props.genreTitle}
-                      danceabilityTitle={props.danceabilityTitle}
-                      energyTitle={props.energyTitle}
-                      keyTitle={props.keyTitle}
-                      loudnessTitle={props.loudnessTitle}
-                      modeTitle={props.modeTitle}
-                      tempoTitle={props.tempoTitle}
-                      positivenessTitle={props.valenceTitle}
-                    />
-                  </div>
-                </StepContent>
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Grid>
+              <StepContent className={classes.stepContent}>
+                <h3 className={classes.contentText}>
+                  {getStepContent(index)}
+                </h3>
+                <button className={classes.selectButton} onClick={() => {props.handleDialogOpen()}} >
+                  Select
+                </button>
+                <DialogBox
+                  handleDialogOpen={props.handleDialogOpen}
+                  handleDialogClose={props.handleDialogClose}
+                  handleDanceabilitySelection={props.handleDanceabilitySelection}
+                  handleGenreSelection={props.handleGenreSelection}
+                  handleEnergySelection={props.handleEnergySelection}
+                  handleKeySelection={props.handleKeySelection}
+                  handleLoudnessSelection={props.handleLoudnessSelection}
+                  handleModeSelection={props.handleModeSelection}
+                  handleTempoSelection={props.handleTempoSelection}
+                  handlePositivenessSelection={props.handlePositivenessSelection}
+                  activeStep={props.activeStep}
+                  dialogOpen={props.dialogOpen}
+                  genreTitle={props.genreTitle}
+                  danceabilityTitle={props.danceabilityTitle}
+                  energyTitle={props.energyTitle}
+                  keyTitle={props.keyTitle}
+                  loudnessTitle={props.loudnessTitle}
+                  modeTitle={props.modeTitle}
+                  tempoTitle={props.tempoTitle}
+                  positivenessTitle={props.valenceTitle}
+                />
+              </StepContent>
+            </Step>
+          );
+        })}
+      </Stepper>
+
       <Grid className={classes.buttonHolder} item xs={12}>
         {createPlaylistButton}
       </Grid>

@@ -13,11 +13,12 @@ export function getSteps() {
 export function getStepContent(step) {
   switch (step) {
     case 0:
-      return `Pick your genre.`;
+      return `First, let's start with how you would categorize your vibes. Select an electronic music genre that
+              describes best the kind of tune you are looking for.`;
     case 1:
-      return `Danceability describes how suitable a track is for dancing based on a combination of
-              musical elements including tempo, rhythm stability, beat strength, and overall regularity.
-              A value of 0.0 is least danceable and 1.0 is most danceable.`;
+      return `Nice! Now it's time to specify your tune. Danceability here describes how suitable a track is for
+              dancing based on a combination of musical elements including rhythm stability, beat strength, and regularity.
+              A value of 0 is least danceable and 1.0 is most danceable.`;
     case 2:
       return `Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and
               activity. Typically, energetic tracks feel fast, loud, and noisy.

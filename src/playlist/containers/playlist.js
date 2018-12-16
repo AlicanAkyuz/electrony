@@ -124,7 +124,7 @@ class Playlist extends React.Component {
     const user_token = this.props.userToken;
 
     let pageContent;
-    if (!this.props.playlist_loading) {
+    if (!this.props.playlist_charging) {
       pageContent =
       <Grid className={classes.gridsHolder} container spacing={24}>
 
@@ -217,12 +217,12 @@ class Playlist extends React.Component {
       </Grid>
     };
 
-    if (this.props.playlist_loading) {
+    if (this.props.playlist_charging) {
       pageContent =
         <Grid className={classes.stepperGrid} item>
           <PlaylistUploadLoad
-            title={this.props.loading_content_title}
-            content={this.props.loading_content_content} />
+            title={this.props.playlist_charging_content_title}
+            content={this.props.playlist_charging_content_content} />
         </Grid>
     }
 
@@ -266,9 +266,9 @@ const mapStateToProps = state => {
   state = state.PlaylistReducer;
   return {
     user_name: state.user_name,
-    playlist_loading: state.playlist_loading,
-    loading_content_title: state.loading_content.title,
-    loading_content_content: state.loading_content.content,
+    playlist_charging: state.playlist_charging,
+    playlist_charging_content_title: state.playlist_charging_content.title,
+    playlist_charging_content_content: state.playlist_charging_content.content,
     name_box: state.name_box,
     playlist_name: state.playlist_name,
     playlist_description: state.playlist_description,
