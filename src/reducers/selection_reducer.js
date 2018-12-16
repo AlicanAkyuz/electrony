@@ -31,23 +31,23 @@ const initialState = {
     positiveness: ''
   },
   titles: {
-    genre: "Genres",
-    danceability: "Danceability",
-    energy: "Energy",
-    key: "Key",
-    loudness: "Loudness",
-    mode: "Mode",
-    tempo: "Tempo",
-    positiveness: "Valence",
+    genre: "Select your genre",
+    danceability: "Wanna danace?",
+    energy: "Need energy?",
+    key: "Any key preference?",
+    loudness: "How loud can your ears take?",
+    mode: "How about mode?",
+    tempo: "Keep it down or keep it up!",
+    positiveness: "Positive vibes only?",
   },
   loading_playlist: false,
   loading_playlist_content: {
-    title: "Creating your tune...",
+    title: "Finding your electronic tunes...",
     content: "This may take a few seconds, please hold on!"
   },
   playlist_failure: false,
   playlist_failure_content: {
-    title: "There has been a problem!",
+    title: "Ups!",
     content: "Sorry, there has been a server problem. Please try again."
   },
   playlist_success: false,

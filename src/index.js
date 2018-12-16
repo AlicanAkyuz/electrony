@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import store from './store';
 import App from './components/app';
-import Login from './components/login';
 import About from './components/about';
 import Contact from './contact/containers/contact';
 import Select from './user_selection/containers/select_details';
@@ -16,7 +15,6 @@ const Index = () => (
     <Router>
       <div>
         <Route exact path="/" component={App} />
-        <Route exact path="/login" component={Login} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/select_details" component={Select} />
