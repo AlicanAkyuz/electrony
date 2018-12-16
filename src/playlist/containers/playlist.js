@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
 import PlaylistDetailsBox from '../components/playlist_details_box';
@@ -19,8 +18,9 @@ import { store_playlist_info,
 
 const playlistStyle = playlistStyle => ({
   root: {
+    flexGrow: 1,
     width: '100%',
-    height: '720px'
+    backgroundColor: 'black'
   },
   navBarHolder: {
     width: '100%',
@@ -39,71 +39,42 @@ const playlistStyle = playlistStyle => ({
   gridsHolder: {
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'black',
-    alignItems: 'center'
-  },
-  holderGrids: {
-    backgroundColor: 'black',
-    marginTop: '1%',
-    color: 'white'
+    justifyContent: 'center'
   },
   playlistTitleHolder: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    backgroundColor: '#000000',
     alignItems: 'center',
-    marginTop: '13%',
-    marginBottom: '1%'
-  },
-  playlistTitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    fontFamily: 'Montserrat',
-    fontSize: '70px',
-    fontWeight: '800',
-    color: '#7D2C1A'
-  },
-  diversified: {
-    fontFamily: 'Montserrat',
-    fontSize: '70px',
-    fontWeight: '800',
-    color: '#FEF6AF'
-  },
-  playlistTitleContent: {
-    fontFamily: 'Montserrat',
-    fontSize: '20px',
-    color: '#c5c5c5'
-  },
-  playlistHolderGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '70%',
-    backgroundColor: 'black',
-    marginTop: '1%',
-    marginBottom: '1%'
-  },
-  uploadTextHolder: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'column',
     marginTop: '5%',
     marginBottom: '1%'
   },
-  uploadText: {
-    fontFamily: 'Montserrat',
+  playlistTitle: {
+    marginTop: '2%',
+    fontFamily: 'Roboto',
+    fontSize: '70px',
     fontWeight: '800',
-    fontSize: '60px',
-    color: '#c5c5c5'
+    color: '#4A7023'
   },
-  uploadOptionsGrid: {
+  playlistTitleContent: {
+    marginTop: '2%',
+    marginBottom: '2%',
+    fontFamily: 'Montserrat',
+    fontSize: '20px',
+    fontWeight: '400',
+    color: '#C1CDC1'
+  },
+  uploadText: {
+    fontFamily: 'Roboto',
+    fontWeight: '400',
+    fontSize: '50px',
+    color: '#00611C'
+  },
+  spotifyGrid: {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: 'black',
-    marginBottom: '10%'
+    marginBottom: '3%'
   },
   iconButton: {
     backgroundColor: 'transparent',
@@ -114,6 +85,12 @@ const playlistStyle = playlistStyle => ({
   logos: {
     width: "210px",
     height: "95px"
+  },
+  cardsHolder: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width: '100%',
   }
 });
 
@@ -129,18 +106,25 @@ class Playlist extends React.Component {
       <Grid className={classes.gridsHolder} container spacing={24}>
 
         <Grid className={classes.playlistTitleHolder} item>
-          <Typography className={classes.playlistTitle}>
-            Sound<Typography className={classes.diversified}>iversified!</Typography>
-          </Typography>
-          <Typography className={classes.playlistTitleContent}>
-            The following 10 Songs are specially geared toward your taste in music.
-          </Typography>
-          <Typography className={classes.playlistTitleContent}>
-            Enjoy these tunes that are available to you beyond genres.
-          </Typography>
+          <text className={classes.playlistTitle}>
+            Good choices!
+          </text>
+          <text className={classes.playlistTitleContent}>
+            Below is the playlist that Electronify thinks you will love.
+          </text>
+          <hr style={{width: '50px'}} />
+          <h1 className={classes.uploadText}>
+            Save Your Playlist to Spotify
+          </h1>
         </Grid>
 
-        <Grid className={classes.playlistHolderGrid} item xs={12}>
+        <Grid className={classes.spotifyGrid} item>
+          <IconButton onClick={() => {this.props.dispatch(store_playlist_info(tracks, user_token))}} className={classes.iconButton}>
+            Save Your Playlist to Spotify <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
+          </IconButton>
+        </Grid>
+
+        <Grid className={classes.cardsHolder} item xs={12}>
             <PlaylistCard
               number="1"
               song={tracks[0].name}
@@ -203,17 +187,6 @@ class Playlist extends React.Component {
               image={tracks[9].album.images[1].url} />
         </Grid>
 
-        <Grid className={classes.uploadTextHolder} item>
-          <Typography className={classes.uploadText}>
-            Save Your Playlist to Spotify
-          </Typography>
-        </Grid>
-
-        <Grid className={classes.uploadOptionsGrid} item>
-          <IconButton onClick={() => {this.props.dispatch(store_playlist_info(tracks, user_token))}} className={classes.iconButton}>
-              <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
-          </IconButton>
-        </Grid>
       </Grid>
     };
 
@@ -252,9 +225,11 @@ class Playlist extends React.Component {
     return (
       <div className={classes.root}>
         <Grid className={classes.containerGrid} container>
+
           <Grid className={classes.navBarHolder} item xs={12}>
             <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
           </Grid>
+
           {pageContent}
         </Grid>
       </div>
