@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { getSteps, getStepContent } from './stepper_functions';
 import DialogBox from './dialog_box';
-import queryString from 'query-string';
 
 const stepperStyles = stepperStyles => ({
   root: {
@@ -95,13 +94,11 @@ const stepperStyles = stepperStyles => ({
 
 function SelectionStepper(props) {
   const { classes } = props;
-  const parsed = queryString.parse(window.location.hash);
-  const accessToken = parsed.access_token;
 
   let createPlaylistButton;
   props.activeStep === getSteps().length ?
     createPlaylistButton =
-    <Button variant="contained" onClick={() => props.handleSelectionSubmit(accessToken)} size="large" className={classes.doneButton}>
+    <Button variant="contained" onClick={() => props.handleSelectionSubmit()} size="large" className={classes.doneButton}>
       GIVE ME SONGS!
     </Button> :
     createPlaylistButton =

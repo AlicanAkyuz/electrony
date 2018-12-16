@@ -36,11 +36,11 @@ const styles = theme => ({
   },
   explanation: {
     marginTop: '5%',
-    fontFamily: 'Roboto',
+    fontFamily: 'Montserrat',
     textAlign: 'center',
     fontSize: '18px',
     fontWeight: '400',
-    color: '#CFDBC5'
+    color: '#838B83'
   },
   buttonHolder: {
     display: 'flex',
@@ -68,11 +68,11 @@ function App(props) {
       <Grid className={classes.gridsHolder} container spacing={24}>
         <Grid className={classes.electronify} item xs={12}>
           <b className={classes.electronifyTitle}>Electronify</b>
-          <b className={classes.subTitle}>A playlist generator for electronic music lovers.</b>
+          <b className={classes.subTitle}>A playlist generator for electronic music lovers</b>
           <b className={classes.explanation}>
-            Electronify guides you to specify the kind of electronic tunes you love.
-            and creates a playlist based on your choices. <br /> <br />
-            Electronify works for Spotify. Go ahead and login to get started.
+            Electronify guides you to specify the kind of electronic tunes you love and creates a playlist based on your choices.
+            <br /> <br />
+            Electronify works for Spotify. Go ahead and login to get started!
           </b>
         </Grid>
 
