@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import NavBar from './navbar';
 
 const styles = aboutTheme => ({
   root: {
@@ -108,10 +107,6 @@ export function About(props) {
   return (
     <div className={classes.root}>
       <Grid className={classes.containerGrid} container spacing={12}>
-
-        <Grid className={classes.navBarHolder} item xs={12}>
-          <NavBar pageOne="/select_details" textOne="GET STARTED" pageTwo="/contact" textTwo="CONTACT" />
-        </Grid>
 
         <Grid className={classes.aboutHolder} item xs={12}>
           <h1 className={classes.aboutTitle}>About Us</h1>

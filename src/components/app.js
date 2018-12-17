@@ -1,96 +1,125 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    height: '705px',
+  container: {
+    display: 'grid',
+    height: '100vh',
+    gridTemplateRows: '10% 25% 17% 10% 15% 10% 7% 5%',
+    gridTemplateColumns: '10% 10% 10% 40% 10% 10% 10%',
     backgroundColor: '#0c0c0c'
   },
-  gridsHolder: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '100%',
-    width: '100%',
+  electronifyItem: {
+    gridColumn: '2 / span 5',
+    gridRow: '2 / span 1',
+    placeSelf: 'center'
   },
-  electronify: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '7%'
+  subtextItem: {
+    gridColumn: '2 / span 5',
+    gridRow: '3 / span 1',
+    placeSelf: 'center'
+  },
+  logoItem: {
+    gridColumn: '4 / span 1',
+    gridRow: '4 / span 1',
+    placeSelf: 'center'
+  },
+  explanationItem: {
+    gridColumn: '2 / span 5',
+    gridRow: '5 / span 1',
+    placeSelf: 'center',
+    textAlign: 'center',
+  },
+  buttonItem: {
+    gridColumn: '4 / span 1',
+    gridRow: '6 / span 1',
+    placeSelf: 'center'
+  },
+  copyrightItem: {
+    gridColumn: '4 / span 1',
+    gridRow: '8 / span 1',
+    placeSelf: 'center'
   },
   electronifyTitle: {
     fontFamily: 'Roboto',
-    fontSize: '140px',
+    fontSize: '12.5vw',
     fontWeight: '800',
     color: '#4A7023',
   },
   subTitle: {
     fontFamily: 'Montserrat',
-    fontSize: '25px',
+    fontSize: '2.5vw',
     fontWeight: '400',
     color: '#C1CDC1',
   },
-  explanationHolder: {
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center',
+  djLogo: {
+    width: '100%',
+    maxWidth: '50px',
+    height: 'auto'
   },
   explanation: {
-    marginTop: '5%',
     fontFamily: 'Montserrat',
-
-    fontSize: '18px',
+    fontSize: '2vw',
     fontWeight: '400',
-    color: '#838B83'
-  },
-  buttonHolder: {
-    display: 'flex',
-    justifyContent: 'center'
+    color: '#838B83',
+    marginBottom: '3.5px'
   },
   button: {
-    height: '45px',
-    width: '150px',
+    height: '2.5em',
+    width: '5.5em',
     backgroundColor: '#00611C',
     borderRadius: '5px',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
     fontFamily: 'Roboto',
-    fontSize: '17px',
+    fontSize: '1.5vw',
     fontWeight: '400',
-    color: '#F0FFF0'
+    color: '#C1CDC1'
+  },
+  copyright: {
+    fontFamily: 'Montserrat',
+    fontSize: '0.8vw',
+    fontWeight: '400',
+    color: '#838B83'
   }
 });
 
 function App(props) {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <Grid className={classes.gridsHolder} container spacing={24}>
-        <Grid className={classes.electronify} item xs={12}>
-          <b className={classes.electronifyTitle}>Electronify</b>
-          <b className={classes.subTitle}>A playlist generator for electronic music lovers</b>
-        </Grid>
-
-        <Grid className={classes.explanationHolder} item xs={12}>
-          <b className={classes.explanation}>
-            Electronify guides you to specify the kind of electronic tunes you love and creates a playlist based on your choices.
-            <br /> <br />
-            Electronify works for Spotify. Go ahead and login to get started!
-          </b>
-        </Grid>
-
-        <Grid className={classes.buttonHolder} item xs={12}>
-          <Button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>
-            Login
-          </Button>
-        </Grid>
-      </Grid>
+    <div className={classes.container}>
+      <div className={classes.electronifyItem}>
+        <text className={classes.electronifyTitle}>
+          Electronify
+        </text>
+      </div>
+      <div className={classes.subtextItem}>
+        <text className={classes.subTitle}>
+          A trailblazer for electronic music lovers
+        </text>
+      </div>
+      <div className={classes.logoItem}>
+        <img className={classes.djLogo} src="./images.png" alt="dj logo" />
+      </div>
+      <div className={classes.explanationItem}>
+        <text className={classes.explanation}>
+          To continue, login to Spotify.
+        </text>
+      </div>
+      <div className={classes.buttonItem}>
+        <Button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>
+          Login
+        </Button>
+      </div>
+      <div className={classes.copyrightItem}>
+        <text className={classes.copyright}>
+          @Created by Alican Akyuz, 2018
+        </text>
+      </div>
     </div>
+
   );
 };
 

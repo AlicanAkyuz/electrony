@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import NavBar from '../../components/navbar';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -99,9 +98,7 @@ class FormSubmit extends React.Component {
       <div className={classes.root}>
         <Grid className={classes.containerGrid} container >
 
-          <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/select_details" textOne="GET STARTED" pageTwo="/about" textTwo="ABOUT" />
-          </Grid>
+
 
           <Grid className={classes.textGrid} item xs={12}>
             <TextField name="name"
