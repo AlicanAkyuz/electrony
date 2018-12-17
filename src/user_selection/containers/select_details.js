@@ -26,7 +26,7 @@ const styles = theme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 3% 8% 4% 3% 8% 10% 54%',
+    gridTemplateRows: '10% 7% 8% 4% 3% 11% 10% 7% 40%',
     gridTemplateColumns: '5% 10% 10% 50% 10% 10% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -67,7 +67,7 @@ const styles = theme => ({
   },
   stepperItem: {
     gridColumn: '1 / span 7',
-    gridRow: '8 / span 1',
+    gridRow: '9 / span 1',
   },
   logo: {
     fontFamily: 'Roboto',
@@ -97,7 +97,7 @@ const styles = theme => ({
     borderRadius: '8px',
   },
   links: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Montserrat',
     fontSize: '1.2vw',
     fontWeight: '400',
     textDecoration: 'none',

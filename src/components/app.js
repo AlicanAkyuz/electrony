@@ -1,12 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 25% 17% 10% 15% 10% 7% 5%',
+    gridTemplateRows: '10% 25% 17% 7% 15% 10% 10% 5%',
     gridTemplateColumns: '10% 10% 10% 40% 10% 10% 10%',
     backgroundColor: '#0c0c0c'
   },
@@ -18,11 +17,6 @@ const styles = theme => ({
   subtextItem: {
     gridColumn: '2 / span 5',
     gridRow: '3 / span 1',
-    placeSelf: 'center'
-  },
-  logoItem: {
-    gridColumn: '4 / span 1',
-    gridRow: '4 / span 1',
     placeSelf: 'center'
   },
   explanationItem: {
@@ -53,23 +47,18 @@ const styles = theme => ({
     fontWeight: '400',
     color: '#C1CDC1',
   },
-  djLogo: {
-    width: '100%',
-    maxWidth: '50px',
-    height: 'auto'
-  },
   explanation: {
     fontFamily: 'Montserrat',
-    fontSize: '2vw',
+    fontSize: '1.8vw',
     fontWeight: '400',
-    color: '#838B83',
-    marginBottom: '3.5px'
+    color: '#838B83'
   },
   button: {
     height: '2.5em',
     width: '5.5em',
     backgroundColor: '#00611C',
     borderRadius: '5px',
+    border: 'none',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
@@ -91,35 +80,21 @@ function App(props) {
   return (
     <div className={classes.container}>
       <div className={classes.electronifyItem}>
-        <text className={classes.electronifyTitle}>
-          Electronify
-        </text>
+        <p className={classes.electronifyTitle}>Electronify</p>
       </div>
       <div className={classes.subtextItem}>
-        <text className={classes.subTitle}>
-          A trailblazer for electronic music lovers
-        </text>
-      </div>
-      <div className={classes.logoItem}>
-        <img className={classes.djLogo} src="./images.png" alt="dj logo" />
+        <p className={classes.subTitle}>A trailblazer for electronic music lovers</p>
       </div>
       <div className={classes.explanationItem}>
-        <text className={classes.explanation}>
-          To continue, login to Spotify.
-        </text>
+        <p className={classes.explanation}>To continue, login to Spotify.</p>
       </div>
       <div className={classes.buttonItem}>
-        <Button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>
-          Login
-        </Button>
+        <button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>LOGIN</button>
       </div>
       <div className={classes.copyrightItem}>
-        <text className={classes.copyright}>
-          @Created by Alican Akyuz, 2018
-        </text>
+        <p className={classes.copyright}>@Created by Alican Akyuz, 2018</p>
       </div>
     </div>
-
   );
 };
 
