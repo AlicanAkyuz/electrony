@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import NavBar from '../../components/navbar';
 import SelectionStepper from '../components/stepper.js';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import PlaylistLoad from '../components/load';
 import Playlist from '../../playlist/containers/playlist';
 import { connect } from 'react-redux';
@@ -23,44 +23,89 @@ import { getUserData,
        } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    height: '720px',
-    backgroundColor: 'black'
+  container: {
+    display: 'grid',
+    height: '100vh',
+    gridTemplateRows: '10% 3% 8% 4% 3% 8% 10% 54%',
+    gridTemplateColumns: '5% 10% 10% 50% 10% 10% 5%',
+    backgroundColor: '#0c0c0c'
   },
-  navBarHolder: {
-    width: '100%',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0
+  logoItem: {
+    gridColumn: '2 / span 2',
+    gridRow: '1 / span 1',
+    placeSelf: 'center',
   },
-  containerGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: 'black',
+  firstButtonItem: {
+    gridColumn: '5 / span 1',
+    gridRow: '1 / span 1',
+    placeSelf: 'center'
   },
-  welcomeGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    backgroundColor: 'black',
-    alignItems: 'center',
-    marginTop: '7%',
+  secondButtonItem: {
+    gridColumn: '6 / span 1',
+    gridRow: '1 / span 1',
+    placeSelf: 'center'
   },
-  welcomeText: {
+  firsttitleItem: {
+    gridColumn: '3 / span 3',
+    gridRow: '3 / span 1',
+    placeSelf: 'center'
+  },
+  hr: {
+    gridColumn: '4 / span 1',
+    gridRow: '5 / span 1',
+    placeSelf: 'center'
+  },
+  secondtitleItem: {
+    gridColumn: '3 / span 3',
+    gridRow: '6 / span 1',
+    placeSelf: 'center'
+  },
+  arrowItem: {
+    gridColumn: '4 / span 1',
+    gridRow: '7 / span 1',
+    placeSelf: 'center'
+  },
+  stepperItem: {
+    gridColumn: '1 / span 7',
+    gridRow: '8 / span 1',
+  },
+  logo: {
     fontFamily: 'Roboto',
-    fontSize: '35px',
+    fontSize: '3vw',
     fontWeight: '800',
-    color: '#c5c5c5'
+    color: '#4A7023',
   },
-  stepperGrid: {
-    width: '100%',
-    marginTop: '3%',
-    marginBottom: '5%'
+  firstText: {
+    fontFamily: 'Montserrat',
+    fontSize: '2.5vw',
+    fontWeight: '400',
+    color: '#C1CDC1',
+  },
+  secondText: {
+    fontFamily: 'Montserrat',
+    fontSize: '2.5vw',
+    fontWeight: '400',
+    color: '#C1CDC1',
+  },
+  arrow: {
+    width: '40px',
+    height: '30px'
+  },
+  button: {
+    height: '2.5em',
+    width: '5.5em',
+    borderRadius: '8px',
+  },
+  links: {
+    fontFamily: 'Roboto',
+    fontSize: '1.2vw',
+    fontWeight: '400',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#C1CDC1',
+    '&:hover': {
+      color: "#00611C",
+    },
   }
 });
 
@@ -74,86 +119,84 @@ class Select extends React.Component {
   render() {
     const { classes } = this.props;
     const userName = this.props.user_name;
-    const userFavArtists = this.props.user_fav_artists;
 
     let body;
     if (!this.props.loading) {
-      body =
-      <Grid className={classes.welcomeGrid} item>
-        <h1 className={classes.welcomeText}>
-          Good, {userName}! Now, let's get you what you want! 
-        </h1>
-        <h1 className={classes.welcomeText}>
-          Follow the steps below to surprise your ears.
-        </h1>
-        <hr style={{width: '150px'}} />
-      <Grid className={classes.stepperGrid} item>
-        <SelectionStepper
-          handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
-          handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
-          handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
-          handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
-          handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
-          handleKeySelection={(value) => {this.props.dispatch(handleKeySelection(value))}}
-          handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
-          handleModeSelection={(value) => {this.props.dispatch(handleModeSelection(value))}}
-          handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
-          handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
-          handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
-          userToken={this.props.user_token}
-          activeStep={this.props.activeStep}
-          dialogOpen={this.props.dialogOpen}
-          genreTitle={this.props.genreTitle}
-          genre={this.props.genre}
-          danceability={this.props.danceability}
-          danceabilityTitle={this.props.danceabilityTitle}
-          energy={this.props.energy}
-          energyTitle={this.props.energyTitle}
-          key={this.props.key}
-          keyTitle={this.props.keyTitle}
-          loudness={this.props.loudness}
-          loudnessTitle={this.props.loudnessTitle}
-          mode={this.props.mode}
-          modeTitle={this.props.modeTitle}
-          tempo={this.props.tempo}
-          tempoTitle={this.props.tempoTitle}
-          positiveness={this.props.valence}
-          positivenessTitle={this.props.valenceTitle}
-        />
-      </Grid>
-      </Grid>
+      body = <SelectionStepper
+                handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
+                handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
+                handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
+                handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
+                handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
+                handleKeySelection={(value) => {this.props.dispatch(handleKeySelection(value))}}
+                handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
+                handleModeSelection={(value) => {this.props.dispatch(handleModeSelection(value))}}
+                handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
+                handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
+                handleSelectionSubmit={(token) => {this.props.dispatch(handleSelectionSubmit(token))}}
+                userToken={this.props.user_token}
+                activeStep={this.props.activeStep}
+                dialogOpen={this.props.dialogOpen}
+                genreTitle={this.props.genreTitle}
+                genre={this.props.genre}
+                danceability={this.props.danceability}
+                danceabilityTitle={this.props.danceabilityTitle}
+                energy={this.props.energy}
+                energyTitle={this.props.energyTitle}
+                key={this.props.key}
+                keyTitle={this.props.keyTitle}
+                loudness={this.props.loudness}
+                loudnessTitle={this.props.loudnessTitle}
+                mode={this.props.mode}
+                modeTitle={this.props.modeTitle}
+                tempo={this.props.tempo}
+                tempoTitle={this.props.tempoTitle}
+                positiveness={this.props.valence}
+                positivenessTitle={this.props.valenceTitle} />
   };
 
   if (this.props.loading) {
-    body =
-      <Grid className={classes.stepperGrid} item>
-        <PlaylistLoad
-          title={this.props.loading_title}
-          content={this.props.loading_content} />
-      </Grid>
+    body = <PlaylistLoad title={this.props.loading_title} content={this.props.loading_content} />
   };
 
   if (this.props.playlist_failure) {
-    body =
-      <PlaylistLoad
-        title={this.props.failure_title}
-        content={this.props.failure_content}
-      />
+    body = <PlaylistLoad title={this.props.failure_title} content={this.props.failure_content} />
   };
 
   if (this.props.success) {
-    body =
-    <Playlist tracks={this.props.tracks} userToken={this.props.user_token} />
+    body = <Playlist tracks={this.props.tracks} userToken={this.props.user_token} />
   };
 
     return (
-      <div className={classes.root}>
-        <Grid className={classes.containerGrid} container>
-          <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/about" textOne="ABOUT" pageTwo="/contact" textTwo="CONTACT" />
-          </Grid>
+      <div className={classes.container}>
+        <div className={classes.logoItem}>
+          <text className={classes.logo}>Electronify</text>
+        </div>
+        <div className={classes.firstButtonItem}>
+          <Button position="center" size="medium" className={classes.button}>
+            <Link className={classes.links} to="/about">ABOUT</Link>
+          </Button>
+        </div>
+        <div className={classes.secondButtonItem}>
+          <Button position="center" size="medium" className={classes.button}>
+            <Link className={classes.links} to="/contact">CONTACT</Link>
+          </Button>
+        </div>
+        <div className={classes.firsttitleItem}>
+          <text className={classes.firstText}>Good, {userName}! Now, let's get you what you want</text>
+        </div>
+        <div className={classes.hr}>
+          <hr style={{width: '8.5em'}} />
+        </div>
+        <div className={classes.arrowItem}>
+          <img className={classes.arrow} src="./arrow.png" alt="arrow" />
+        </div>
+        <div className={classes.secondtitleItem}>
+          <text className={classes.secondText}>Follow the guide below to define your tune</text>
+        </div>
+        <div className={classes.stepperItem}>
           {body}
-        </Grid>
+        </div>
       </div>
     );
   };
