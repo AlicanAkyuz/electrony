@@ -46,28 +46,8 @@ const navBarStyle = navBarStyle => ({
     gridRow: '1 / span 1',
     placeSelf: 'center'
   },
-  logo: {
-    fontFamily: 'Montserrat',
-    fontSize: '3vw',
-    fontWeight: '800',
-    color: '#4A7023',
-  },
-  button: {
-    height: '40px',
-    width: '140px',
-    borderRadius: '8px',
-  },
-  links: {
-    fontFamily: 'Roboto',
-    fontSize: '14px',
-    fontWeight: '800',
-    textDecoration: 'none',
-    textTransform: 'none',
-    color: '#C1CDC1',
-    '&:hover': {
-      color: "#00611C",
-    },
-  }
+
+  
 });
 
 NavBar.propTypes = {

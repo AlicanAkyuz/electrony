@@ -5,66 +5,73 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { getSteps, getStepContent } from './stepper_functions';
 import DialogBox from './dialog_box';
 
 const stepperStyles = stepperStyles => ({
-  root: {
+  container: {
+    display: 'grid',
     width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    backgroundColor: 'black'
+    gridTemplateRows: '85% 15%',
+    gridTemplateColumns: '15% 70% 15%',
+    backgroundColor: '#0c0c0c'
+  },
+  stepperItem: {
+    gridColumn: '2 / span 1',
+    gridRow: '1 / span 1',
+  },
+  buttonItem: {
+    gridColumn: '2 / span 1',
+    gridRow: '2 / span 1',
+    placeSelf: 'center'
   },
   stepperBody: {
     backgroundColor: '#353F3E',
-    borderRadius: '10px',
-    minWidth: '80%',
+    borderRadius: '5px',
+    minWidth: '60%',
   },
   stepLabel: {
-    height: '60px',
-    borderRadius: '10px',
+    height: '5vw',
+    borderRadius: '5px',
     backgroundColor: '#0c0c0c',
     textAlign: 'center'
   },
-  step: {
-    borderRadius: '5px',
-    backgroundColor: '#353F3E'
-  },
-  label: {
-    width: '100%',
+  labelText: {
     fontFamily: 'Roboto',
-    fontSize: '25px',
+    fontSize: '3vw',
     fontWeight: '400',
     color: '#c6c6c6',
   },
+  stepContent: {
+    textAlign: 'center'
+  },
   contentText: {
     fontFamily: 'Montserrat',
-    textAlign: 'center',
-    fontSize: '16px',
+    fontSize: '1.5vw',
     fontWeight: '400',
-    color: '#c6c6c6'
+    color: '#c6c6c6',
+    textAlign: 'center'
   },
   selectButton: {
-    marginRight: '2%',
-    height: '45px',
-    width: '150px',
+    marginRight: '1.5%',
+    height: '33%',
+    width: '38%',
     backgroundColor: '#00611C',
-    border: 'none',
     borderRadius: '5px',
+    border: 'none',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    fontFamily: 'Roboto',
-    fontSize: '17px',
-    fontWeight: '400',
-    textDecoration: 'none',
-    textTransform: 'none',
-    color: '#F0FFF0'
+    fontFamily: 'Montserrat',
+    fontSize: '1.5vw',
+    fontWeight: '800',
+    color: '#C1CDC1'
   },
+
+
+
+
   buttonHolder: {
     borderRadius: '15px',
     marginTop: '3%',
@@ -108,54 +115,55 @@ function SelectionStepper(props) {
     </Button>;
 
   return (
-    <div className={classes.root}>
-      <Stepper className={classes.stepperBody} activeStep={props.activeStep} orientation="vertical">
-        {getSteps().map((label, index) => {
-          return (
-            <Step className={classes.step} key={label}>
+    <div className={classes.container}>
+      <div className={classes.stepperItem}>
+        <Stepper className={classes.stepperBody} activeStep={props.activeStep} orientation="vertical">
+          {getSteps().map((label, index) => {
+            return (
+              <Step className={classes.step} key={label}>
 
-              <StepLabel icon className={classes.stepLabel}>
-                  <h2 className={classes.label}>Step {index + 1}: {label}</h2>
-              </StepLabel>
+                <StepLabel icon className={classes.stepLabel}>
+                  <p className={classes.labelText}>{label}</p>
+                </StepLabel>
 
-              <StepContent className={classes.stepContent}>
-                <h3 className={classes.contentText}>
-                  {getStepContent(index)}
-                </h3>
-                <button className={classes.selectButton} onClick={() => {props.handleDialogOpen()}} >
-                  Select
-                </button>
-                <DialogBox
-                  handleDialogOpen={props.handleDialogOpen}
-                  handleDialogClose={props.handleDialogClose}
-                  handleDanceabilitySelection={props.handleDanceabilitySelection}
-                  handleGenreSelection={props.handleGenreSelection}
-                  handleEnergySelection={props.handleEnergySelection}
-                  handleKeySelection={props.handleKeySelection}
-                  handleLoudnessSelection={props.handleLoudnessSelection}
-                  handleModeSelection={props.handleModeSelection}
-                  handleTempoSelection={props.handleTempoSelection}
-                  handlePositivenessSelection={props.handlePositivenessSelection}
-                  activeStep={props.activeStep}
-                  dialogOpen={props.dialogOpen}
-                  genreTitle={props.genreTitle}
-                  danceabilityTitle={props.danceabilityTitle}
-                  energyTitle={props.energyTitle}
-                  keyTitle={props.keyTitle}
-                  loudnessTitle={props.loudnessTitle}
-                  modeTitle={props.modeTitle}
-                  tempoTitle={props.tempoTitle}
-                  positivenessTitle={props.valenceTitle}
-                />
-              </StepContent>
-            </Step>
-          );
-        })}
-      </Stepper>
+                <StepContent className={classes.stepContent}>
+                  <p className={classes.contentText}>{getStepContent(index)}</p>
+                  <button className={classes.selectButton} onClick={() => {props.handleDialogOpen()}}>
+                    SELECT
+                  </button>
+                  <DialogBox
+                    handleDialogOpen={props.handleDialogOpen}
+                    handleDialogClose={props.handleDialogClose}
+                    handleDanceabilitySelection={props.handleDanceabilitySelection}
+                    handleGenreSelection={props.handleGenreSelection}
+                    handleEnergySelection={props.handleEnergySelection}
+                    handleKeySelection={props.handleKeySelection}
+                    handleLoudnessSelection={props.handleLoudnessSelection}
+                    handleModeSelection={props.handleModeSelection}
+                    handleTempoSelection={props.handleTempoSelection}
+                    handlePositivenessSelection={props.handlePositivenessSelection}
+                    activeStep={props.activeStep}
+                    dialogOpen={props.dialogOpen}
+                    genreTitle={props.genreTitle}
+                    danceabilityTitle={props.danceabilityTitle}
+                    energyTitle={props.energyTitle}
+                    keyTitle={props.keyTitle}
+                    loudnessTitle={props.loudnessTitle}
+                    modeTitle={props.modeTitle}
+                    tempoTitle={props.tempoTitle}
+                    positivenessTitle={props.valenceTitle}
+                  />
+                </StepContent>
+              </Step>
+            );
+          })}
+        </Stepper>
+      </div>
 
-      <Grid className={classes.buttonHolder} item xs={12}>
+      <div className={classes.buttonItem}>
         {createPlaylistButton}
-      </Grid>
+      </div>
+
     </div>
   )
 };
