@@ -17,29 +17,22 @@ import { getGenres,
        } from './dialog_functions';
 
 const styles = dialogTheme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: dialogTheme.spacing.unit,
-    minWidth: 400,
-    backgroundColor: '#CFDBC5',
-    borderRadius: '5px'
-  },
-  dialogHolder: {
-    backgroundColor: '#191919',
-    display: 'flex',
-    justifyContent: 'center',
-    borderRadius: '0px'
-  },
   popUpTitle: {
-    fontFamily: 'Roboto',
-    fontSize: '18px',
-    color: '#CFDBC5'
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '1.8vw',
+    color: '#C1CDC1'
   },
   dialogContent: {
-    backgroundColor:'#191919',
+    textAlign: 'center',
+    backgroundColor:'#0c0c0c',
+    paddingTop: '10%',
+  },
+  formControl: {
+    width: '70%',
+    minWidth: '50%',
+    backgroundColor: '#CFDBC5',
+    borderRadius: '5px'
   }
 });
 
@@ -121,20 +114,16 @@ function DialogBox(props) {
   };
 
   return (
-    <div>
-      <Dialog className={classes.dialogBox} open={props.dialogOpen}>
-        <DialogTitle className={classes.dialogHolder}>
-          <h2 className={classes.popUpTitle}>
-            {titleText}
-          </h2>
-        </DialogTitle>
-        <DialogContent className={classes.dialogContent}>
-          <FormControl onChange={() => {props.handleDialogClose()}} className={classes.formControl}>
-            {menuItems}
-          </FormControl>
-        </DialogContent>
-      </Dialog>
-    </div>
+    <Dialog style={{minWidth: '80%'}} open={props.dialogOpen}>
+      <DialogTitle style={{backgroundColor: '#191919'}}>
+        <p className={classes.popUpTitle}>{titleText}</p>
+      </DialogTitle>
+      <DialogContent className={classes.dialogContent}>
+        <FormControl onChange={() => {props.handleDialogClose()}} className={classes.formControl}>
+          {menuItems}
+        </FormControl>
+      </DialogContent>
+    </Dialog>
   );
 }
 
