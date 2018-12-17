@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import NavBar from '../../components/navbar';
 import PlaylistCard from '../components/playlist_card';
 import PlaylistDetailsBox from '../components/playlist_details_box';
 import PlaylistUploadLoad from '../components/load';
@@ -225,11 +224,6 @@ class Playlist extends React.Component {
     return (
       <div className={classes.root}>
         <Grid className={classes.containerGrid} container>
-
-          <Grid className={classes.navBarHolder} item xs={12}>
-            <NavBar pageOne="/about" textOne="About" pageTwo="/contact" textTwo="Contact" />
-          </Grid>
-
           {pageContent}
         </Grid>
       </div>
