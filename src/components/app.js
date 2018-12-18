@@ -80,7 +80,7 @@ function App(props) {
   return (
     <div className={classes.container}>
       <div className={classes.electronifyItem}>
-        <div class="animated fadeInDownBig delay-1s">
+        <div class="animated fadeInRightBig">
           <p className={classes.electronifyTitle}>Electronify</p>
         </div>
       </div>
@@ -90,7 +90,7 @@ function App(props) {
         </div>
       </div>
       <div className={classes.explanationItem}>
-        <div class="animated fadeInRightBig">
+        <div class="animated fadeInDownBig delay-1s ">
           <p className={classes.explanation}>To continue, login to Spotify.</p>
         </div>
       </div>

@@ -15,46 +15,52 @@ const styles = submitTheme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '6% 10% 10% 5% 10% 7% 20% 12% 15% 5%',
-    gridTemplateColumns: '1% 10% 15% 47% 10% 1% 10% 6%',
+    gridTemplateRows: '10% 5% 10% 5% 10% 5% 20% 10% 10% ',
+    gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
     backgroundColor: '#cecece'
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 2',
+    gridColumn: '2 / span 3',
     placeSelf: 'center',
-    paddingTop: '10%'
+    paddingTop: '5%'
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '5 / span 1',
+    gridColumn: '8 / span 1',
     placeSelf: 'center',
-    paddingTop: '20%',
+    paddingTop: '15%'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '7 / span 1',
+    gridColumn: '10 / span 1',
     placeSelf: 'center',
-    paddingTop: '20%'
+    paddingTop: '15%'
+  },
+  thirdButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '12 / span 1',
+    placeSelf: 'center',
+    paddingTop: '15%'
   },
   nameItem: {
     gridRow: '3 / span 1',
-    gridColumn: '4 / span 1',
+    gridColumn: '4 / span 7',
     placeSelf: 'center',
   },
   emailItem: {
     gridRow: '5 / span 1',
-    gridColumn: '4 / span 1',
+    gridColumn: '4 / span 7',
     placeSelf: 'center',
   },
   messageItem: {
     gridRow: '7 / span 1',
-    gridColumn: '4 / span 1',
+    gridColumn: '4 / span 7',
     placeSelf: 'center',
   },
   buttonItem: {
     gridRow: '9 / span 1',
-    gridColumn: '4 / span 1',
+    gridColumn: '4 / span 7',
     placeSelf: 'center',
   },
   logo: {
@@ -135,12 +141,17 @@ class FormSubmit extends React.Component {
         <div className={classes.logoItem}>
           <p className={classes.logo}>Electronify</p>
         </div>
+
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
         </div>
         <div className={classes.secondButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
         </div>
+        <div className={classes.thirdButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        </div>
+
         <div className={classes.nameItem}>
           <TextField name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
           <FormHelperText error>{showNameError}</FormHelperText>
