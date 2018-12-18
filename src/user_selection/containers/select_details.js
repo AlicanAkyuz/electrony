@@ -32,26 +32,32 @@ const styles = theme => ({
     display: 'grid',
     height: '100vh',
     gridTemplateRows: '6% 8% 8% 5% 5% 10% 7% 5% 57% 5%',
-    gridTemplateColumns: '5% 10% 10% 50% 10% 10% 5%',
+    gridTemplateColumns: '5% 8% 8% 50% 8% 8% 8% 5%',
     backgroundColor: '#0c0c0c'
   },
   logoItem: {
     gridRow: '1 / span 1',
     gridColumn: '2 / span 2',
     placeSelf: 'center',
-    paddingTop: '13%'
+    paddingTop: '20%'
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
     gridColumn: '5 / span 1',
     placeSelf: 'center',
-    paddingTop: '23%'
+    paddingTop: '40%'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
     gridColumn: '6 / span 1',
     placeSelf: 'center',
-    paddingTop: '23%'
+    paddingTop: '40%'
+  },
+  thirdButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    placeSelf: 'center',
+    paddingTop: '40%'
   },
   firsttitleItem: {
     gridRow: '3 / span 1',
@@ -114,10 +120,10 @@ const styles = theme => ({
   links: {
     fontFamily: 'Montserrat',
     fontSize: '1.1vmax',
-    fontWeight: '400',
+    fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
-    color: '#C1CDC1',
+    color: '#CFDBC5',
     '&:hover': {
       color: "#00611C",
     },
@@ -267,16 +273,17 @@ class Select extends React.Component {
         <div className={classes.logoItem}>
           <p className={classes.logo}>Electronify</p>
         </div>
+
         <div className={classes.firstButtonItem}>
-          <Button position="center" size="medium" className={classes.button}>
-            <Link className={classes.links} to="/about">ABOUT</Link>
-          </Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
         </div>
         <div className={classes.secondButtonItem}>
-          <Button position="center" size="medium" className={classes.button}>
-            <Link className={classes.links} to="/contact">CONTACT</Link>
-          </Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
         </div>
+        <div className={classes.thirdButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
+        </div>
+
         <div className={classes.firsttitleItem}>
           <p className={classes.firstText}>Good, {userName}! Now, let's get you what you want</p>
         </div>
