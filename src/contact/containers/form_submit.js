@@ -13,9 +13,9 @@ import { onNameUpdated,
 
 const styles = submitTheme => ({
   root: {
-    flexGrow: 1,
-    height: '720px',
-    backgroundColor: '#C1CDC1'
+    display: 'grid',
+    height: '100vh',
+    backgroundColor: '#c5c5c5'
   },
   containerGrid: {
     display: 'flex',
