@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -12,42 +12,79 @@ import { onNameUpdated,
          validateForm } from '../../actions/contact_actions/actions';
 
 const styles = submitTheme => ({
-  root: {
+  container: {
     display: 'grid',
     height: '100vh',
-    backgroundColor: '#c5c5c5'
+    gridTemplateRows: '6% 10% 10% 5% 10% 7% 20% 12% 15% 5%',
+    gridTemplateColumns: '1% 10% 15% 47% 10% 1% 10% 6%',
+    backgroundColor: '#cecece'
   },
-  containerGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+  logoItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '2 / span 2',
+    placeSelf: 'center',
+    paddingTop: '10%'
   },
-  navBarHolder: {
-    width: '100%',
-    position: 'fixed'
+  firstButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '5 / span 1',
+    placeSelf: 'center',
+    paddingTop: '20%',
   },
-  textGrid: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingTop: '10%',
-    paddingRight: '15%',
-    paddingLeft: '15%',
-    paddingBottom: '5%',
+  secondButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    placeSelf: 'center',
+    paddingTop: '20%'
   },
-  buttonHolder: {
-    marginBottom: '5%'
+  nameItem: {
+    gridRow: '3 / span 1',
+    gridColumn: '4 / span 1',
+    placeSelf: 'center',
+  },
+  emailItem: {
+    gridRow: '5 / span 1',
+    gridColumn: '4 / span 1',
+    placeSelf: 'center',
+  },
+  messageItem: {
+    gridRow: '7 / span 1',
+    gridColumn: '4 / span 1',
+    placeSelf: 'center',
+  },
+  buttonItem: {
+    gridRow: '9 / span 1',
+    gridColumn: '4 / span 1',
+    placeSelf: 'center',
+  },
+  logo: {
+    textAlign: 'center',
+    fontFamily: 'Roboto',
+    fontSize: '3vmax',
+    fontWeight: '800',
+    color: '#0c0c0c',
+  },
+  links: {
+    fontFamily: 'Montserrat',
+    fontSize: '1.1vmax',
+    fontWeight: '800',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#0c0c0c',
+    '&:hover': {
+      color: "#000",
+    },
   },
   button: {
-    height: '45px',
-    width: '150px',
+    height: '3.5em',
+    width: '8em',
     color: '#F0FFF0',
     backgroundColor: '#00611C',
     borderRadius: '5px',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-  },
+  }
 });
 
 class FormSubmit extends React.Component {
@@ -79,67 +116,47 @@ class FormSubmit extends React.Component {
     let showNameError;
     let showEmailError;
     let showMessageError;
-
     if (this.props.errorFound) {
       this.props.errorArray.forEach(error => {
         if (error === 1) {
-          showNameError = "Name field can't be empty!"
+          showNameError = "Name field can't be empty."
         } else if (error === 2) {
-          showEmailError = "Email address is not valid!"
+          showEmailError = "Email address is not valid."
         } else if (error === 3) {
-          showEmailError = "Email field can't be empty! "
+          showEmailError = "Email field can't be empty."
         } else if (error === 4) {
-          showMessageError = "Message field can't be empty!"
+          showMessageError = "Message field can't be empty."
         }
-      });
+      })
     };
 
     return (
-      <div className={classes.root}>
-        <Grid className={classes.containerGrid} container >
-
-
-
-          <Grid className={classes.textGrid} item xs={12}>
-            <TextField name="name"
-                       label="Name"
-                       required
-                       margin="normal"
-                       value={this.props.name}
-                       onChange={this.handleChange}
-                       error={!!showNameError} />
-            <FormHelperText error>{showNameError}</FormHelperText>
-
-            <TextField name="email"
-                       label="Email"
-                       required
-                       margin="normal"
-                       value={this.props.email}
-                       onChange={this.handleChange}
-                       error={!!showEmailError} />
-            <FormHelperText error>{showEmailError}</FormHelperText>
-
-            <TextField name="message"
-                       label="Message"
-                       multiline
-                       required
-                       margin="normal"
-                       rows="8"
-                       value={this.props.message}
-                       onChange={this.handleChange}
-                       error={!!showMessageError} />
-            <FormHelperText error>{showMessageError}</FormHelperText>
-          </Grid>
-
-          <Grid className={classes.buttonHolder} item xs={12}>
-            <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>
-              Submit
-            </Button>
-          </Grid>
-
-        </Grid>
+      <div className={classes.container}>
+        <div className={classes.logoItem}>
+          <p className={classes.logo}>Electronify</p>
+        </div>
+        <div className={classes.firstButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
+        </div>
+        <div className={classes.secondButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
+        </div>
+        <div className={classes.nameItem}>
+          <TextField name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
+          <FormHelperText error>{showNameError}</FormHelperText>
+        </div>
+        <div className={classes.emailItem}>
+          <TextField name="email" label="Email" required margin="normal"value={this.props.email} onChange={this.handleChange} error={!!showEmailError} />
+          <FormHelperText error>{showEmailError}</FormHelperText>
+        </div>
+        <div className={classes.messageItem}>
+          <TextField name="message" label="Message" multiline required margin="normal" rows="8" value={this.props.message} onChange={this.handleChange} error={!!showMessageError} />
+          <FormHelperText error>{showMessageError}</FormHelperText>
+        </div>
+        <div className={classes.buttonItem}>
+          <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>Submit</Button>
+        </div>
       </div>
-
     )
   }
 };
