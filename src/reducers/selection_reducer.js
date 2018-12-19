@@ -2,6 +2,7 @@ import {
   USER_DATA,
   DIALOG_OPEN,
   DIALOG_CLOSE,
+  BACK_CLICK,
   GENRE_SELECTED,
   DANCE_SELECTED,
   ENERGY_SELECTED,
@@ -10,9 +11,6 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
-  RENDER_PLAYLIST,
-  PLAYLIST_SUCCESS,
-  PLAYLIST_FAILURE
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
@@ -40,22 +38,10 @@ const initialState = {
     tempo: "Keep it down or keep it up!",
     positiveness: "Positive vibes only?",
   },
-  loading_playlist: false,
-  loading_playlist_content: {
-    title: "Finding your electronic tunes...",
-    content: "This may take a few seconds, please hold on!"
-  },
-  playlist_failure: false,
-  playlist_failure_content: {
-    title: "Ups!",
-    content: "Sorry, there has been a server problem. Please try again."
-  },
-  playlist_success: false,
-  spotify_data: {
+  user_data: {
     user_token: '',
     user_name: '',
-    user_id: '',
-    tracks: {}
+    user_id: ''
   }
 };
 
@@ -63,9 +49,9 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
   switch (action.type) {
     case USER_DATA: {
       const newState = Object.assign({}, state);
-      newState.spotify_data.user_token = action.payload.token;
-      newState.spotify_data.user_name = action.payload.user_name;
-      newState.spotify_data.user_id = action.payload.user_id;
+      newState.user_data.user_token = action.payload.token;
+      newState.user_data.user_name = action.payload.user_name;
+      newState.user_data.user_id = action.payload.user_id;
       return newState;
     }
     case DIALOG_OPEN: {
@@ -77,6 +63,11 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       const newState = Object.assign({}, state);
       newState.select.dialogOpen = action.payload;
       newState.select.activeStep = state.select.activeStep + action.stepPayload
+      return newState;
+    }
+    case BACK_CLICK: {
+      const newState = Object.assign({}, state);
+      newState.select.activeStep = state.select.activeStep - action.payload
       return newState;
     }
     case GENRE_SELECTED: {
@@ -117,22 +108,6 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case POS_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.positiveness = action.payload;
-      return newState;
-    }
-    case RENDER_PLAYLIST: {
-      const newState = Object.assign({}, state);
-      newState.loading_playlist = action.payload
-      return newState;
-    }
-    case PLAYLIST_FAILURE: {
-      const newState = Object.assign({}, state);
-      newState.playlist_failure = action.payload
-      return newState;
-    }
-    case PLAYLIST_SUCCESS: {
-      const newState = Object.assign({}, state);
-      newState.playlist_success = action.payload;
-      newState.spotify_data.tracks = action.tracks;
       return newState;
     }
     default:
