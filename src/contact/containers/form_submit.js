@@ -141,7 +141,6 @@ class FormSubmit extends React.Component {
         <div className={classes.logoItem}>
           <p className={classes.logo}>Electronify</p>
         </div>
-
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
         </div>
@@ -151,7 +150,6 @@ class FormSubmit extends React.Component {
         <div className={classes.thirdButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
         </div>
-
         <div className={classes.nameItem}>
           <TextField name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
           <FormHelperText error>{showNameError}</FormHelperText>

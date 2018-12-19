@@ -113,9 +113,9 @@ function PlaylistDetailsBox(props) {
             />
 
 
-          <button className={classes.selectButton} onClick={() => {props.handleNameSubmit()}} >
+          <button className={classes.selectButton} onClick={() => {props.handleDetailsSubmit()}} >
             <p className={classes.selectTypography}>
-              Select
+              DONE!
             </p>
           </button>
           </FormControl>

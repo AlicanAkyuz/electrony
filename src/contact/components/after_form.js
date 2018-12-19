@@ -91,18 +91,10 @@ function AfterForm(props) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.headerItem}>
-        <p className={classes.textHeader}>{props.textHeader}</p>
-      </div>
-      <div className={classes.subtextItem}>
-        <p className={classes.textContent}>{props.textContent}</p>
-      </div>
-      <div className={classes.circleItem}>
-        {showCircle}
-      </div>
-      <div className={classes.buttonItem}>
-        {showButton}
-      </div>
+      <div className={classes.headerItem}><p className={classes.textHeader}>{props.textHeader}</p></div>
+      <div className={classes.subtextItem}><p className={classes.textContent}>{props.textContent}</p></div>
+      <div className={classes.circleItem}>{showCircle}</div>
+      <div className={classes.buttonItem}>{showButton}</div>
     </div>
   )
 }

@@ -1,56 +1,66 @@
 import {
-  STORE_PLAYLIST,
-  USER_INFO,
-  PLAYLIST_ID,
   CHARGING,
-  NAME_BOX,
+  PLAYLIST_FAILURE,
+  FETCH_SUCCESS,
+  PLAYLIST_SUCCESS,
+  DETAILS_BOX_OPEN,
   NAME_CHANGED,
   DESCRIPTION_CHANGED,
   CHECK_BOX,
-  NAME_SUBMIT,
-  SUCCESS
-} from '../actions/playlist_actions/action_types';
+  DETAILS_BOX_CLOSE,
+  USER_INFO,
+  PLAYLIST_ID,
+  PLAYLIST_CREATED
+  } from '../actions/playlist_actions/action_types';
 
 const initialState = {
-  playlistData: [],
-  token: '',
-  user_info: {},
-  user_name: "",
-  name_box: false,
-  playlist_name: "",
-  playlist_description: "",
-  check_box_state: false,
-  playlist_id : '',
   playlist_charging: false,
   playlist_charging_content: {
     title: "Loading Your Playlist",
     content: "Just a second..."
   },
-  playlist_success: false
+  playlist_failure: false,
+  playlist_failure_content: {
+    title: "Ups!",
+    content: "Sorry, there has been a server problem. Please try again."
+  },
+  tracks: [],
+  playlist_success: false,
+  details_box: false,
+  playlist_name: "",
+  playlist_description: "",
+  check_box_state: false,
+  user_name: "",
+  user_id: '',
+  playlist_id : '',
+  playlist_created: false
 };
 
 function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
   switch (action.type) {
-    case STORE_PLAYLIST: {
-      const newState = Object.assign({}, state);
-      newState.playlistData = action.payload
-      newState.token = action.token
-      return newState;
-    }
     case CHARGING: {
       const newState = Object.assign({}, state);
-      newState.playlist_loading = action.payload
+      newState.playlist_charging = action.payload
       return newState;
     }
-    case USER_INFO: {
+    case PLAYLIST_FAILURE: {
       const newState = Object.assign({}, state);
-      newState.user_info = action.payload
-      newState.user_name = action.payloadTwo
+      newState.playlist_failure = action.payload
       return newState;
     }
-    case NAME_BOX: {
+    case FETCH_SUCCESS: {
       const newState = Object.assign({}, state);
-      newState.name_box = action.payload
+      newState.tracks = action.payload
+      return newState;
+    }
+    case PLAYLIST_SUCCESS: {
+      const newState = Object.assign({}, state);
+      newState.playlist_success = action.payload;
+      return newState;
+    }
+    case DETAILS_BOX_OPEN: {
+      const newState = Object.assign({}, state);
+      newState.details_box = action.payload;
       return newState;
     }
     case NAME_CHANGED: {
@@ -68,9 +78,15 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       newState.check_box_state = action.payload
       return newState;
     }
-    case NAME_SUBMIT: {
+    case DETAILS_BOX_CLOSE: {
       const newState = Object.assign({}, state);
-      newState.name_box = action.payload
+      newState.details_box = action.payload
+      return newState;
+    }
+    case USER_INFO: {
+      const newState = Object.assign({}, state);
+      newState.user_name = action.payload
+      newState.user_id = action.payloadTwo
       return newState;
     }
     case PLAYLIST_ID: {
@@ -78,9 +94,9 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       newState.playlist_id = action.payload
       return newState;
     }
-    case SUCCESS: {
+    case PLAYLIST_CREATED: {
       const newState = Object.assign({}, state);
-      newState.playlist_success = action.payload
+      newState.playlist_created = action.payload
       return newState;
     }
     default:

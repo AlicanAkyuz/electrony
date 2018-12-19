@@ -1,6 +1,7 @@
 export const USER_DATA = "USER_DATA";
 export const DIALOG_OPEN = "DIALOG_OPEN";
 export const DIALOG_CLOSE = "DIALOG_CLOSE";
+export const BACK_CLICK = "BACK_CLICK";
 export const GENRE_SELECTED = "GENRE_SELECTED";
 export const DANCE_SELECTED = "DANCE_SELECTED";
 export const ENERGY_SELECTED = "ENERGY_SELECTED";
