@@ -7,8 +7,10 @@ import { CHARGING,
          DESCRIPTION_CHANGED,
          CHECK_BOX,
          DETAILS_BOX_CLOSE,
+         UPLOADING,
          USER_INFO,
          PLAYLIST_ID,
+         UPLOAD_FAILURE,
          PLAYLIST_CREATED
        } from './action_types';
 
@@ -132,10 +134,11 @@ export function handleSelectionSubmit() {
       tempo: `target_tempo=${tempoFloat}`,
       positiveness: `target_valence=${data.positiveness}`,
       instrumentalness: "min_instrumentalness=0.65",
+      acousticness: "max_acousticness=0.2"
     };
 
-    const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=55';
-    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.instrumentalness}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.positiveness}`
+    const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';
+    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.acousticness}&${params.instrumentalness}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.positiveness}`
 
     fetch(final_endpoint, {
       headers: {'Authorization': "Bearer " + token}
@@ -144,7 +147,10 @@ export function handleSelectionSubmit() {
     .then(function(spotifyData) {
       dispatch(fetch_success(spotifyData));
     })
-    .catch(error => console.error('Error:', error));
+    .catch(function(error) {
+      dispatch(playlist_failure());
+      console.error('Error:', error);
+    });
   };
 };
 
@@ -214,12 +220,7 @@ export function handleDescriptionChange(value) {
 
 export function handleClickBox() {
   return function (dispatch, getState) {
-    let value = null;
-    if (getState().PlaylistReducer.check_box_state === false) {
-      value = true
-    } else if (getState().PlaylistReducer.check_box_state === true) {
-      value = false
-    };
+    let value = !getState().PlaylistReducer.check_box_state;
     dispatch({
         type: CHECK_BOX,
         payload: value,
@@ -232,6 +233,16 @@ export function handleDetailsSubmit() {
     dispatch({
         type: DETAILS_BOX_CLOSE,
         payload: false,
+    })
+    dispatch(playlist_uploading());
+  }
+};
+
+export function playlist_uploading() {
+  return function (dispatch) {
+    dispatch({
+        type: UPLOADING,
+        payload: true,
     })
     dispatch(getUserID());
   }
@@ -254,7 +265,10 @@ export function getUserID() {
       })
       dispatch(playlistCreate());
     })
-    .catch(error => console.error('Error:', error));
+    .catch(function(error) {
+      dispatch(playlist_upload_failure());
+      console.error('Error:', error);
+    });
   };
 };
 
@@ -293,43 +307,20 @@ export function playlistCreate() {
       });
       dispatch(pushTracks());
     })
-    .catch(error => {
-      console.error('Error:', error)
+    .catch(function(error) {
+      dispatch(playlist_upload_failure());
+      console.error('Error:', error);
     });
   };
 };
 
 export function pushTracks() {
   return function (dispatch, getState) {
-    const state = getState().PlaylistReducer.tracks;
-    const one = state[0].uri;
-    const two = state[1].uri;
-    const three = state[2].uri;
-    const four = state[3].uri;
-    const five = state[4].uri;
-    const six = state[5].uri;
-    const seven = state[6].uri;
-    const eight = state[7].uri;
-    const nine = state[8].uri;
-    const ten = state[9].uri;
-    const eleven = state[10].uri;
-    const twelve = state[11].uri;
-    const thirteen = state[12].uri;
-    const fourteen = state[13].uri;
-    const fifteen = state[14].uri;
-    const sixteen = state[15].uri;
-    const seventeen = state[16].uri;
-    const eighteen = state[17].uri;
-    const nineteen = state[18].uri;
-    const twenty = state[19].uri;
-    const twentyone = state[20].uri;
-
     const token = getState().SelectionReducer.user_data.user_token;
     const playlist_id = getState().PlaylistReducer.playlist_id;
     const tracks_object = {
-      "uris": [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, twentyone]
+      "uris": getState().PlaylistReducer.tracks.map(element => element.uri)
     };
-
     fetch(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks?`, {
       method: 'POST',
       body: JSON.stringify(tracks_object),
@@ -343,8 +334,20 @@ export function pushTracks() {
         dispatch(playlist_upload_success())
       }
     })
-    .catch(error => {console.error('Error:', error)});
+    .catch(function(error) {
+      dispatch(playlist_upload_failure());
+      console.error('Error:', error);
+    });
   };
+};
+
+export function playlist_upload_failure() {
+  return function (dispatch) {
+    dispatch({
+        type: UPLOAD_FAILURE,
+        payload: true,
+    })
+  }
 };
 
 export function playlist_upload_success() {

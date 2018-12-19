@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import { Link } from 'react-router-dom';
-import PlaylistCard from '../components/playlist_card';
 import PlaylistDetailsBox from '../components/playlist_details_box';
-import PlaylistLoad from '../components/load';
+import Load from '../components/load';
 import PlaylistSuccess from '../components/playlist_success';
-import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
 import { handleSelectionSubmit,
          details_box_open,
@@ -20,8 +20,9 @@ import { handleSelectionSubmit,
 const playlistStyle = playlistStyle => ({
   container: {
     display: 'grid',
-    height: '100vh',
-    gridTemplateRows: '6% 8% 8% 5% 5% 10% 7% 5% 57% 5%',
+    height: 'auto',
+    minHeight: '100vh',
+    gridTemplateRows: '2% 94% 4%',
     gridTemplateColumns: '5% 8% 8% 8% 42% 8% 8% 8% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -49,30 +50,11 @@ const playlistStyle = playlistStyle => ({
     placeSelf: 'center',
     paddingTop: '40%'
   },
-  firsttitleItem: {
-    gridRow: '3 / span 1',
-    gridColumn: '3 / span 5',
-    placeSelf: 'center'
+  contentItem: {
+    gridRow: '2 / span 1',
+    gridColumn: '2 / span 7',
   },
-  hr: {
-    gridRow: '5 / span 1',
-    gridColumn: '4 / span 3',
-    placeSelf: 'center'
-  },
-  secondtitleItem: {
-    gridRow: '6 / span 1',
-    gridColumn: '3 / span 5',
-    placeSelf: 'center'
-  },
-  arrowItem: {
-    gridRow: '7 / span 1',
-    gridColumn: '5 / span 1',
-    placeSelf: 'center'
-  },
-  stepperItem: {
-    gridRow: '9 / span 1',
-    gridColumn: '1 / span 9',
-  },
+
   /////////////////////////////////////////
   logo: {
     textAlign: 'center',
@@ -81,24 +63,40 @@ const playlistStyle = playlistStyle => ({
     fontWeight: '800',
     color: '#4A7023',
   },
-  firstText: {
+  links: {
+    fontFamily: 'Montserrat',
+    fontSize: '1.1vmax',
+    fontWeight: '800',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#CFDBC5',
+    '&:hover': {
+      color: "#00611C",
+    },
+  },
+  title: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
     fontSize: '2.5vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   },
-  secondText: {
-    textAlign: 'center',
+  button: {
+    backgroundColor: '#00611C',
+    '&:hover': {
+      backgroundColor: "#4A7023",
+    },
+    height: '45%',
+    width: '30%',
     fontFamily: 'Montserrat',
-    fontSize: '2.5vmax',
-    fontWeight: '400',
+    fontWeight: '800',
+    fontSize: '1.7vmax',
+    textTransform: 'none',
+    borderRadius: '5px',
+    border: 'none',
     color: '#C1CDC1',
-  },
-  arrow: {
-    width: '2.8vmax',
-    height: '2.3vmax'
-  },
+  }
+
 });
 
 class Playlist extends React.Component {
@@ -109,179 +107,76 @@ class Playlist extends React.Component {
   render() {
     const { classes } = this.props;
     const tracks = this.props.tracks;
-
     let pageContent;
 
     if (this.props.playlist_charging) {
-      pageContent =
-        <PlaylistLoad
-          title={this.props.playlist_charging_content_title}
-          content={this.props.playlist_charging_content_content} />
+      pageContent = <Load title={this.props.playlist_charging_content_title} content={this.props.playlist_charging_content_content} />
       };
 
     if (this.props.playlist_failure) {
-      pageContent =
-        <PlaylistLoad
-          title={this.props.playlist_failure_content_title}
-          content={this.props.playlist_failure_content_content} />
-      };
+      pageContent = <Load failure="failure" title={this.props.playlist_failure_content_title} content={this.props.playlist_failure_content_content} />
+    };
 
     if (this.props.playlist_success) {
       pageContent =
       <div>
-        <PlaylistCard
-          number="1"
-          song={tracks[0].name}
-          artist={tracks[0].album.artists[0].name}
-          album={tracks[0].album.name}
-          image={tracks[0].album.images[1].url} />
-        <PlaylistCard
-          number="2"
-          song={tracks[1].name}
-          artist={tracks[1].album.artists[0].name}
-          album={tracks[1].album.name}
-          image={tracks[1].album.images[1].url} />
-        <PlaylistCard
-          number="3"
-          song={tracks[2].name}
-          artist={tracks[2].album.artists[0].name}
-          album={tracks[2].album.name}
-          image={tracks[2].album.images[1].url} />
-        <PlaylistCard
-          number="4"
-          song={tracks[3].name}
-          artist={tracks[3].album.artists[0].name}
-          album={tracks[3].album.name}
-          image={tracks[3].album.images[1].url} />
-        <PlaylistCard
-          number="5"
-          song={tracks[4].name}
-          artist={tracks[4].album.artists[0].name}
-          album={tracks[4].album.name}
-          image={tracks[4].album.images[1].url} />
-        <PlaylistCard
-          number="6"
-          song={tracks[5].name}
-          artist={tracks[5].album.artists[0].name}
-          album={tracks[5].album.name}
-          image={tracks[5].album.images[1].url} />
-        <PlaylistCard
-          number="7"
-          song={tracks[6].name}
-          artist={tracks[6].album.artists[0].name}
-          album={tracks[6].album.name}
-          image={tracks[6].album.images[1].url} />
-        <PlaylistCard
-          number="8"
-          song={tracks[7].name}
-          artist={tracks[7].album.artists[0].name}
-          album={tracks[7].album.name}
-          image={tracks[7].album.images[1].url} />
-        <PlaylistCard
-          number="9"
-          song={tracks[8].name}
-          artist={tracks[8].album.artists[0].name}
-          album={tracks[8].album.name}
-          image={tracks[8].album.images[1].url} />
-        <PlaylistCard
-          number="10"
-          song={tracks[9].name}
-          artist={tracks[9].album.artists[0].name}
-          album={tracks[9].album.name}
-          image={tracks[9].album.images[1].url} />
-        <PlaylistCard
-          number="11"
-          song={tracks[10].name}
-          artist={tracks[10].album.artists[0].name}
-          album={tracks[10].album.name}
-          image={tracks[10].album.images[1].url} />
-        <PlaylistCard
-          number="12"
-          song={tracks[11].name}
-          artist={tracks[11].album.artists[0].name}
-          album={tracks[11].album.name}
-          image={tracks[11].album.images[1].url} />
-        <PlaylistCard
-          number="13"
-          song={tracks[12].name}
-          artist={tracks[12].album.artists[0].name}
-          album={tracks[12].album.name}
-          image={tracks[12].album.images[1].url} />
-        <PlaylistCard
-          number="14"
-          song={tracks[13].name}
-          artist={tracks[13].album.artists[0].name}
-          album={tracks[13].album.name}
-          image={tracks[13].album.images[1].url} />
-        <PlaylistCard
-          number="15"
-          song={tracks[14].name}
-          artist={tracks[14].album.artists[0].name}
-          album={tracks[14].album.name}
-          image={tracks[14].album.images[1].url} />
-        <PlaylistCard
-          number="16"
-          song={tracks[15].name}
-          artist={tracks[15].album.artists[0].name}
-          album={tracks[15].album.name}
-          image={tracks[15].album.images[1].url} />
-        <PlaylistCard
-          number="17"
-          song={tracks[16].name}
-          artist={tracks[16].album.artists[0].name}
-          album={tracks[16].album.name}
-          image={tracks[16].album.images[1].url} />
-        <PlaylistCard
-          number="18"
-          song={tracks[17].name}
-          artist={tracks[17].album.artists[0].name}
-          album={tracks[17].album.name}
-          image={tracks[17].album.images[1].url} />
-        <PlaylistCard
-          number="19"
-          song={tracks[18].name}
-          artist={tracks[18].album.artists[0].name}
-          album={tracks[18].album.name}
-          image={tracks[18].album.images[1].url} />
-        <PlaylistCard
-          number="20"
-          song={tracks[19].name}
-          artist={tracks[19].album.artists[0].name}
-          album={tracks[19].album.name}
-          image={tracks[19].album.images[1].url} />
-        <PlaylistCard
-          number="21"
-          song={tracks[20].name}
-          artist={tracks[20].album.artists[0].name}
-          album={tracks[20].album.name}
-          image={tracks[20].album.images[1].url} />
+        <p className={classes.title}>Here is the playlist specially crafted for you</p>
+        <div className={classes.hr}><hr style={{width: '8.5em'}} /></div>
+        <div class="animated flip" style={{textAlign: 'center', marginTop: '2%'}}>
+          <button onClick={() => this.props.dispatch(details_box_open())} className={classes.button}>
+            UPLOAD TO SPOTIFY!
+          </button>
+        </div>
 
-          <div className={classes.saveLogoItem}>
-            <IconButton onClick={() => this.props.dispatch(details_box_open())} className={classes.iconButton}>
-              <img className={classes.logos} src="./spotify.jpg" alt="Spotify Logo" />
-            </IconButton>
-          </div>
+        {tracks.map((track, index) =>
+        <div style={{display: 'grid', gridTemplateRows: '100%', gridTemplateColumns: '5% 15% 60% 15% 5%', marginTop: '2%', }}>
+          <Card style={{gridRow: '1 / span 1', gridColumn: '2 / span 1', backgroundColor: '#353F3E', width: '100%'}}>
+            <p style={{fontFamily: 'Roboto', fontSize: '3.8vmax', fontWeight: '800', color: '#CFDBC5', textAlign: 'center'}}>{index + 1}</p>
+          </Card>
+
+          <Card style={{gridRow: '1 / span 1', gridColumn: '3 / span 1', backgroundColor: '#191919', width: '100%'}}>
+            <p style={{fontFamily: 'Roboto', fontSize: '2vmax', color: '#c5c5c5', marginLeft: '3%'}}>{track.name}</p>
+            <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Artist: {track.album.artists[0].name}</p>
+            <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Album {track.album.name}</p>
+          </Card>
+
+          <Card style={{gridRow: '1 / span 1', gridColumn: '4 / span 1', backgroundColor: '#0c0c0c', width: '100%'}}>
+            <CardMedia style={{width: '13vmax', height: '13vmax', borderRadius: '5px'}} image={track.album.images[1].url} title="alican"/>
+          </Card>
+        </div>
+        )};
+
+        <div class="animated infinite jello" style={{textAlign: 'center', marginTop: '2%'}}>
+          <button onClick={() => this.props.dispatch(details_box_open())} className={classes.button}>
+            UPLOAD TO SPOTIFY!
+          </button>
+        </div>
+
       </div>
-
       };
 
       if (this.props.details_box) {
-        pageContent =
-            <PlaylistDetailsBox
-              playlistName={this.props.playlist_name}
-              playlistDescription={this.props.playlist_description}
-              checkBoxState={this.props.check_box_state}
-              handleNameChange={(value) => {this.props.dispatch(handleNameChange(value))}}
-              handleDescriptionChange={(value) => {this.props.dispatch(handleDescriptionChange(value))}}
-              handleClickBox={() => {this.props.dispatch(handleClickBox())}}
-              handleDetailsSubmit={() => {this.props.dispatch(handleDetailsSubmit())}}
-            />
+        pageContent = <PlaylistDetailsBox
+          playlistName={this.props.playlist_name}
+          playlistDescription={this.props.playlist_description}
+          checkBoxState={this.props.check_box_state}
+          handleNameChange={(value) => {this.props.dispatch(handleNameChange(value))}}
+          handleDescriptionChange={(value) => {this.props.dispatch(handleDescriptionChange(value))}}
+          handleClickBox={() => {this.props.dispatch(handleClickBox())}}
+          handleDetailsSubmit={() => {this.props.dispatch(handleDetailsSubmit())}} />
         };
 
 
+      if (this.props.uploading) {
+        pageContent = <Load title={this.props.uploading_content_title} content={this.props.uploading_content_content} />
+      };
+
+      if (this.props.uploading_failure) {
+        pageContent = <Load failure="failure" title={this.props.uploading_failure_content_title} content={this.props.uploading_failure_content_content} />
+      };
+
       if (this.props.playlist_created) {
-        pageContent =
-            <PlaylistSuccess />
+        pageContent = <PlaylistSuccess />
       };
 
     return (
@@ -298,20 +193,7 @@ class Playlist extends React.Component {
         <div className={classes.thirdButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
         </div>
-
-        <div className={classes.firsttitleItem}>
-          <p className={classes.firstText}>Good! Now, let's get you what you want</p>
-        </div>
-        <div className={classes.hr}>
-          <hr style={{width: '8.5em'}} />
-        </div>
-        <div className={classes.arrowItem}>
-          <img className={classes.arrow} src="./arrow.png" alt="arrow" />
-        </div>
-        <div className={classes.secondtitleItem}>
-          <p className={classes.secondText}>Follow the guide below to define your tune</p>
-        </div>
-        <div className={classes.stepperItem}>
+        <div className={classes.contentItem}>
           {pageContent}
         </div>
       </div>
@@ -334,6 +216,12 @@ const mapStateToProps = state => {
     playlist_name: state.playlist_name,
     playlist_description: state.playlist_description,
     check_box_state: state.check_box_state,
+    uploading: state.uploading,
+    uploading_content_title: state.uploading_content.title,
+    uploading_content_content: state.uploading_content.content,
+    uploading_failure: state.uploading_failure,
+    uploading_failure_content_title: state.uploading_failure_content.title,
+    uploading_failure_content_content: state.uploading_failure_content.content,
     playlist_created: state.playlist_created
   };
 };
