@@ -47,7 +47,7 @@ const playlistLoadStyle = playlistLoadStyle => ({
   },
 });
 
-function PlaylistUploadLoad(props) {
+function PlaylistLoad(props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
@@ -68,8 +68,8 @@ function PlaylistUploadLoad(props) {
   )
 };
 
-PlaylistUploadLoad.propTypes = {
+PlaylistLoad.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(playlistLoadStyle)(PlaylistUploadLoad);
+export default withStyles(playlistLoadStyle)(PlaylistLoad);
