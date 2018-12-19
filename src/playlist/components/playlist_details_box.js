@@ -84,8 +84,7 @@ function PlaylistDetailsBox(props) {
               placeholder="My Electonic Vibes"
               helperText="Choose a name for your playlist!"
               fullWidth
-              InputLabelProps={{shrink: true}}
-            />
+              InputLabelProps={{shrink: true}}/>
 
             <TextField
               value={props.playlistDescription}
@@ -96,27 +95,21 @@ function PlaylistDetailsBox(props) {
               placeholder="Description"
               helperText="Descripe your playlist with a couple of words."
               fullWidth
-              InputLabelProps={{shrink: true}}
-            />
+              InputLabelProps={{shrink: true}}/>
 
           <p className={classes.selectTypography}>Click the Button, if you prefer this to be a private playlist.</p>
             <FormControlLabel
               label="Private?"
               control={
-                <Checkbox
-                  checked={props.checkBoxState}
-                  onChange={() => {props.handleClickBox()}}
-                  value="checkedG"
-                  classes={{root: classes.root,checked: classes.checked}}
-                />
-              }
-            />
+              <Checkbox
+                checked={props.checkBoxState}
+                onChange={() => {props.handleClickBox()}}
+                value="checkedG"
+                classes={{root: classes.root,checked: classes.checked}} />} />
 
 
           <button className={classes.selectButton} onClick={() => {props.handleDetailsSubmit()}} >
-            <p className={classes.selectTypography}>
-              DONE!
-            </p>
+            <p className={classes.selectTypography}>DONE!</p>
           </button>
           </FormControl>
         </DialogContent>
