@@ -1,75 +1,92 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
 
-const playlistLoadStyle = playlistLoadStyle => ({
+const afterformStyle = afterformStyle => ({
   container: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    flexDirection: 'column',
-    alignContent: 'flex-end',
-    backgroundColor: 'black',
-    width: '100%',
-    height: '730px',
+    display: 'grid',
+    height: '100vh',
+    gridTemplateRows: '15% 20% 5% 10% 10% 10% 5% 10% 5%',
+    gridTemplateColumns: '5% 10% 15% 20% 20% 15% 10% 5%',
+    backgroundColor: '#0c0c0c'
   },
-  gridSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '5%'
+  headerItem: {
+    gridRow: '2 / span 1',
+    gridColumn: '3 / span 4',
+    placeSelf: 'center'
+  },
+  subtextItem: {
+    gridRow: '4 / span 1',
+    gridColumn: '4 / span 2',
+    placeSelf: 'center'
+  },
+  circleItem: {
+    gridRow: '6 / span 1',
+    gridColumn: '4 / span 2',
+    placeSelf: 'center'
+  },
+  buttonItem: {
+    gridRow: '8 / span 1',
+    gridColumn: '4 / span 2',
+    placeSelf: 'center'
   },
   textHeader: {
-    fontSize: '60px',
-    fontFamily: 'Montserrat',
-    color: '#7D2C1A'
+    textAlign: 'center',
+    fontFamily: 'Roboto',
+    fontSize: '5vmax',
+    fontWeight: '800',
+    color: '#4A7023',
   },
   textContent: {
-    fontSize: '20px',
+    textAlign: 'center',
     fontFamily: 'Montserrat',
-    color: '#FEF6AF',
+    fontSize: '2vmax',
+    fontWeight: '400',
+    color: '#C1CDC1',
   },
-  paper: {
-    backgroundColor: 'black',
-    width: '100%',
-    marginTop: '5%'
+  button: {
+    height: '4.8em',
+    width: '12.5em',
+    backgroundColor: '#00611C',
+    borderRadius: '5px',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: "#4A7023",
+    },
   },
-  holderGrids: {
-    backgroundColor: 'black',
-    marginTop: '1%',
-    display: 'flex',
-    justifyContent: 'center'
+  links: {
+    fontFamily: 'Roboto',
+    fontSize: '1.3vmax',
+    fontWeight: '400',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#C1CDC1',
   },
   progress: {
-    color: '#7D1C05',
+    color: '#00611C',
   },
 });
 
-function PlaylistLoad(props) {
+function Load(props) {
   const { classes } = props;
+
+  let showCircle;
+  if (props.failure !== "failure") {
+    showCircle = <CircularProgress className={classes.progress} size={60} thickness={3} />
+  }
+
   return (
     <div className={classes.container}>
-      <Grid className={classes.gridSection}>
-        <p className={classes.textHeader}>
-          {props.title}
-        </p>
-        <p className={classes.textContent}>
-          {props.content}
-        </p>
-      </Grid>
-      <Paper className={classes.paper}>
-        <Grid className={classes.holderGrids}>
-          <CircularProgress className={classes.progress} size={100} thickness={5} />
-        </Grid>
-      </Paper>
+      <div className={classes.headerItem}><p className={classes.textHeader}>{props.title}</p></div>
+      <div className={classes.subtextItem}><p className={classes.textContent}>{props.content}</p></div>
+      <div className={classes.circleItem}>{showCircle}</div>
     </div>
   )
-};
+}
 
-PlaylistLoad.propTypes = {
+Load.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(playlistLoadStyle)(PlaylistLoad);
+export default withStyles(afterformStyle)(Load);

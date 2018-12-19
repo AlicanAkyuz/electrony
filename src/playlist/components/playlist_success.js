@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 
 const playlistSuccessStyle = playlistSuccessStyle => ({
   container: {
@@ -30,11 +29,9 @@ function PlaylistSuccess(props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
-      <Grid className={classes.gridSection}>
-        <p className={classes.textHeader}>
-          Playlist DONE!
-        </p>
-      </Grid>
+      <p className={classes.textHeader}>
+        Playlist DONE!
+      </p>
     </div>
   )
 };

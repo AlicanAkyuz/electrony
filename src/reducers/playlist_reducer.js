@@ -8,16 +8,18 @@ import {
   DESCRIPTION_CHANGED,
   CHECK_BOX,
   DETAILS_BOX_CLOSE,
+  UPLOADING,
   USER_INFO,
   PLAYLIST_ID,
+  UPLOAD_FAILURE,
   PLAYLIST_CREATED
   } from '../actions/playlist_actions/action_types';
 
 const initialState = {
   playlist_charging: false,
   playlist_charging_content: {
-    title: "Loading Your Playlist",
-    content: "Just a second..."
+    title: "Finding Your Tune...",
+    content: "Just a second!"
   },
   playlist_failure: false,
   playlist_failure_content: {
@@ -30,6 +32,16 @@ const initialState = {
   playlist_name: "",
   playlist_description: "",
   check_box_state: false,
+  uploading: false,
+  uploading_content: {
+    title: "Creating Your Playlist on Spotify...",
+    content: "This might take a few seconds!"
+  },
+  uploading_failure: false,
+  uploading_failure_content: {
+    title: "Something went wrong!",
+    content: "Sorry, there has been a problem. Please try again."
+  },
   user_name: "",
   user_id: '',
   playlist_id : '',
@@ -83,6 +95,11 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       newState.details_box = action.payload
       return newState;
     }
+    case UPLOADING: {
+      const newState = Object.assign({}, state);
+      newState.uploading = action.payload
+      return newState;
+    }
     case USER_INFO: {
       const newState = Object.assign({}, state);
       newState.user_name = action.payload
@@ -92,6 +109,11 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case PLAYLIST_ID: {
       const newState = Object.assign({}, state);
       newState.playlist_id = action.payload
+      return newState;
+    }
+    case UPLOAD_FAILURE: {
+      const newState = Object.assign({}, state);
+      newState.uploading_failure = action.payload
       return newState;
     }
     case PLAYLIST_CREATED: {
