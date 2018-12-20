@@ -11,7 +11,9 @@ import { CHARGING,
          USER_INFO,
          PLAYLIST_INFO,
          UPLOAD_FAILURE,
-         PLAYLIST_CREATED
+         PLAYLIST_CREATED,
+         FINAL_DETAILS,
+         PLAYLIST_RESET
        } from './action_types';
 
 export function handleSelectionSubmit() {
@@ -133,8 +135,8 @@ export function handleSelectionSubmit() {
       mode: `target_mode=${modeNumber}`,
       tempo: `target_tempo=${tempoFloat}`,
       positiveness: `target_valence=${data.positiveness}`,
-      instrumentalness: "min_instrumentalness=0.65",
-      acousticness: "max_acousticness=0.2"
+      instrumentalness: "min_instrumentalness=0.70",
+      acousticness: "max_acousticness=0.15"
     };
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';
@@ -174,9 +176,34 @@ export function playlist_failure() {
 
 export function fetch_success(spotifyData) {
   return function (dispatch) {
+    String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    let first_artist;
+    let second_artist;
+
+    if (spotifyData.tracks[0].artists[0].name !== "Various Artists") {
+      first_artist = spotifyData.tracks[0].artists[0].name.capitalize()
+    } else if (spotifyData.tracks[1].artists[0].name !== "Various Artists") {
+      first_artist = spotifyData.tracks[1].artists[0].name.capitalize()
+    } else if (spotifyData.tracks[2].artists[0].name !== "Various Artists") {
+      first_artist = spotifyData.tracks[2].artists[0].name.capitalize()
+    };
+
+    if (spotifyData.tracks[3].artists[0].name !== "Various Artists") {
+      second_artist = spotifyData.tracks[3].artists[0].name.capitalize()
+    } else if (spotifyData.tracks[4].artists[0].name !== "Various Artists") {
+      second_artist = spotifyData.tracks[4].artists[0].name.capitalize()
+    } else if (spotifyData.tracks[5].artists[0].name !== "Various Artists") {
+      second_artist = spotifyData.tracks[5].artists[0].name.capitalize()
+    };
+
     dispatch({
         type: FETCH_SUCCESS,
-        payload: spotifyData.tracks
+        payload: spotifyData.tracks,
+        first_artist: first_artist,
+        second_artist: second_artist
     })
     dispatch(playlist_success());
   }
@@ -274,12 +301,22 @@ export function getUserID() {
 
 export function playlistCreate() {
   return function (dispatch, getState) {
-
     const token = getState().SelectionReducer.user_data.user_token;
-    const playlist_name = getState().PlaylistReducer.playlist_name;
-    const playlist_description = getState().PlaylistReducer.playlist_description;
-    const playlist_state = !getState().PlaylistReducer.check_box_state;
-    const user_id = getState().PlaylistReducer.user_id;
+    const info = getState().PlaylistReducer;
+    const playlist_state = !info.check_box_state;
+    const user_id = info.user_id;
+
+    let playlist_name;
+    info.playlist_name ? playlist_name = info.playlist_name : playlist_name = `My Awesome ${getState().SelectionReducer.user_selection.genre} Playlist`;
+
+    let playlist_description;
+    info.playlist_description ? playlist_description = `${info.playlist_description} @Created by Electronify.` : playlist_description = '@Created by Electronify.'
+
+    dispatch({
+        type: FINAL_DETAILS,
+        payload: playlist_name,
+        payload_des: playlist_description
+    })
 
     const root_endpoint = "https://api.spotify.com/v1/users/";
     const params = `${user_id}/playlists`;
@@ -287,7 +324,7 @@ export function playlistCreate() {
     const body_data = {
       name: playlist_name,
       public: playlist_state,
-      description: `${playlist_description} @Created by Electronify.`
+      description: playlist_description
     };
 
     fetch(final_endpoint, {
@@ -300,12 +337,11 @@ export function playlistCreate() {
     })
     .then(response => response.json())
     .then(function(data) {
-      const playlist_id = data.id;
-      const playlist_url = data.external_urls.spotify;
       dispatch({
           type: PLAYLIST_INFO,
-          payload: playlist_id,
-          payload_url: playlist_url
+          payload: data.id,
+          playlist_uri: data.uri,
+          playlist_url: data.external_urls.spotify
       });
       dispatch(pushTracks());
     })
@@ -357,6 +393,16 @@ export function playlist_upload_success() {
     dispatch({
         type: PLAYLIST_CREATED,
         payload: true,
+    })
+  }
+};
+
+export function onPlaylistReset() {
+  return function (dispatch) {
+    dispatch({
+        type: PLAYLIST_RESET,
+        payload: false,
+        string_payload: ''
     })
   }
 };

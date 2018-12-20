@@ -9,7 +9,7 @@ const styles = successTheme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '8% 1% 6% 1%  2% 0.5%  2% 0.5%  2% 0.5%  2% 0.5%  2% 0.5%  2% 2.5% 6% 43% 3% 10% 5%',
+    gridTemplateRows: '8% 1% 6% 1% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 2.5% 3% 43% 3% 10% 8%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -73,11 +73,6 @@ const styles = successTheme => ({
     gridColumn: '7 / span 6',
     display: 'flex'
   },
-  arrowItem: {
-    gridRow: '17 / span 1',
-    gridColumn: '7 / span 1',
-    placeSelf: 'center'
-  },
   playlistItem: {
     gridRow: '18 / span 1',
     gridColumn: '4 / span 7',
@@ -109,7 +104,7 @@ const styles = successTheme => ({
   },
   title: {
     textAlign: 'center',
-    fontFamily: 'Roboto',
+    fontFamily: 'Montserrat',
     fontSize: '2vmax',
     fontWeight: '400',
     color: '#C1CDC1',
@@ -125,10 +120,6 @@ const styles = successTheme => ({
     fontSize: '1.2vmax',
     fontWeight: '400',
     color: '#4A7023',
-  },
-  arrow: {
-    width: '2.8vmax',
-    height: '2.3vmax'
   },
   button: {
     backgroundColor: '#00611C',
@@ -156,6 +147,9 @@ const styles = successTheme => ({
 export function PlaylistSuccess(props) {
   const { classes } = props;
   const linkAddress = `/select_details#access_token=${props.token}`;
+  const uriParts = props.playlistUri.split(':');
+  const embedLink = `https://open.spotify.com/embed/${uriParts[1]}/${uriParts[2]}/${uriParts[3]}/${uriParts[4]}`;
+
   return (
     <div className={classes.container}>
       <div className={classes.logoItem}>
@@ -195,14 +189,11 @@ export function PlaylistSuccess(props) {
       </div>
       <div className={classes.uriItem}>
         <p className={classes.texts}>Spotify Link:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}><a style={{textDecoration: 'none', color: '#4A7023'}} target="_blank" href={props.spotifyUrl}>Click Here!</a></p>
-      </div>
-      <div className={classes.arrowItem}>
-        <img className={classes.arrow} src="./arrow.png" alt="arrow" />
+        <p className={classes.propTexts}><a style={{textDecoration: 'none', color: '#4A7023'}} target="_blank" href={props.playlistUrl}>Click Here!</a></p>
       </div>
       <div className={classes.playlistItem}>
         <div class="animated zoomIn delay-1s">
-          <iframe src={props.spotifyUrl}
+          <iframe src={embedLink}
             width="300"
             height="380"
             frameBorder="0"
@@ -213,7 +204,7 @@ export function PlaylistSuccess(props) {
       </div>
       <div className={classes.buttonItem}>
         <div class="animated zoomInRight" style={{textAlign: 'center', marginTop: '2%'}}>
-          <button onClick={console.log("clicked")} className={classes.button}>
+          <button className={classes.button}>
             <Link to={linkAddress} className={classes.link}>CREATE ANOTHER PLAYLIST!</Link>
           </button>
         </div>
