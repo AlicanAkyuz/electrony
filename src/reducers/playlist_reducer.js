@@ -10,7 +10,7 @@ import {
   DETAILS_BOX_CLOSE,
   UPLOADING,
   USER_INFO,
-  PLAYLIST_ID,
+  PLAYLIST_INFO,
   UPLOAD_FAILURE,
   PLAYLIST_CREATED
   } from '../actions/playlist_actions/action_types';
@@ -45,6 +45,7 @@ const initialState = {
   user_name: "",
   user_id: '',
   playlist_id : '',
+  playlist_url: '',
   playlist_created: false
 };
 
@@ -103,12 +104,13 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case USER_INFO: {
       const newState = Object.assign({}, state);
       newState.user_name = action.payload
-      newState.user_id = action.payloadTwo
+      newState.user_id = action.payload_id
       return newState;
     }
-    case PLAYLIST_ID: {
+    case PLAYLIST_INFO: {
       const newState = Object.assign({}, state);
       newState.playlist_id = action.payload
+      newState.playlist_url = action.payload_url
       return newState;
     }
     case UPLOAD_FAILURE: {
