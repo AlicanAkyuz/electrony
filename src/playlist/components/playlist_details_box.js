@@ -1,116 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const styles = dialogTheme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: dialogTheme.spacing.unit,
-    minWidth: 400,
-    backgroundColor: '#e5e5e5',
-    borderRadius: '5px'
-  },
-  extendedIcon: {
-    marginRight: dialogTheme.spacing.unit,
-  },
-  dialogHolder: {
-    backgroundColor: '#191919',
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  popUpTitle: {
-    useNextVariants: true,
-    fontFamily: 'Roboto',
-    fontSize: '18px',
-    color: '#e5e5e5'
-  },
-  dialogContent: {
-    backgroundColor:'#191919',
-  },
-  selectButton: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '2%',
-    border: 'none',
-    borderRadius: '5px',
-    backgroundColor: '#7D2C1A',
-    '&:hover': {
-      backgroundColor: "#7D1C05",
-    },
-  },
-  selectTypography: {
-    useNextVariants: true,
-    fontFamily: 'Roboto',
-    fontSize: '18px',
-    textTransform: 'none',
-    color: '#cccccc',
-    marginRight: '15px',
-    marginLeft: '15px',
-    marginTop: '5px',
-    marginBottom: '5px',
-  },
-});
-
 function PlaylistDetailsBox(props) {
-  const { classes } = props;
-
   return (
-    <div>
-      <Dialog className={classes.dialogBox} open={true}>
-        <DialogTitle className={classes.dialogHolder}>
-          <Typography className={classes.popUpTitle}>
-            What would you like to name this playlist, {props.userName}?
-          </Typography>
+    <div style={{display: 'grid', height: 'auto', minHeight: '100vh', gridTemplateRows: '15% 30% 15%', gridTemplateColumns: '10% 80% 10%', backgroundColor: '#0c0c0c'}}>
+      <Dialog style={{gridRow: '2 / span 1', gridColumn: '2 / span 1', width: '100%', minWidth: '100%'}} open={true}>
+        <DialogTitle style={{backgroundColor: '#191919'}}>
+          <p style={{textAlign: 'center', fontFamily: 'Montserrat', fontSize: '2vw', color: '#C1CDC1'}}>
+            Your playlist is almost ready, {props.userName}!
+          </p>
         </DialogTitle>
-        <DialogContent className={classes.dialogContent}>
-          <FormControl className={classes.formControl}>
-            <TextField
-              value={props.playlistName}
+        <DialogContent style={{textAlign: 'center', backgroundColor:'#b6b6b6', paddingTop: '10%', paddingBottom: '10%'}}>
+          <FormControl style={{width: '100%', minWidth: '50%', backgroundColor: '#b6b6b6', borderRadius: '5px', alignItems: 'center'}}>
+            <TextField value={props.playlistName} label="Playlist Name:" fullWidth
               onChange={(event) => {props.handleNameChange(event.target.value)}}
-              label="Playlist Name:"
-              style={{ margin: 10 }}
-              required
-              placeholder="My Electonic Vibes"
-              helperText="Choose a name for your playlist!"
-              fullWidth
-              InputLabelProps={{shrink: true}}/>
-
-            <TextField
-              value={props.playlistDescription}
+              style={{margin: 15, width: '80%'}} InputLabelProps={{shrink: true}}/>
+            <TextField value={props.playlistDescription} label="Playlist Description:" fullWidth multiline rows="3" rowsMax="3"
               onChange={(event) => {props.handleDescriptionChange(event.target.value)}}
-              label="Description:"
-              style={{ margin: 10 }}
-              required
-              placeholder="Description"
-              helperText="Descripe your playlist with a couple of words."
-              fullWidth
-              InputLabelProps={{shrink: true}}/>
-
-          <p className={classes.selectTypography}>Click the Button, if you prefer this to be a private playlist.</p>
-            <FormControlLabel
-              label="Private?"
-              control={
-              <Checkbox
-                checked={props.checkBoxState}
-                onChange={() => {props.handleClickBox()}}
-                value="checkedG"
-                classes={{root: classes.root,checked: classes.checked}} />} />
-
-
-          <button className={classes.selectButton} onClick={() => {props.handleDetailsSubmit()}} >
-            <p className={classes.selectTypography}>DONE!</p>
-          </button>
+              style={{margin: 15, width: '80%'}} InputLabelProps={{shrink: true}}/>
+            <FormControlLabel style={{marginBottom: '5%'}} label="Private Playlist?"
+              control={<Checkbox color="default" checked={props.checkBoxState} onChange={() => {props.handleClickBox()}} value="checkedG"/>} />
+            <button style={{backgroundColor: '#3F6826', height: '35%', width: '40%', border: 'none', borderRadius: '5px',}} onClick={() => {props.handleDetailsSubmit()}} >
+              <p style={{color: '#C1CDC1', fontFamily: 'Roboto', fontWeight: '800', fontSize: '1.3vmax',}}>CREATE!</p>
+            </button>
           </FormControl>
         </DialogContent>
       </Dialog>
@@ -122,4 +41,4 @@ PlaylistDetailsBox.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PlaylistDetailsBox);
+export default PlaylistDetailsBox;

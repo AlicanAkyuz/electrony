@@ -22,22 +22,24 @@ import { getUserData,
          handleLoudnessSelection,
          handleModeSelection,
          handleTempoSelection,
-         handlePositivenessSelection
+         handlePositivenessSelection,
+         onReset
        } from '../../actions/selection_actions/actions';
 
 const styles = theme => ({
   container: {
     display: 'grid',
-    height: '100vh',
-    gridTemplateRows: '6% 8% 8% 5% 5% 10% 7% 5% 57% 5%',
-    gridTemplateColumns: '5% 8% 8% 8% 42% 8% 8% 8% 5%',
+    height: 'auto',
+    minHeight: '100vh',
+    gridTemplateRows: '4% 3% 5% 1% 3% 5% 4% 1% 63% 10%',
+    gridTemplateColumns: '6% 10% 10% 10% 30% 10% 10% 10% 4%',
     backgroundColor: '#0c0c0c'
   },
   logoItem: {
     gridRow: '1 / span 1',
     gridColumn: '2 / span 2',
     placeSelf: 'center',
-    paddingTop: '20%'
+    paddingTop: '20%',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
@@ -79,7 +81,7 @@ const styles = theme => ({
   },
   stepperItem: {
     gridRow: '9 / span 1',
-    gridColumn: '1 / span 9',
+    gridColumn: '2 / span 7',
   },
 ///////////////////////////////////////////////////////////////////////////////
   logo: {
@@ -126,6 +128,7 @@ const styles = theme => ({
   stepperBody: {
     backgroundColor: '#353F3E',
     maxWidth: '100%',
+    borderRadius: '10px'
   },
   stepLabel: {
     height: '5vw',
@@ -150,10 +153,10 @@ const styles = theme => ({
     textAlign: 'center'
   },
   selectButton: {
-    marginRight: '1.3%',
+    marginRight: '1.25%',
     height: '25%',
     width: '30%',
-    borderRadius: '3px',
+    borderRadius: '5px',
     border: 'none',
     backgroundColor: '#00611C',
     '&:hover': {
@@ -165,11 +168,11 @@ const styles = theme => ({
     color: '#C1CDC1'
   },
   goBackButton: {
-    marginRight: '1.3%',
+    marginRight: '1.25%',
     marginTop: '1.3%',
     height: '20%',
     width: '25%',
-    borderRadius: '3px',
+    borderRadius: '5px',
     border: 'none',
     backgroundColor: '#40664D',
     '&:hover': {
@@ -185,19 +188,15 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    height: '30%',
+    height: '35%',
     width: '25%',
-    fontFamily: 'Montserrat',
-    fontWeight: '800',
-    fontSize: '1.7vmax',
-    textTransform: 'none',
-    borderRadius: '5px',
+    borderRadius: '6px',
     border: 'none',
     color: '#C1CDC1',
   },
   finalLink: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1.7vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -209,10 +208,14 @@ const styles = theme => ({
 });
 
 class Select extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(getUserData(accessToken))
+
+    if (this.props.playlist_created) {
+      this.props.dispatch(onReset())
+    };
   };
 
   render() {
@@ -224,7 +227,7 @@ class Select extends React.Component {
       createPlaylistButton =
       <div class="animated fadeInDownBig" style={{textAlign: 'center'}}>
         <button variant="contained" className={classes.doneButton}>
-          <Link className={classes.links} to="/playlist">GIVE ME SONGS!</Link>
+          <Link className={classes.finalLink} to="/playlist">GIVE ME SONGS!</Link>
         </button>
       </div>
     };
@@ -253,7 +256,7 @@ class Select extends React.Component {
         </div>
 
         <div className={classes.firsttitleItem}>
-          <p className={classes.firstText}>Good, {userName}! Now, let's get you what you want</p>
+          <p className={classes.firstText}>Hi, {userName}! {this.props.welcomeText}</p>
         </div>
         <div className={classes.hr}>
           <hr style={{width: '8.5em'}} />
@@ -315,28 +318,30 @@ class Select extends React.Component {
 };
 
 const mapStateToProps = state => {
-  state = state.SelectionReducer;
+  const info = state.SelectionReducer;
   return {
-    user_token: state.user_data.user_token,
-    user_name: state.user_data.user_name,
-    activeStep: state.select.activeStep,
-    dialogOpen: state.select.dialogOpen,
-    genre: state.user_selection.genre,
-    genreTitle: state.titles.genre,
-    danceability: state.user_selection.danceability,
-    danceabilityTitle: state.titles.danceability,
-    energy: state.user_selection.energy,
-    energyTitle: state.titles.energy,
-    key: state.user_selection.key,
-    keyTitle: state.titles.key,
-    loudness: state.user_selection.loudness,
-    loudnessTitle: state.titles.loudness,
-    mode: state.user_selection.mode,
-    modeTitle: state.titles.mode,
-    tempo: state.user_selection.tempo,
-    tempoTitle: state.titles.tempo,
-    positiveness: state.user_selection.positiveness,
-    positivenessTitle: state.titles.positiveness
+    playlist_created: state.PlaylistReducer.playlist_created,
+    welcomeText: info.welcomeText,
+    user_token: info.user_data.user_token,
+    user_name: info.user_data.user_name,
+    activeStep: info.select.activeStep,
+    dialogOpen: info.select.dialogOpen,
+    genre: info.user_selection.genre,
+    genreTitle: info.titles.genre,
+    danceability: info.user_selection.danceability,
+    danceabilityTitle: info.titles.danceability,
+    energy: info.user_selection.energy,
+    energyTitle: info.titles.energy,
+    key: info.user_selection.key,
+    keyTitle: info.titles.key,
+    loudness: info.user_selection.loudness,
+    loudnessTitle: info.titles.loudness,
+    mode: info.user_selection.mode,
+    modeTitle: info.titles.mode,
+    tempo: info.user_selection.tempo,
+    tempoTitle: info.titles.tempo,
+    positiveness: info.user_selection.positiveness,
+    positivenessTitle: info.titles.positiveness
   };
 };
 

@@ -6,7 +6,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 const afterformStyle = afterformStyle => ({
   container: {
     display: 'grid',
-    height: '100vh',
+    height: 'auto',
+    minHeight: '100vh', 
     gridTemplateRows: '15% 20% 5% 10% 10% 10% 5% 10% 5%',
     gridTemplateColumns: '5% 10% 15% 20% 20% 15% 10% 5%',
     backgroundColor: '#0c0c0c'

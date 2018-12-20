@@ -11,9 +11,11 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
+  RESET
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
+  welcomeText: "Now, let's get you what you want",
   select: {
     activeStep: 0,
     dialogOpen: false
@@ -108,6 +110,12 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     case POS_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.positiveness = action.payload;
+      return newState;
+    }
+    case RESET: {
+      const newState = Object.assign({}, state);
+      newState.select.activeStep = action.payload;
+      newState.welcomeText = action.text_payload;
       return newState;
     }
     default:

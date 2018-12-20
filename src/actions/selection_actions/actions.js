@@ -11,6 +11,7 @@ import {
   MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
+  RESET
 } from './action_types';
 
 export function getUserData(token) {
@@ -130,6 +131,16 @@ export function handlePositivenessSelection(value) {
     dispatch({
         type: POS_SELECTED,
         payload: value
+    })
+  }
+};
+
+export function onReset() {
+  return function (dispatch) {
+    dispatch({
+        type: RESET,
+        payload: 0,
+        text_payload: 'Try one more time to explore new electronic vibes'
     })
   }
 };
