@@ -109,11 +109,15 @@ class Playlist extends React.Component {
     let pageContent;
 
     if (this.props.playlist_charging) {
-      pageContent = <Load title={this.props.playlist_charging_content_title} content={this.props.playlist_charging_content_content} />
+      pageContent = <Load title={this.props.playlist_charging_content_title}
+                          content={this.props.playlist_charging_content_content} />
       };
 
     if (this.props.playlist_failure) {
-      pageContent = <Load failure="failure" title={this.props.playlist_failure_content_title} content={this.props.playlist_failure_content_content} />
+      pageContent = <Load token={this.props.token}
+                          failure="failure"
+                          title={this.props.playlist_failure_content_title}
+                          content={this.props.playlist_failure_content_content} />
     };
 
     if (this.props.playlist_success) {
@@ -181,26 +185,26 @@ class Playlist extends React.Component {
     };
 
     if (this.props.uploading_failure) {
-      pageContent = <Load failure="failure" title={this.props.uploading_failure_content_title} content={this.props.uploading_failure_content_content} />
+      pageContent = <Load failure="failure"
+                          token={this.props.token}
+                          title={this.props.uploading_failure_content_title}
+                          content={this.props.uploading_failure_content_content} />
     };
 
     if (this.props.playlist_created) {
       let stateOfPrivate;
       this.props.check_box_state === true ? stateOfPrivate = "Yes" : stateOfPrivate = "No";
       const artists = `${this.props.first_artist} and ${this.props.second_artist}`;
-
-
-      pageContent = <PlaylistSuccess
-        token={this.props.token}
-        userName={this.props.user_name}
-        playlistName={this.props.playlist_name}
-        playlistDescription={this.props.playlist_description}
-        private={stateOfPrivate}
-        artists={artists}
-        genre={this.props.genre}
-        playlistUri={this.props.playlist_uri}
-        playlistUrl={this.props.playlist_url}
-        />
+      pageContent = <PlaylistSuccess token={this.props.token}
+                                     userName={this.props.user_name}
+                                     playlistName={this.props.playlist_name}
+                                     playlistDescription={this.props.playlist_description}
+                                     private={stateOfPrivate}
+                                     artists={artists}
+                                     genre={this.props.genre}
+                                     playlistUri={this.props.playlist_uri}
+                                     playlistUrl={this.props.playlist_url}
+                                    />
     };
 
     return (<div>{pageContent}</div>)

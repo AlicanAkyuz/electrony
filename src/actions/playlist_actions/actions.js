@@ -401,8 +401,7 @@ export function onPlaylistReset() {
   return function (dispatch) {
     dispatch({
         type: PLAYLIST_RESET,
-        payload: false,
-        string_payload: ''
+        payload: false
     })
   }
 };
