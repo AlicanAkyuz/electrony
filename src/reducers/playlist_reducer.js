@@ -10,9 +10,11 @@ import {
   DETAILS_BOX_CLOSE,
   UPLOADING,
   USER_INFO,
+  FINAL_DETAILS,
   PLAYLIST_INFO,
   UPLOAD_FAILURE,
-  PLAYLIST_CREATED
+  PLAYLIST_CREATED,
+  PLAYLIST_RESET
   } from '../actions/playlist_actions/action_types';
 
 const initialState = {
@@ -27,6 +29,8 @@ const initialState = {
     content: "Sorry, there has been a server problem. Please try again."
   },
   tracks: [],
+  first_artist: '',
+  second_artist: '',
   playlist_success: false,
   details_box: false,
   playlist_name: "",
@@ -45,6 +49,7 @@ const initialState = {
   user_name: "",
   user_id: '',
   playlist_id : '',
+  playlist_uri: '',
   playlist_url: '',
   playlist_created: false
 };
@@ -64,6 +69,8 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case FETCH_SUCCESS: {
       const newState = Object.assign({}, state);
       newState.tracks = action.payload
+      newState.first_artist = action.first_artist
+      newState.second_artist = action.second_artist
       return newState;
     }
     case PLAYLIST_SUCCESS: {
@@ -107,10 +114,17 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       newState.user_id = action.payload_id
       return newState;
     }
+    case FINAL_DETAILS: {
+      const newState = Object.assign({}, state);
+      newState.playlist_name = action.payload
+      newState.playlist_description = action.payload_des
+      return newState;
+    }
     case PLAYLIST_INFO: {
       const newState = Object.assign({}, state);
       newState.playlist_id = action.payload
-      newState.playlist_url = action.payload_url
+      newState.playlist_uri = action.playlist_uri
+      newState.playlist_url = action.playlist_url
       return newState;
     }
     case UPLOAD_FAILURE: {
@@ -122,6 +136,9 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       const newState = Object.assign({}, state);
       newState.playlist_created = action.payload
       return newState;
+    }
+    case PLAYLIST_RESET: {
+      return initialState;
     }
     default:
       return state;

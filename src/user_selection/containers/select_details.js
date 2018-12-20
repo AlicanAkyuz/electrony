@@ -23,8 +23,9 @@ import { getUserData,
          handleModeSelection,
          handleTempoSelection,
          handlePositivenessSelection,
-         onReset
+         onStepsReset
        } from '../../actions/selection_actions/actions';
+import { onPlaylistReset } from '../../actions/playlist_actions/actions';
 
 const styles = theme => ({
   container: {
@@ -212,9 +213,9 @@ class Select extends React.Component {
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(getUserData(accessToken))
-
+    this.props.dispatch(onPlaylistReset())
     if (this.props.playlist_created) {
-      this.props.dispatch(onReset())
+      this.props.dispatch(onStepsReset())
     };
   };
 
