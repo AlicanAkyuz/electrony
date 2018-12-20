@@ -9,6 +9,6 @@ export const CHECK_BOX = "CHECK_BOX";
 export const DETAILS_BOX_CLOSE = "DETAILS_BOX_CLOSE";
 export const UPLOADING = "UPLOADING";
 export const USER_INFO = "USER_INFO";
-export const PLAYLIST_ID = "PLAYLIST_ID";
+export const PLAYLIST_INFO = "PLAYLIST_INFO";
 export const UPLOAD_FAILURE = "UPLOAD_FAILURE";
 export const PLAYLIST_CREATED = "PLAYLIST_CREATED";

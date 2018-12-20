@@ -9,7 +9,7 @@ import { CHARGING,
          DETAILS_BOX_CLOSE,
          UPLOADING,
          USER_INFO,
-         PLAYLIST_ID,
+         PLAYLIST_INFO,
          UPLOAD_FAILURE,
          PLAYLIST_CREATED
        } from './action_types';
@@ -261,7 +261,7 @@ export function getUserID() {
       dispatch({
           type: USER_INFO,
           payload: user_name,
-          payloadTwo: user_id
+          payload_id: user_id
       })
       dispatch(playlistCreate());
     })
@@ -301,9 +301,11 @@ export function playlistCreate() {
     .then(response => response.json())
     .then(function(data) {
       const playlist_id = data.id;
+      const playlist_url = data.external_urls.spotify;
       dispatch({
-          type: PLAYLIST_ID,
+          type: PLAYLIST_INFO,
           payload: playlist_id,
+          payload_url: playlist_url
       });
       dispatch(pushTracks());
     })
