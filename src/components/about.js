@@ -109,8 +109,8 @@ export function About(props) {
       </div>
       <div className={classes.aboutItem}>
         <p className={classes.about}>
-          Electronify is an app that curates music according to the complexities that informs human aural perception.
-          We believe that classifying music according to genres is archaic.
+          Electronify celebrates electronic music. Not only as an aesthetic field, but also 
+
           Genres do not address the multifaceted aesthetic connection we establish with sound and music.
           Hence we want to help those who, when asked what kind of music they like, answers pretty much anything!
           Make your choices in 10 steps to specify the tunes you love.

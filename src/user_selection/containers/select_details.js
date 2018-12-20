@@ -214,7 +214,7 @@ class Select extends React.Component {
     if (this.props.playlist_created || this.props.positiveness) {
       this.props.dispatch(onStepsReset())
     };
-    
+
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(getUserData(accessToken))
