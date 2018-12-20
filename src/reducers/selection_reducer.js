@@ -31,14 +31,14 @@ const initialState = {
     positiveness: ''
   },
   titles: {
-    genre: "Select your genre",
-    danceability: "Wanna danace?",
-    energy: "Need energy?",
-    key: "Any key preference?",
-    loudness: "How loud can your ears take?",
-    mode: "How about mode?",
-    tempo: "Keep it down or keep it up!",
-    positiveness: "Positive vibes only?",
+    genre: "Select the genre that best describes what you are looking for",
+    danceability: "Do you feel like taking the floor and dancing?",
+    energy: "Some songs are more energizing than energy drinks ;)",
+    key: "Do you need your playlsit to be in a particular key?",
+    loudness: "There is no shame in wishing for some serenity!",
+    mode: "How about mode, if we may ask? ",
+    tempo: "You know, some people prefer it slow",
+    positiveness: "We don't mean ",
   },
   user_data: {
     user_token: '',

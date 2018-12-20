@@ -20,7 +20,7 @@ const styles = dialogTheme => ({
   popUpTitle: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '1.8vw',
+    fontSize: '1.7vw',
     color: '#C1CDC1'
   },
   dialogContent: {
@@ -29,8 +29,8 @@ const styles = dialogTheme => ({
     paddingTop: '10%',
   },
   formControl: {
-    width: '70%',
-    minWidth: '50%',
+    width: '80%',
+    minWidth: '70%',
     backgroundColor: '#CFDBC5',
     borderRadius: '5px'
   }
