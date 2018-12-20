@@ -113,9 +113,8 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       return newState;
     }
     case RESET: {
-      const newState = Object.assign({}, state);
-      newState.select.activeStep = action.payload;
-      newState.welcomeText = action.text_payload;
+      const newState = initialState;
+      newState.welcomeText = action.payload;
       return newState;
     }
     default:

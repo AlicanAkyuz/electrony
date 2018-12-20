@@ -54,16 +54,16 @@ const styles = theme => ({
     color: '#838B83'
   },
   button: {
-    height: '2.0em',
+    height: '2.2em',
     width: '5.5em',
     backgroundColor: '#00611C',
-    borderRadius: '5px',
+    borderRadius: '7px',
     border: 'none',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
     fontFamily: 'Roboto',
-    fontSize: '1.5vmax',
+    fontSize: '1.7vmax',
     fontWeight: '400',
     color: '#C1CDC1'
   },

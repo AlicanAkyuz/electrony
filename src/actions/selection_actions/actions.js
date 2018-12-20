@@ -139,8 +139,7 @@ export function onStepsReset() {
   return function (dispatch) {
     dispatch({
         type: RESET,
-        payload: 0,
-        text_payload: 'Try one more time to explore new electronic vibes'
+        payload: 'Try one more time to explore new electronic vibes'
     })
   }
 };
