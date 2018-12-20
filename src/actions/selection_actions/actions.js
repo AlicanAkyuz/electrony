@@ -135,7 +135,7 @@ export function handlePositivenessSelection(value) {
   }
 };
 
-export function onReset() {
+export function onStepsReset() {
   return function (dispatch) {
     dispatch({
         type: RESET,

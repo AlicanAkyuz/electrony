@@ -37,13 +37,13 @@ const styles = theme => ({
   },
   electronifyTitle: {
     fontFamily: 'Roboto',
-    fontSize: '10.7vmax',
+    fontSize: '10vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
   subTitle: {
     fontFamily: 'Montserrat',
-    fontSize: '2.3vmax',
+    fontSize: '2vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   },

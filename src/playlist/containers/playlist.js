@@ -99,7 +99,7 @@ const playlistStyle = playlistStyle => ({
 });
 
 class Playlist extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch(handleSelectionSubmit())
   };
 
@@ -147,7 +147,7 @@ class Playlist extends React.Component {
             <Card style={{gridRow: '1 / span 1', gridColumn: '3 / span 1', backgroundColor: '#191919', width: '100%'}}>
               <p style={{fontFamily: 'Roboto', fontSize: '2vmax', color: '#c5c5c5', marginLeft: '3%'}}>{track.name}</p>
               <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Artist: {track.album.artists[0].name}</p>
-              <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Album {track.album.name}</p>
+              <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Album: {track.album.name}</p>
             </Card>
             <Card style={{gridRow: '1 / span 1', gridColumn: '4 / span 1', backgroundColor: '#0c0c0c', width: '100%'}}>
               <CardMedia style={{width: '13vmax', height: '13vmax', borderRadius: '5px'}} image={track.album.images[1].url} title="alican"/>
@@ -187,8 +187,9 @@ class Playlist extends React.Component {
     if (this.props.playlist_created) {
       let stateOfPrivate;
       this.props.check_box_state === true ? stateOfPrivate = "Yes" : stateOfPrivate = "No";
-      let artists = `"${this.props.tracks[1].album.artists[0].name}" and "${this.props.tracks[3].album.artists[0].name}"`;
-      console.log(this.props.playlist_url);
+      const artists = `${this.props.first_artist} and ${this.props.second_artist}`;
+
+
       pageContent = <PlaylistSuccess
         token={this.props.token}
         userName={this.props.user_name}
@@ -197,7 +198,8 @@ class Playlist extends React.Component {
         private={stateOfPrivate}
         artists={artists}
         genre={this.props.genre}
-        spotifyUrl={this.props.playlist_url}
+        playlistUri={this.props.playlist_uri}
+        playlistUrl={this.props.playlist_url}
         />
     };
 
@@ -220,11 +222,14 @@ const mapStateToProps = state => {
     playlist_failure_content_content: info.playlist_failure_content.content,
     playlist_success: info.playlist_success,
     tracks: info.tracks,
+    first_artist: info.first_artist,
+    second_artist: info.second_artist,
     details_box: info.details_box,
     user_name: info.user_name,
     playlist_name: info.playlist_name,
     playlist_description: info.playlist_description,
     check_box_state: info.check_box_state,
+    playlist_uri: info.playlist_uri,
     playlist_url: info.playlist_url,
     uploading: info.uploading,
     uploading_content_title: info.uploading_content.title,
