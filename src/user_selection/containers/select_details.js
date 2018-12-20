@@ -157,7 +157,7 @@ const styles = theme => ({
     marginRight: '1.25%',
     height: '25%',
     width: '30%',
-    borderRadius: '5px',
+    borderRadius: '3px',
     border: 'none',
     backgroundColor: '#00611C',
     '&:hover': {
@@ -173,7 +173,7 @@ const styles = theme => ({
     marginTop: '1.3%',
     height: '20%',
     width: '25%',
-    borderRadius: '5px',
+    borderRadius: '3px',
     border: 'none',
     backgroundColor: '#40664D',
     '&:hover': {
@@ -210,13 +210,14 @@ const styles = theme => ({
 
 class Select extends React.Component {
   componentWillMount() {
+    this.props.dispatch(onPlaylistReset())
+    if (this.props.playlist_created || this.props.positiveness) {
+      this.props.dispatch(onStepsReset())
+    };
+    
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(getUserData(accessToken))
-    this.props.dispatch(onPlaylistReset())
-    if (this.props.playlist_created) {
-      this.props.dispatch(onStepsReset())
-    };
   };
 
   render() {

@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Link } from 'react-router-dom';
 
 const afterformStyle = afterformStyle => ({
   container: {
     display: 'grid',
     height: 'auto',
-    minHeight: '100vh', 
+    minHeight: '100vh',
     gridTemplateRows: '15% 20% 5% 10% 10% 10% 5% 10% 5%',
     gridTemplateColumns: '5% 10% 15% 20% 20% 15% 10% 5%',
     backgroundColor: '#0c0c0c'
@@ -48,7 +49,7 @@ const afterformStyle = afterformStyle => ({
   },
   button: {
     height: '4.8em',
-    width: '12.5em',
+    width: '10em',
     backgroundColor: '#00611C',
     borderRadius: '5px',
     border: 'none',
@@ -58,8 +59,8 @@ const afterformStyle = afterformStyle => ({
   },
   links: {
     fontFamily: 'Roboto',
-    fontSize: '1.3vmax',
-    fontWeight: '400',
+    fontSize: '1.5vmax',
+    fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
     color: '#C1CDC1',
@@ -71,17 +72,30 @@ const afterformStyle = afterformStyle => ({
 
 function Load(props) {
   const { classes } = props;
+  const linkAddress = `/select_details#access_token=${props.token}`;
 
   let showCircle;
   if (props.failure !== "failure") {
     showCircle = <CircularProgress className={classes.progress} size={60} thickness={3} />
   }
 
+  let showButton;
+  if (props.failure) {
+    showButton =
+    <div class="animated flip">
+      <button onClick={props.onReset} className={classes.button} size="large" variant="contained">
+        <Link className={classes.links} to={linkAddress}>GO BACK!</Link>
+      </button>
+    </div>
+
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.headerItem}><p className={classes.textHeader}>{props.title}</p></div>
       <div className={classes.subtextItem}><p className={classes.textContent}>{props.content}</p></div>
       <div className={classes.circleItem}>{showCircle}</div>
+      <div className={classes.buttonItem}>{showButton}</div>
     </div>
   )
 }
