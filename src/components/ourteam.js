@@ -9,7 +9,7 @@ const styles = aboutTheme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 5% 8% 1% 3% 25% 5% 2% 35% 6%',
+    gridTemplateRows: '10% 1% 8% 1% 3% 25% 5% 1% 40% 6%',
     gridTemplateColumns: '5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 7% 3%',
     backgroundColor: '#0c0c0c'
   },
@@ -72,33 +72,36 @@ const styles = aboutTheme => ({
   firstNameItem: {
     gridRow: '7 / span 1',
     gridColumn: '3 / span 4',
-    placeSelf: 'center'
+    alignSelf: 'start',
+    justifySelf: 'center'
   },
   secondNameItem: {
     gridRow: '7 / span 1',
     gridColumn: '9 / span 4',
-    placeSelf: 'center'
+    alignSelf: 'start',
+    justifySelf: 'center'
   },
   thirdNameItem: {
     gridRow: '7 / span 1',
     gridColumn: '15 / span 4',
-    placeSelf: 'center'
+    alignSelf: 'start',
+    justifySelf: 'center'
   },
 
   firstBackgroundItem: {
     gridRow: '9 / span 1',
     gridColumn: '3 / span 4',
-    placeSelf: 'center'
+    textAlign: 'initial'
   },
   secondBackgroundItem: {
     gridRow: '9 / span 1',
     gridColumn: '9 / span 4',
-    placeSelf: 'center'
+    textAlign: 'initial'
   },
   thirdBackgroundItem: {
     gridRow: '9 / span 1',
     gridColumn: '15 / span 4',
-    placeSelf: 'center'
+    textAlign: 'initial'
   },
 
 //////////////////////////////////////////
