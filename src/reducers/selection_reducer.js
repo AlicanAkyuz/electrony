@@ -38,7 +38,7 @@ const initialState = {
     loudness: "There is no shame in wishing for some serenity!",
     mode: "How about mode, if we may ask? ",
     tempo: "You know, some people prefer it slow",
-    positiveness: "We don't mean ",
+    positiveness: "Music has a significant effect on one's mood, so...",
   },
   user_data: {
     user_token: '',

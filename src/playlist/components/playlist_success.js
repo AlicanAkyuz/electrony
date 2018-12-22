@@ -9,7 +9,7 @@ const styles = successTheme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '8% 1% 6% 1% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 2.5% 3% 43% 3% 10% 8%',
+    gridTemplateRows: '8% 3% 6% 1% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 2.5% 3% 43% 3% 10% 6%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
     backgroundColor: '#0c0c0c'
   },

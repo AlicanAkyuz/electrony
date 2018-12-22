@@ -59,13 +59,13 @@ const playlistStyle = playlistStyle => ({
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '3.2vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
   links: {
     fontFamily: 'Montserrat',
-    fontSize: '1.1vmax',
+    fontSize: '1.2vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -124,7 +124,7 @@ class Playlist extends React.Component {
       pageContent =
       <div className={classes.container}>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electronify</p>
+          <p className={classes.logo}>Electrony</p>
         </div>
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
@@ -181,7 +181,8 @@ class Playlist extends React.Component {
 
 
     if (this.props.uploading) {
-      pageContent = <Load title={this.props.uploading_content_title} content={this.props.uploading_content_content} />
+      pageContent = <Load title={this.props.uploading_content_title}
+                          content={this.props.uploading_content_content} />
     };
 
     if (this.props.uploading_failure) {
