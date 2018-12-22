@@ -109,7 +109,7 @@ export function About(props) {
       </div>
       <div className={classes.aboutItem}>
         <p className={classes.about}>
-          Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
+          yes. Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
           community of people who find an identity in their electronic sonic experience, Electrony is designed
           to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
           <br /><br />
