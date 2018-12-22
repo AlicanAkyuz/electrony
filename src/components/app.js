@@ -9,7 +9,7 @@ const styles = theme => ({
     gridTemplateColumns: '10% 10% 10% 40% 10% 10% 10%',
     backgroundColor: '#0c0c0c'
   },
-  electronifyItem: {
+  electronyItem: {
     gridRow: '2 / span 1',
     gridColumn: '2 / span 5',
     placeSelf: 'center'
@@ -35,21 +35,21 @@ const styles = theme => ({
     gridColumn: '4 / span 1',
     placeSelf: 'center'
   },
-  electronifyTitle: {
+  electronyTitle: {
     fontFamily: 'Roboto',
-    fontSize: '10vmax',
+    fontSize: '11vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
   subTitle: {
     fontFamily: 'Montserrat',
-    fontSize: '2vmax',
+    fontSize: '1.8vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   },
   explanation: {
     fontFamily: 'Montserrat',
-    fontSize: '1.7vmax',
+    fontSize: '1.6vmax',
     fontWeight: '400',
     color: '#838B83'
   },
@@ -62,9 +62,9 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    fontFamily: 'Roboto',
-    fontSize: '1.7vmax',
-    fontWeight: '400',
+    fontFamily: 'Montserrat',
+    fontSize: '1.6vmax',
+    fontWeight: '800',
     color: '#C1CDC1'
   },
   copyright: {
@@ -79,14 +79,14 @@ function App(props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
-      <div className={classes.electronifyItem}>
+      <div className={classes.electronyItem}>
         <div class="animated fadeInRightBig">
-          <p className={classes.electronifyTitle}>Electronify</p>
+          <p className={classes.electronyTitle}>Electrony</p>
         </div>
       </div>
       <div className={classes.subtextItem}>
         <div class="animated fadeInLeftBig">
-          <p className={classes.subTitle}>A trailblazer for electronic music lovers</p>
+          <p className={classes.subTitle}>A playlist creator for electronic music lovers</p>
         </div>
       </div>
       <div className={classes.explanationItem}>
@@ -101,7 +101,7 @@ function App(props) {
         </div>
       <div className={classes.copyrightItem}>
         <div class="animated tada delay-2s">
-          <p className={classes.copyright}>@Created by Alican Akyuz, 2018</p>
+          <p className={classes.copyright}>©Copyright 2018 Alican Akyuz</p>
         </div>
       </div>
     </div>
