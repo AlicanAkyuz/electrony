@@ -8,7 +8,7 @@ const styles = aboutTheme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 5% 8% 1% 2% 60% 14%',
+    gridTemplateRows: '10% 5% 8% 2% 5% 50% 20%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -16,7 +16,7 @@ const styles = aboutTheme => ({
     gridRow: '1 / span 1',
     gridColumn: '2 / span 3',
     placeSelf: 'center',
-    paddingTop: '5%'
+    paddingTop: '10%'
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
@@ -55,7 +55,7 @@ const styles = aboutTheme => ({
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '3.2vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
@@ -72,14 +72,14 @@ const styles = aboutTheme => ({
   },
   aboutTitle: {
     textAlign: 'center',
-    fontFamily: 'Roboto',
+    fontFamily: 'Montserrat',
     fontSize: '2.8vmax',
-    fontWeight: '400',
+    fontWeight: '800',
     color: '#C1CDC1',
   },
   about: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1.3vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   }
@@ -90,7 +90,7 @@ export function About(props) {
   return (
     <div className={classes.container}>
       <div className={classes.logoItem}>
-        <p className={classes.logo}>Electronify</p>
+        <p className={classes.logo}>Electrony</p>
       </div>
       <div className={classes.firstButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
@@ -109,30 +109,29 @@ export function About(props) {
       </div>
       <div className={classes.aboutItem}>
         <p className={classes.about}>
-          Electronify celebrates electronic music. Not only as an aesthetic field, but also 
-
-          Genres do not address the multifaceted aesthetic connection we establish with sound and music.
-          Hence we want to help those who, when asked what kind of music they like, answers pretty much anything!
-          Make your choices in 10 steps to specify the tunes you love.
-          We will curate a playlist that will surprise your ears.
+          Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
+          community of people who find an identity in their electronic sonic experience, Electrony is designed
+          to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
           <br /><br />
-          Electronify is an app that curates music according to the complexities that informs human aural perception.
-          We believe that classifying music according to genres is archaic.
-          Genres do not address the multifaceted aesthetic connection we establish with sound and music.
-          Hence we want to help those who, when asked what kind of music they like, answers pretty much anything!
-          Make your choices in 10 steps to specify the tunes you love.
-          We will curate a playlist that will surprise your ears.
+          Our service provides a set of musical parameters—genre, danceability, energy, key, loudness, mode,
+          tempo, and positiveness—which a user draws upon to specify the kind of electronic music they are seeking.
+          In the background, Electrony evaluates the choices of the user to find electronic music tracks that
+          closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
+          be uploaded to the user's Spotify account.
           <br /><br />
-          Electronify is an app that curates music according to the complexities that informs human aural perception.
-          We believe that classifying music according to genres is archaic.
-          Genres do not address the multifaceted aesthetic connection we establish with sound and music.
-          Hence we want to help those who, when asked what kind of music they like, answers pretty much anything!
-          Make your choices in 10 steps to specify the tunes you love.
-          We will curate a playlist that will surprise your ears.
+          Our ears are capable of hearing sound frequencies from approximately 20 to 20,000 Hertz (Hz). Yet,
+          historically, the expressions of sounds have been squeezed in by the capacity of acoustic instruments
+          such that a piano, for example, could not produce sounds at the frequency of 450 Hz, since its 49th key
+          is designed to produce 440 Hz and its 50th key 466.164 Hz. What happens, then, to sounds at 450 or 451 Hz?
+          Hence, our aural experience has been limited by the capacity of acoustic instruments when it came to music.
           <br /><br />
-          Electronify is an app that curates music according to the complexities that informs human aural perception.
-          We believe that classifying music according to genres is archaic.
-          Genres do not address the multifaceted aesthetic connection we establish with sound and music.
+          Electronic music is not limited to particular designs of musical instruments and therefore brings
+          liberations to sounds by making possible for each of them to vibrate through the air and reach to
+          the human ear. With electronic music, the only restriction between the artist and the audience is the
+          imagination of both.
+          <br /><br />
+          “I'm always interested when other musicians are trying to discover new worlds of sound.”
+          <br />— Karlheinz Stockhausen
         </p>
       </div>
     </div>
