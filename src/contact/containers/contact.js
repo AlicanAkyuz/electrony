@@ -25,6 +25,7 @@ class Contact extends React.Component {
 
     if (this.props.success) {
       renderForm = <AfterForm
+        token={this.props.token}
         textHeader={this.props.successContent.title}
         textContent={this.props.successContent.content}
         onReset={() => {this.props.dispatch(onReset())}} />
@@ -32,30 +33,30 @@ class Contact extends React.Component {
 
     if (this.props.failure) {
       renderForm = <AfterForm
+        token={this.props.token}
         textHeader={this.props.failureContent.title}
         textContent={this.props.failureContent.content}
         onReset={() => {this.props.dispatch(onReset())}} />
     };
 
     return (
-      <div>
-        {renderForm}
-      </div>
+      <div>{renderForm}</div>
     )
   };
 };
 
 const mapStateToProps = state => {
-  state = state.ContactReducer;
+  const info = state.ContactReducer;
   return {
-    submitted: state.submitted,
-    error: state.error,
-    loading: state.isLoading,
-    success: state.isSuccess,
-    failure: state.isFailure,
-    loadingContent: state.loadingContent,
-    successContent: state.successContent,
-    failureContent: state.failureContent
+    token: state.SelectionReducer.user_data.user_token,
+    submitted: info.submitted,
+    error: info.error,
+    loading: info.isLoading,
+    success: info.isSuccess,
+    failure: info.isFailure,
+    loadingContent: info.loadingContent,
+    successContent: info.successContent,
+    failureContent: info.failureContent
   };
 };
 

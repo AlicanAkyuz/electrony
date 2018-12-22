@@ -90,7 +90,7 @@ function App(props) {
         </div>
       </div>
       <div className={classes.explanationItem}>
-        <div class="animated fadeInDownBig delay-1s ">
+        <div class="animated fadeInDownBig delay-1s">
           <p className={classes.explanation}>To continue, login to Spotify.</p>
         </div>
       </div>

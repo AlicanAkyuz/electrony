@@ -8,7 +8,7 @@ const styles = aboutTheme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 5% 8% 2% 5% 50% 20%',
+    gridTemplateRows: '10% 5% 8% 3% 6% 50% 18%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -108,31 +108,33 @@ export function About(props) {
         <hr style={{width: '8.5em'}} />
       </div>
       <div className={classes.aboutItem}>
-        <p className={classes.about}>
-          yes. Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
-          community of people who find an identity in their electronic sonic experience, Electrony is designed
-          to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
-          <br /><br />
-          Our service provides a set of musical parameters—genre, danceability, energy, key, loudness, mode,
-          tempo, and positiveness—which a user draws upon to specify the kind of electronic music they are seeking.
-          In the background, Electrony evaluates the choices of the user to find electronic music tracks that
-          closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
-          be uploaded to the user's Spotify account.
-          <br /><br />
-          Our ears are capable of hearing sound frequencies from approximately 20 to 20,000 Hertz (Hz). Yet,
-          historically, the expressions of sounds have been squeezed in by the capacity of acoustic instruments
-          such that a piano, for example, could not produce sounds at the frequency of 450 Hz, since its 49th key
-          is designed to produce 440 Hz and its 50th key 466.164 Hz. What happens, then, to sounds at 450 or 451 Hz?
-          Hence, our aural experience has been limited by the capacity of acoustic instruments when it came to music.
-          <br /><br />
-          Electronic music is not limited to particular designs of musical instruments and therefore brings
-          liberations to sounds by making possible for each of them to vibrate through the air and reach to
-          the human ear. With electronic music, the only restriction between the artist and the audience is the
-          imagination of both.
-          <br /><br />
-          “I'm always interested when other musicians are trying to discover new worlds of sound.”
-          <br />— Karlheinz Stockhausen
-        </p>
+        <div class="animated fadeIn">
+          <p className={classes.about}>
+            Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
+            community of people who find an identity in their electronic sonic experience, Electrony is designed
+            to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
+            <br /><br />
+            Our service provides a set of musical parameters—genre, danceability, energy, key, loudness, mode,
+            tempo, and positiveness—which a user draws upon to specify the kind of electronic music they are seeking.
+            In the background, Electrony evaluates the choices of the user to find electronic music tracks that
+            closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
+            be uploaded to the user's Spotify account.
+            <br /><br />
+            Our ears are capable of hearing sound frequencies from approximately 20 to 20,000 Hertz (Hz). Yet,
+            historically, the expressions of sounds have been squeezed in by the capacity of acoustic instruments
+            such that a piano, for example, could not produce sounds at the frequency of 450 Hz, since its 49th key
+            is designed to produce 440 Hz and its 50th key 466.164 Hz. What happens, then, to sounds at 450 or 451 Hz?
+            Hence, our aural experience has been limited by the capacity of acoustic instruments when it came to music.
+            <br /><br />
+            Electronic music is not limited to particular designs of musical instruments and therefore brings
+            liberations to sounds by making possible for each of them to vibrate through the air and reach to
+            the human ear. With electronic music, the only restriction between the artist and the audience is the
+            imagination of both.
+            <br /><br />
+            “I'm always interested when other musicians are trying to discover new worlds of sound.”
+            <br />— Karlheinz Stockhausen
+          </p>
+      </div>
       </div>
     </div>
   )

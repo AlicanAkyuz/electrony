@@ -32,8 +32,8 @@ const styles = theme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '4% 3% 5% 1% 3% 5% 4% 1% 63% 10%',
-    gridTemplateColumns: '6% 10% 10% 10% 30% 10% 10% 10% 4%',
+    gridTemplateRows: '3% 3% 5% 1% 1% 5% 4% 1% 66% 10%',
+    gridTemplateColumns: '4% 10% 10% 10% 32% 10% 10% 10% 4%',
     backgroundColor: '#0c0c0c'
   },
   logoItem: {
@@ -88,7 +88,7 @@ const styles = theme => ({
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '3.2vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
@@ -117,7 +117,7 @@ const styles = theme => ({
   },
   links: {
     fontFamily: 'Montserrat',
-    fontSize: '1.1vmax',
+    fontSize: '1.2vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -245,7 +245,7 @@ class Select extends React.Component {
     return (
       <div className={classes.container}>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electronify</p>
+          <p className={classes.logo}>Electrony</p>
         </div>
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>

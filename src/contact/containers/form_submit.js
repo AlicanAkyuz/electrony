@@ -15,9 +15,9 @@ const styles = submitTheme => ({
   container: {
     display: 'grid',
     height: '100vh',
-    gridTemplateRows: '10% 5% 10% 5% 10% 5% 20% 10% 10% ',
+    gridTemplateRows: '10% 7% 10% 5% 10% 5% 17% 17% 10% 9%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
-    backgroundColor: '#cecece'
+    backgroundColor: '#0c0c0c'
   },
   logoItem: {
     gridRow: '1 / span 1',
@@ -45,18 +45,15 @@ const styles = submitTheme => ({
   },
   nameItem: {
     gridRow: '3 / span 1',
-    gridColumn: '4 / span 7',
-    placeSelf: 'center',
+    gridColumn: '7 / span 1',
   },
   emailItem: {
     gridRow: '5 / span 1',
-    gridColumn: '4 / span 7',
-    placeSelf: 'center',
+    gridColumn: '7 / span 1',
   },
   messageItem: {
     gridRow: '7 / span 1',
-    gridColumn: '4 / span 7',
-    placeSelf: 'center',
+    gridColumn: '7 / span 1',
   },
   buttonItem: {
     gridRow: '9 / span 1',
@@ -66,20 +63,25 @@ const styles = submitTheme => ({
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '3.2vmax',
     fontWeight: '800',
-    color: '#0c0c0c',
+    color: '#4A7023',
   },
   links: {
     fontFamily: 'Montserrat',
-    fontSize: '1.1vmax',
+    fontSize: '1.2vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
-    color: '#0c0c0c',
+    color: '#CFDBC5',
     '&:hover': {
-      color: "#000",
+      color: "#00611C",
     },
+  },
+  textField: {
+    backgroundColor: '#CFDBC5',
+    borderRadius: '5px',
+    width: '100%',
   },
   button: {
     height: '3.5em',
@@ -139,7 +141,7 @@ class FormSubmit extends React.Component {
     return (
       <div className={classes.container}>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electronify</p>
+          <p className={classes.logo}>Electrony</p>
         </div>
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
@@ -151,19 +153,27 @@ class FormSubmit extends React.Component {
           <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
         </div>
         <div className={classes.nameItem}>
-          <TextField name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
-          <FormHelperText error>{showNameError}</FormHelperText>
+          <div class="animated fadeIn">
+            <TextField className={classes.textField} name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
+            <FormHelperText error>{showNameError}</FormHelperText>
+          </div>
         </div>
         <div className={classes.emailItem}>
-          <TextField name="email" label="Email" required margin="normal"value={this.props.email} onChange={this.handleChange} error={!!showEmailError} />
-          <FormHelperText error>{showEmailError}</FormHelperText>
+          <div class="animated fadeIn">
+            <TextField className={classes.textField} name="email" label="Email" required margin="normal"value={this.props.email} onChange={this.handleChange} error={!!showEmailError} />
+            <FormHelperText error>{showEmailError}</FormHelperText>
+          </div>
         </div>
         <div className={classes.messageItem}>
-          <TextField name="message" label="Message" multiline required margin="normal" rows="8" value={this.props.message} onChange={this.handleChange} error={!!showMessageError} />
-          <FormHelperText error>{showMessageError}</FormHelperText>
+          <div class="animated fadeIn">
+            <TextField className={classes.textField} name="message" label="Message" multiline required margin="normal" rows="8" value={this.props.message} onChange={this.handleChange} error={!!showMessageError} />
+            <FormHelperText error>{showMessageError}</FormHelperText>
+          </div>
         </div>
         <div className={classes.buttonItem}>
-          <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>Submit</Button>
+          <div class="animated fadeInUpBig delay-1s">
+            <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>Submit</Button>
+          </div>
         </div>
       </div>
     )
