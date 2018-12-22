@@ -108,7 +108,7 @@ const styles = aboutTheme => ({
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '3.2vmax',
     fontWeight: '800',
     color: '#4A7023',
   },
@@ -155,7 +155,7 @@ export function OurTeam(props) {
   return (
     <div className={classes.container}>
       <div className={classes.logoItem}>
-        <p className={classes.logo}>Electronify</p>
+        <p className={classes.logo}>Electrony</p>
       </div>
       <div className={classes.firstButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
