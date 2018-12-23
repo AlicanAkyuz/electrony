@@ -19,7 +19,7 @@ import { getGenres,
 const styles = dialogTheme => ({
   dialogTitle: {
     backgroundColor: '#191919',
-    padding: '10%'
+    padding: '7%'
   },
   popUpTitle: {
     textAlign: 'center',

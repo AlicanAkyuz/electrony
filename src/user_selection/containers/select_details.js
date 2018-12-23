@@ -152,7 +152,7 @@ const styles = theme => ({
     textAlign: 'center'
   },
   selectButton: {
-    marginRight: '1.25%',
+    marginRight: '1.2%',
     height: '2.5em',
     width: '7em',
     borderRadius: '5px',
@@ -167,7 +167,7 @@ const styles = theme => ({
     color: '#C1CDC1'
   },
   goBackButton: {
-    marginRight: '1.25%',
+    marginRight: '1%',
     marginTop: '1.3%',
     height: '2em',
     width: '7em',
@@ -187,21 +187,21 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    height: '35%',
-    width: '25%',
-    borderRadius: '6px',
+    height: '4em',
+    width: '19em',
+    borderRadius: '5px',
     border: 'none',
     color: '#C1CDC1',
   },
   finalLink: {
-    fontFamily: 'Roboto',
-    fontSize: '1.7vmax',
+    fontFamily: 'Montserrat',
+    fontSize: '1.5vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
     color: '#CFDBC5',
     '&:hover': {
-      color: "#00611C",
+      color: "#c5c5c5",
     },
   },
 });

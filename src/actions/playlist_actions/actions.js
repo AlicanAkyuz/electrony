@@ -103,8 +103,8 @@ export function handleSelectionSubmit() {
     };
 
     const setParams = {
-      acousticness: "&max_acousticness=0.3",
-      instrumentalness: "&min_instrumentalness=0.7"
+      acousticness: "&max_acousticness=0.4",
+      instrumentalness: "&min_instrumentalness=0.6"
     };
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';

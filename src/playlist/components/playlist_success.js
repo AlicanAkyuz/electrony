@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
@@ -9,78 +11,48 @@ const styles = successTheme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '8% 3% 6% 1% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 0.5% 2% 2.5% 3% 43% 3% 10% 6%',
-    gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
+    gridTemplateRows: "8% 5% 39% 5% 27% 4% 9% 3%",
+    gridTemplateColumns: '6% 8% 6% 2% 3% 1% 8% 32% 8% 3% 8% 3% 8% 4%',
     backgroundColor: '#0c0c0c'
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 3',
+    gridColumn: '2 / span 2',
     placeSelf: 'center',
-    paddingTop: '5%',
-    paddingLeft: '20%'
+    paddingTop: '7%',
+    marginLeft: '15%'
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '8 / span 1',
+    gridColumn: '9 / span 1',
     placeSelf: 'center',
     paddingTop: '15%'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '10 / span 1',
+    gridColumn: '11 / span 1',
     placeSelf: 'center',
     paddingTop: '15%'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '12 / span 1',
+    gridColumn: '13 / span 1',
     placeSelf: 'center',
     paddingTop: '15%'
   },
-  titleItem: {
-    gridRow: '3 / span 1',
-    gridColumn: '7 / span 1',
-    placeSelf: 'center',
-  },
-  nameItem: {
-    gridRow: '5 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
-  descriptionItem: {
-    gridRow: '7 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
-  privateItem: {
-    gridRow: '9 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
-  notableItem: {
-    gridRow: '11 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
-  genreItem: {
-    gridRow: '13 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
-  uriItem: {
-    gridRow: '15 / span 1',
-    gridColumn: '7 / span 6',
-    display: 'flex'
-  },
   playlistItem: {
-    gridRow: '18 / span 1',
-    gridColumn: '4 / span 7',
+    gridRow: '3 / span 1',
+    gridColumn: '7 / span 3',
+    placeSelf: 'center'
+  },
+  paperItem: {
+    gridRow: '5 / span 1',
+    gridColumn: '1 / span 14',
     placeSelf: 'center'
   },
   buttonItem: {
-    gridRow: '20 / span 1',
-    gridColumn: '4 / span 7',
+    gridRow: '7 / span 1',
+    gridColumn: '7 / span 3',
     placeSelf: 'center'
   },
 //////////////////////////////////////////
@@ -93,7 +65,7 @@ const styles = successTheme => ({
   },
   links: {
     fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontSize: '1.3vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -102,44 +74,62 @@ const styles = successTheme => ({
       color: "#00611C",
     },
   },
+  paper: {
+    backgroundColor: '#191919',
+    borderRadius: '5px',
+    ...successTheme.mixins.gutters(),
+    paddingTop: successTheme.spacing.unit * 2,
+    paddingBottom: successTheme.spacing.unit * 2,
+  },
+  playlistPaper: {
+    backgroundColor: '#191919',
+    borderRadius: '5px',
+    ...successTheme.mixins.gutters(),
+    paddingTop: successTheme.spacing.unit * 2,
+    paddingBottom: successTheme.spacing.unit * 1,
+  },
+  buttonPaper: {
+    backgroundColor: '#00611C',
+    ...successTheme.mixins.gutters(),
+    paddingTop: successTheme.spacing.unit * 1,
+    paddingBottom: successTheme.spacing.unit * 1,
+  },
   title: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '2vmax',
+    fontSize: '1.6vmax',
     fontWeight: '400',
-    color: '#C1CDC1',
+    color: '#c5c5c5',
   },
   texts: {
     fontFamily: 'Montserrat',
     fontSize: '1.2vmax',
-    fontWeight: '800',
-    color: '#C1CDC1',
-  },
-  propTexts: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
     fontWeight: '400',
-    color: '#4A7023',
+    color: '#CFDBC5',
+  },
+  playlistTitle: {
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontSize: '1.6vmax',
+    fontWeight: '400',
+    color: '#c5c5c5',
   },
   button: {
     backgroundColor: '#00611C',
-    '&:hover': {
-      backgroundColor: "#4A7023",
-    },
-    height: '70%',
-    width: '70%',
+    height: '100%',
+    width: '100%',
     borderRadius: '5px',
     border: 'none'
   },
   link: {
     fontFamily: 'Montserrat',
-    fontSize: '1.5vmax',
+    fontSize: '12px',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
     color: '#CFDBC5',
     '&:hover': {
-      color: "#00611C",
+      color: "#c5c5c5",
     },
   },
 });
@@ -163,51 +153,63 @@ export function PlaylistSuccess(props) {
       <div className={classes.thirdButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
       </div>
-      <div className={classes.titleItem}>
-        <p className={classes.title}>Here is your playlist, {props.userName}!</p>
-      </div>
-      <div className={classes.nameItem}>
-        <p className={classes.texts}>Name:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}>{props.playlistName}</p>
-      </div>
-      <div className={classes.descriptionItem}>
-        <p className={classes.texts}>Description:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}>{props.playlistDescription}</p>
-      </div>
-      <div className={classes.privateItem}>
-        <p className={classes.texts}>Private:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}>{props.private}</p>
-      </div>
-      <div className={classes.notableItem}>
-        <p className={classes.texts}>Notable Artists:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}>{props.artists}</p>
-      </div>
-      <div className={classes.genreItem}>
-        <p className={classes.texts}>Dominant Genre:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}>{props.genre}</p>
-      </div>
-      <div className={classes.uriItem}>
-        <p className={classes.texts}>Spotify Link:&nbsp; &nbsp; </p>
-        <p className={classes.propTexts}><a style={{textDecoration: 'none', color: '#4A7023'}} target="_blank" href={props.playlistUrl}>Click Here!</a></p>
-      </div>
+
       <div className={classes.playlistItem}>
-        <div class="animated zoomIn delay-1s">
-          <iframe src={embedLink}
-            width="700"
-            height="800"
-            frameBorder="0"
-            title="Spotify Playlist"
-            allowtransparency="true"
-            allow="encrypted-media">
-          </iframe>
-        </div>
+        <Paper className={classes.playlistPaper} elevation={1}>
+          <Typography variant="h5" component="h3" className={classes.playlistTitle}>
+            Here is your playlist, {props.userName}:
+          </Typography>
+          <br />
+          <div class="animated zoomIn delay-1s">
+            <iframe src={embedLink}
+              width="300"
+              height="230"
+              frameBorder="0"
+              title="Spotify Playlist"
+              allowtransparency="true"
+              allow="encrypted-media">
+            </iframe>
+          </div>
+        </Paper>
       </div>
+
+      <div className={classes.paperItem}>
+        <Paper className={classes.paper} elevation={5}>
+          <Typography variant="h5" component="h3" className={classes.title}>
+             Your playlist's details:
+          </Typography>
+          <br />
+          <Typography component="p" className={classes.texts}>
+            Name:&nbsp; {props.playlistName}
+          </Typography>
+          <Typography component="p" className={classes.texts}>
+            Description:&nbsp; {props.playlistDescription}
+          </Typography>
+          <Typography component="p" className={classes.texts}>
+            Private:&nbsp; {props.private}
+          </Typography>
+          <Typography component="p" className={classes.texts}>
+            Notable Artists:&nbsp; {props.artists}
+          </Typography>
+          <Typography component="p" className={classes.texts}>
+            Dominant Genre:&nbsp; {props.genre}
+          </Typography>
+          <Typography component="p" className={classes.texts}>
+            Spotify Link:&nbsp; <a style={{textDecoration: 'none', color: '#308014'}} target="_blank" href={props.playlistUrl}>Click Here.</a>
+          </Typography>
+        </Paper>
+      </div>
+
+
+
       <div className={classes.buttonItem}>
-        <div class="animated zoomInRight" style={{textAlign: 'center', marginTop: '2%'}}>
-          <button className={classes.button}>
-            <Link to="/" className={classes.link}>CREATE ANOTHER PLAYLIST!</Link>
-          </button>
-        </div>
+        <Paper className={classes.buttonPaper} elevation={1}>
+          <div class="animated flip">
+            <button className={classes.button}>
+              <Link to="/" className={classes.link}>CREATE ANOTHER ONE!</Link>
+            </button>
+          </div>
+        </Paper>
       </div>
     </div>
   )
