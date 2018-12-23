@@ -17,10 +17,14 @@ import { getGenres,
        } from './dialog_functions';
 
 const styles = dialogTheme => ({
+  dialogTitle: {
+    backgroundColor: '#191919',
+    padding: '10%'
+  },
   popUpTitle: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '1.7vw',
+    fontSize: '1.7vmax',
     color: '#C1CDC1'
   },
   dialogContent: {
@@ -96,8 +100,8 @@ function DialogBox(props) {
   };
 
   return (
-    <Dialog style={{minWidth: '80%'}} open={props.dialogOpen}>
-      <DialogTitle style={{backgroundColor: '#191919'}}>
+    <Dialog open={props.dialogOpen}>
+      <DialogTitle className={classes.dialogTitle}>
         <p className={classes.popUpTitle}>{titleText}</p>
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>

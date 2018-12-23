@@ -22,15 +22,17 @@ const playlistStyle = playlistStyle => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '1% 94% 4%',
-    gridTemplateColumns: '5% 8% 8% 8% 42% 8% 8% 8% 5%',
+    gridTemplateRows: '1% 95% 4%',
+    gridRowGap: '10px',
+    gridTemplateColumns: '5% 10% 10% 10% 30% 10% 10% 10% 5%',
     backgroundColor: '#0c0c0c'
   },
   logoItem: {
     gridRow: '1 / span 1',
     gridColumn: '2 / span 2',
     placeSelf: 'center',
-    paddingTop: '20%'
+    paddingTop: '20%',
+    marginLeft: '5%'
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
@@ -42,17 +44,20 @@ const playlistStyle = playlistStyle => ({
     gridRow: '1 / span 1',
     gridColumn: '7 / span 1',
     placeSelf: 'center',
-    paddingTop: '40%'
+    paddingTop: '40%',
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
     gridColumn: '8 / span 1',
     placeSelf: 'center',
-    paddingTop: '40%'
+    paddingTop: '40%',
   },
   contentItem: {
     gridRow: '2 / span 1',
     gridColumn: '2 / span 7',
+  },
+  hr: {
+  width: '8.5em',
   },
 
   /////////////////////////////////////////
@@ -86,11 +91,11 @@ const playlistStyle = playlistStyle => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    height: '45%',
-    width: '30%',
+    height: '3em',
+    width: '14em',
     fontFamily: 'Montserrat',
     fontWeight: '800',
-    fontSize: '1.7vmax',
+    fontSize: '1.5vmax',
     textTransform: 'none',
     borderRadius: '5px',
     border: 'none',
@@ -143,7 +148,9 @@ class Playlist extends React.Component {
         </div>
         <div className={classes.contentItem}>
           <p className={classes.title}>Here is the playlist specially crafted for you</p>
-          <div className={classes.hr}><hr style={{width: '8.5em'}} /></div>
+          <div>
+            <hr className={classes.hr}/>
+          </div>
           <div class="animated flip" style={{textAlign: 'center', marginTop: '2%'}}>
             <button onClick={() => this.props.dispatch(details_box_open())} className={classes.button}>
               UPLOAD TO SPOTIFY!

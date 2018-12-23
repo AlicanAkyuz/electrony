@@ -53,8 +53,8 @@ export function getBpmOptions() {
 };
 
 export function getPositiveness() {
-  return ["I'm really not in a cheerful mood",
-          "For now, I prefer melancholic tracks",
+  return ["I prefer melancholic tracks",
+          "I'm only slightly in a cheerful mood",
           "Give me something in the middle",
           "Are you kidding? Of course I want positive tracks",
           "Make me the happiest person on earth!",

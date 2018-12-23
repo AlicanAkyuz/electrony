@@ -48,18 +48,18 @@ const afterformStyle = afterformStyle => ({
     color: '#C1CDC1',
   },
   button: {
-    height: '4.8em',
-    width: '10em',
+    height: '3.8em',
+    width: '12em',
     backgroundColor: '#00611C',
-    borderRadius: '5px',
+    borderRadius: '7px',
     border: 'none',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
   },
   links: {
-    fontFamily: 'Roboto',
-    fontSize: '1.5vmax',
+    fontFamily: 'Montserrat',
+    fontSize: '1.3vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',

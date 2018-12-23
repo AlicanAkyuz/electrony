@@ -26,7 +26,7 @@ const initialState = {
   },
   no_return: false,
   no_return_content: {
-    title: "Oh wow!",
+    title: "Oh no!",
     content: "It seems we couldn't find anything matching your choices!"
   },
   playlist_failure: false,

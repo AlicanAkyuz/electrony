@@ -55,7 +55,7 @@ const styles = theme => ({
   },
   button: {
     height: '2.9em',
-    width: '8.5em',
+    width: '9em',
     borderRadius: '8px',
     border: 'none',
     backgroundColor: '#00611C',

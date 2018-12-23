@@ -43,68 +43,68 @@ export function handleSelectionSubmit() {
 
     let danceParam;
     if (data.danceability === "Nope, I want least danceable tracks") {
-      danceParam = "&max_danceability=0.4"
+      danceParam = "&target_danceability=0.2"
     } else if (data.danceability === "I'm not sure, perhaps just a little danceable tracks") {
-      danceParam = "&max_danceability=0.6"
+      danceParam = "&target_danceability=0.4"
     } else if (data.danceability === "Give me somewhat danceable tracks") {
-      danceParam = "&min_danceability=0.5"
+      danceParam = "&target_danceability=0.6"
     } else if (data.danceability === "Oh yes, I wish to listen to pretty danceable tracks") {
-      danceParam = "&min_danceability=0.6"
+      danceParam = "&target_danceability=0.8"
     } else if (data.danceability === "I was born dancing, give me the most danceable tracks") {
-      danceParam = "&min_danceability=0.8"
+      danceParam = "&target_danceability=1"
     }
 
     let energyParam;
     if (data.energy === "I prefer slow and calm tracks") {
-      energyParam = "&max_energy=0.4"
+      energyParam = "&target_energy=0.2"
     } else if (data.energy === "I wouldn't say no to somewhat energetic tracks") {
-      energyParam = "&max_energy=0.6"
+      energyParam = "&target_energy=0.4"
     } else if (data.energy === "Neither energetic nor calm, but just in-between tracks please") {
-      energyParam = "&min_energy=0.5"
+      energyParam = "&target_energy=0.6"
     } else if (data.energy === "I would like to have some aural energy") {
-      energyParam = "&min_energy=0.6"
+      energyParam = "&target_energy=0.8"
     } else if (data.energy === "I want most energetic tracks ever") {
-      energyParam = "&min_energy=0.8"
+      energyParam = "&min_energy=1"
     }
 
     let loudnessParam;
     if (data.loudness === "I'd like to listen to quite tracks") {
-      loudnessParam = "&max_loudness=-20"
+      loudnessParam = "&target_loudness=-40"
     } else if (data.loudness === "Can I have something within the normal range?") {
-      loudnessParam = "&max_loudness=-10"
+      loudnessParam = "&target_loudness=-20"
     } else if (data.loudness === "Give me tracks that are remarkably loud") {
-      loudnessParam = "&min_loudness=-10"
+      loudnessParam = "&target_loudness=-10"
     } else if (data.loudness === "My ears can take the loudest tracks ever") {
-      loudnessParam = "&min_loudness=-5"
+      loudnessParam = "&target_loudness=0"
     };
 
     let tempoParam;
     if (data.tempo === "I prefer it slow") {
-      tempoParam = "&max_tempo=90"
+      tempoParam = "&target_tempo=70"
     } else if (data.tempo === "I prefer it, like, normal...") {
-      tempoParam = "&max_tempo=120"
+      tempoParam = "&target_tempo=90"
     } else if (data.tempo === "I prefer it fast") {
-      tempoParam = "&min_tempo=120"
+      tempoParam = "&target_tempo=125"
     } else if (data.tempo === "I prefer it really fast") {
-      tempoParam = "&min_tempo=130"
+      tempoParam = "&min_tempo=150"
     };
 
     let positivenessParam;
-    if (data.positiveness === "I'm really not in a cheerful mood") {
-      positivenessParam = "&max_valence=0.4"
-    } else if (data.positiveness === "For now, I prefer melancholic tracks") {
-      positivenessParam = "&max_valence=0.5"
+    if (data.positiveness === "I prefer melancholic tracks") {
+      positivenessParam = "&target_valence=0.2"
+    } else if (data.positiveness === "I'm only slightly in a cheerful mood") {
+      positivenessParam = "&target_valence=0.4"
     } else if (data.positiveness === "Give me something in the middle") {
-      positivenessParam = "&max_valence=0.6"
+      positivenessParam = "&target_valence=0.6"
     } else if (data.positiveness === "Are you kidding? Of course I want positive tracks") {
-      positivenessParam = "&min_valence=0.7"
+      positivenessParam = "&target_valence=0.8"
     } else if (data.positiveness === "Make me the happiest person on earth!") {
-      positivenessParam = "&min_valence=0.8"
+      positivenessParam = "&target_valence=1"
     };
 
     const setParams = {
-      acousticness: "&max_acousticness=0.5",
-      instrumentalness: "&min_instrumentalness=0.5"
+      acousticness: "&max_acousticness=0.3",
+      instrumentalness: "&min_instrumentalness=0.7"
     };
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';

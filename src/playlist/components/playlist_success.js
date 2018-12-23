@@ -193,8 +193,8 @@ export function PlaylistSuccess(props) {
       <div className={classes.playlistItem}>
         <div class="animated zoomIn delay-1s">
           <iframe src={embedLink}
-            width="300"
-            height="380"
+            width="700"
+            height="800"
             frameBorder="0"
             title="Spotify Playlist"
             allowtransparency="true"

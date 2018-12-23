@@ -142,7 +142,7 @@ const styles = theme => ({
     color: '#c6c6c6',
   },
   stepContent: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   contentText: {
     fontFamily: 'Montserrat',
@@ -153,9 +153,9 @@ const styles = theme => ({
   },
   selectButton: {
     marginRight: '1.25%',
-    height: '25%',
-    width: '30%',
-    borderRadius: '3px',
+    height: '2.5em',
+    width: '7em',
+    borderRadius: '5px',
     border: 'none',
     backgroundColor: '#00611C',
     '&:hover': {
@@ -169,16 +169,16 @@ const styles = theme => ({
   goBackButton: {
     marginRight: '1.25%',
     marginTop: '1.3%',
-    height: '20%',
-    width: '25%',
-    borderRadius: '3px',
+    height: '2em',
+    width: '7em',
+    borderRadius: '5px',
     border: 'none',
     backgroundColor: '#40664D',
     '&:hover': {
       backgroundColor: "#596C56",
     },
     fontFamily: 'Montserrat',
-    fontSize: '1.5vmax',
+    fontSize: '1.3vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
@@ -232,7 +232,7 @@ class Select extends React.Component {
     let goBackButton;
     if (this.props.activeStep > 0) {
       goBackButton =
-      <div class="animated lightSpeedIn">
+      <div class="animated fadeInRightBig">
         <button className={classes.goBackButton} onClick={() => {this.props.dispatch(onBackClick())}}>GO BACK</button>
       </div>
     };
@@ -274,7 +274,7 @@ class Select extends React.Component {
                   </StepLabel>
                   <StepContent className={classes.stepContent}>
                     <p className={classes.contentText}>{getStepContent(index)}</p>
-                    <div class="animated rollIn" style={{textAlign: 'center'}}>
+                    <div class="animated fadeInLeftBig" style={{textAlign: 'center'}}>
                       <button className={classes.selectButton} onClick={() => {this.props.dispatch(onDialogOpen())}}>
                         SELECT
                       </button>
@@ -296,8 +296,7 @@ class Select extends React.Component {
                       energyTitle={this.props.energyTitle}
                       loudnessTitle={this.props.loudnessTitle}
                       tempoTitle={this.props.tempoTitle}
-                      positivenessTitle={this.props.positivenessTitle}
-                    />
+                      positivenessTitle={this.props.positivenessTitle} />
                   </StepContent>
                 </Step>
               );
