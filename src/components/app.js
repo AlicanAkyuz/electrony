@@ -54,16 +54,16 @@ const styles = theme => ({
     color: '#838B83'
   },
   button: {
-    height: '2.2em',
-    width: '5.5em',
-    backgroundColor: '#00611C',
-    borderRadius: '7px',
+    height: '2.9em',
+    width: '8.5em',
+    borderRadius: '8px',
     border: 'none',
+    backgroundColor: '#00611C',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
     fontFamily: 'Montserrat',
-    fontSize: '1.6vmax',
+    fontSize: '1.4vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
@@ -90,17 +90,17 @@ function App(props) {
         </div>
       </div>
       <div className={classes.explanationItem}>
-        <div class="animated fadeInDownBig delay-1s">
+        <div class="animated fadeInUpBig delay-1s">
           <p className={classes.explanation}>To continue, login to Spotify.</p>
         </div>
       </div>
       <div className={classes.buttonItem}>
-        <div class="animated fadeInUpBig delay-1s">
-          <button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>LOGIN</button>
-        </div>
+          <div class="animated fadeInUpBig delay-1s">
+            <button onClick={() => window.location = 'http://localhost:3000/login'} size="medium" className={classes.button}>GET STARTED</button>
+          </div>
         </div>
       <div className={classes.copyrightItem}>
-        <div class="animated tada delay-2s">
+        <div class="animated flip">
           <p className={classes.copyright}>©Copyright 2018 Alican Akyuz</p>
         </div>
       </div>

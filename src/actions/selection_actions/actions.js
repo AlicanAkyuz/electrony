@@ -6,9 +6,7 @@ import {
   GENRE_SELECTED,
   DANCE_SELECTED,
   ENERGY_SELECTED,
-  KEY_SELECTED,
   LOUD_SELECTED,
-  MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
   RESET
@@ -90,28 +88,10 @@ export function handleEnergySelection(value) {
   }
 };
 
-export function handleKeySelection(value) {
-  return function (dispatch) {
-    dispatch({
-        type: KEY_SELECTED,
-        payload: value
-    })
-  }
-};
-
 export function handleLoudnessSelection(value) {
   return function (dispatch) {
     dispatch({
         type: LOUD_SELECTED,
-        payload: value
-    })
-  }
-};
-
-export function handleModeSelection(value) {
-  return function (dispatch) {
-    dispatch({
-        type: MODE_SELECTED,
         payload: value
     })
   }
@@ -139,7 +119,7 @@ export function onStepsReset() {
   return function (dispatch) {
     dispatch({
         type: RESET,
-        payload: 'Try one more time to explore new electronic vibes'
+        payload: ''
     })
   }
 };

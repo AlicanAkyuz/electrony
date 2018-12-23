@@ -1,4 +1,5 @@
 import { CHARGING,
+         NO_RETURN,
          PLAYLIST_FAILURE,
          FETCH_SUCCESS,
          PLAYLIST_SUCCESS,
@@ -26,128 +27,96 @@ export function handleSelectionSubmit() {
       genre: state.genre.toLowerCase(),
       danceability: state.danceability,
       energy: state.energy,
-      key: state.key,
       loudness: state.loudness,
-      mode: state.mode,
       tempo: state.tempo,
       positiveness: state.positiveness,
     };
 
-    let genreString;
-    if (data.genre === "electronic-classic") {
-      genreString = "electronic"
+    let genreParam;
+    if (data.genre === "Surprise me") {
+      genreParam = "&seed_genres=detroit-techno"
     } else if (data.genre === "electronic-dance") {
-      genreString = "edm"
+      genreParam = "&seed_genres=edm"
     } else {
-      genreString = data.genre
+      genreParam = `&seed_genres=${data.genre}`
     }
 
-    let keyNumber;
-    if (data.key === "C") {
-      keyNumber = 0
-    } else if (data.key === "C#") {
-      keyNumber = 1
-    } else if (data.key === "D") {
-      keyNumber = 2
-    } else if (data.key === "D#") {
-      keyNumber = 3
-    } else if (data.key === "E") {
-      keyNumber = 4
-    } else if (data.key === "F") {
-      keyNumber = 5
-    } else if (data.key === "F#") {
-      keyNumber = 6
-    } else if (data.key === "G") {
-      keyNumber = 7
-    } else if (data.key === "G#") {
-      keyNumber = 8
-    } else if (data.key === "A") {
-      keyNumber = 9
-    } else if (data.key === "A#") {
-      keyNumber = 10
-    } else if (data.key === "B") {
-      keyNumber = 11
+    let danceParam;
+    if (data.danceability === "Nope, I want least danceable tracks") {
+      danceParam = "&max_danceability=0.4"
+    } else if (data.danceability === "I'm not sure, perhaps just a little danceable tracks") {
+      danceParam = "&max_danceability=0.6"
+    } else if (data.danceability === "Give me somewhat danceable tracks") {
+      danceParam = "&min_danceability=0.5"
+    } else if (data.danceability === "Oh yes, I wish to listen to pretty danceable tracks") {
+      danceParam = "&min_danceability=0.6"
+    } else if (data.danceability === "I was born dancing, give me the most danceable tracks") {
+      danceParam = "&min_danceability=0.8"
+    }
+
+    let energyParam;
+    if (data.energy === "I prefer slow and calm tracks") {
+      energyParam = "&max_energy=0.4"
+    } else if (data.energy === "I wouldn't say no to somewhat energetic tracks") {
+      energyParam = "&max_energy=0.6"
+    } else if (data.energy === "Neither energetic nor calm, but just in-between tracks please") {
+      energyParam = "&min_energy=0.5"
+    } else if (data.energy === "I would like to have some aural energy") {
+      energyParam = "&min_energy=0.6"
+    } else if (data.energy === "I want most energetic tracks ever") {
+      energyParam = "&min_energy=0.8"
+    }
+
+    let loudnessParam;
+    if (data.loudness === "I'd like to listen to quite tracks") {
+      loudnessParam = "&max_loudness=-20"
+    } else if (data.loudness === "Can I have something within the normal range?") {
+      loudnessParam = "&max_loudness=-10"
+    } else if (data.loudness === "Give me tracks that are remarkably loud") {
+      loudnessParam = "&min_loudness=-10"
+    } else if (data.loudness === "My ears can take the loudest tracks ever") {
+      loudnessParam = "&min_loudness=-5"
     };
 
-    let loudnessFloat;
-    if (data.loudness === "-60dB") {
-      loudnessFloat = 0.0
-    } else if (data.loudness === "-55dB" || data.loudness === "-50dB") {
-      loudnessFloat = 0.1
-    } else if (data.loudness === "-45dB") {
-      loudnessFloat = 0.2
-    } else if (data.loudness === "-40dB") {
-      loudnessFloat = 0.3
-    } else if (data.loudness === "-35dB") {
-      loudnessFloat = 0.4
-    } else if (data.loudness === "-30dB") {
-      loudnessFloat = 0.5
-    } else if (data.loudness === "-25dB" || data.loudness === "-20dB") {
-      loudnessFloat = 0.6
-    } else if (data.loudness === "-15dB") {
-      loudnessFloat = 0.7
-    } else if (data.loudness === "-10dB") {
-      loudnessFloat = 0.8
-    } else if (data.loudness === "-5dB") {
-      loudnessFloat = 0.9
-    } else if (data.loudness === "0dB") {
-      loudnessFloat = 1.0
+    let tempoParam;
+    if (data.tempo === "I prefer it slow") {
+      tempoParam = "&max_tempo=90"
+    } else if (data.tempo === "I prefer it, like, normal...") {
+      tempoParam = "&max_tempo=120"
+    } else if (data.tempo === "I prefer it fast") {
+      tempoParam = "&min_tempo=120"
+    } else if (data.tempo === "I prefer it really fast") {
+      tempoParam = "&min_tempo=130"
     };
 
-    let modeNumber;
-    if (data.mode === "Major") {
-      modeNumber = 1
-    } else if (data.mode === "Minor") {
-      modeNumber = 0
+    let positivenessParam;
+    if (data.positiveness === "I'm really not in a cheerful mood") {
+      positivenessParam = "&max_valence=0.4"
+    } else if (data.positiveness === "For now, I prefer melancholic tracks") {
+      positivenessParam = "&max_valence=0.5"
+    } else if (data.positiveness === "Give me something in the middle") {
+      positivenessParam = "&max_valence=0.6"
+    } else if (data.positiveness === "Are you kidding? Of course I want positive tracks") {
+      positivenessParam = "&min_valence=0.7"
+    } else if (data.positiveness === "Make me the happiest person on earth!") {
+      positivenessParam = "&min_valence=0.8"
     };
 
-    let tempoFloat;
-    if (data.popularity === "60-70 BPM") {
-      tempoFloat = 0
-    } else if (data.tempo === "71-80 BPM") {
-      tempoFloat = 0.1
-    } else if (data.tempo === "81-90 BPM") {
-      tempoFloat = 0.2
-    } else if (data.tempo === "91-100 BPM") {
-      tempoFloat = 0.3
-    } else if (data.tempo === "101-110 BPM") {
-      tempoFloat = 0.4
-    } else if (data.tempo === "111-120 BPM") {
-      tempoFloat = 0.5
-    } else if (data.tempo === "121-130 BPM") {
-      tempoFloat = 0.6
-    } else if (data.tempo === "131-140 BPM") {
-      tempoFloat = 0.7
-    } else if (data.tempo === "141-150 BPM") {
-      tempoFloat = 0.8
-    } else if (data.tempo === "151-160 BPM") {
-      tempoFloat = 0.9
-    } else if (data.tempo === "+161 BPM") {
-      tempoFloat = 1.0
-    };
-
-    const params = {
-      genre: `seed_genres=${genreString}`,
-      danceability: `target_danceability=${data.danceability}`,
-      energy: `target_energy=${data.energy}`,
-      key: `target_key=${keyNumber}`,
-      loudness: `target_loudness=${loudnessFloat}`,
-      mode: `target_mode=${modeNumber}`,
-      tempo: `target_tempo=${tempoFloat}`,
-      positiveness: `target_valence=${data.positiveness}`,
-      instrumentalness: "min_instrumentalness=0.70",
-      acousticness: "max_acousticness=0.15"
+    const setParams = {
+      acousticness: "&max_acousticness=0.5",
+      instrumentalness: "&min_instrumentalness=0.5"
     };
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';
-    const final_endpoint = `${root_endpoint}&${params.genre}&${params.danceability}&${params.acousticness}&${params.instrumentalness}&${params.energy}&${params.key}&${params.loudness}&${params.mode}&${params.tempo}&${params.positiveness}`
-
+    const final_endpoint = `${root_endpoint}${genreParam}${danceParam}${setParams.acousticness}${setParams.instrumentalness}${energyParam}${loudnessParam}${tempoParam}${positivenessParam}`
+    console.log(final_endpoint);
     fetch(final_endpoint, {
       headers: {'Authorization': "Bearer " + token}
     })
     .then(response => response.json())
     .then(function(spotifyData) {
-      dispatch(fetch_success(spotifyData));
+      console.log(spotifyData);
+      spotifyData.tracks.length === 0 ? dispatch(onNoReturn()) : dispatch(fetch_success(spotifyData));
     })
     .catch(function(error) {
       dispatch(playlist_failure());
@@ -160,6 +129,15 @@ export function playlist_charging() {
   return function (dispatch) {
     dispatch({
         type: CHARGING,
+        payload: true,
+    })
+  }
+};
+
+export function onNoReturn() {
+  return function (dispatch) {
+    dispatch({
+        type: NO_RETURN,
         payload: true,
     })
   }
@@ -183,20 +161,22 @@ export function fetch_success(spotifyData) {
     let first_artist;
     let second_artist;
 
-    if (spotifyData.tracks[0].artists[0].name !== "Various Artists") {
-      first_artist = spotifyData.tracks[0].artists[0].name.capitalize()
-    } else if (spotifyData.tracks[1].artists[0].name !== "Various Artists") {
-      first_artist = spotifyData.tracks[1].artists[0].name.capitalize()
-    } else if (spotifyData.tracks[2].artists[0].name !== "Various Artists") {
-      first_artist = spotifyData.tracks[2].artists[0].name.capitalize()
-    };
+    if (spotifyData.tracks.length > 5) {
+      if (spotifyData.tracks[0].artists[0].name !== "Various Artists") {
+        first_artist = spotifyData.tracks[0].artists[0].name.capitalize()
+      } else if (spotifyData.tracks[1].artists[0].name !== "Various Artists") {
+        first_artist = spotifyData.tracks[1].artists[0].name.capitalize()
+      } else if (spotifyData.tracks[2].artists[0].name !== "Various Artists") {
+        first_artist = spotifyData.tracks[2].artists[0].name.capitalize()
+      };
 
-    if (spotifyData.tracks[3].artists[0].name !== "Various Artists") {
-      second_artist = spotifyData.tracks[3].artists[0].name.capitalize()
-    } else if (spotifyData.tracks[4].artists[0].name !== "Various Artists") {
-      second_artist = spotifyData.tracks[4].artists[0].name.capitalize()
-    } else if (spotifyData.tracks[5].artists[0].name !== "Various Artists") {
-      second_artist = spotifyData.tracks[5].artists[0].name.capitalize()
+      if (spotifyData.tracks[3].artists[0].name !== "Various Artists") {
+        second_artist = spotifyData.tracks[3].artists[0].name.capitalize()
+      } else if (spotifyData.tracks[4].artists[0].name !== "Various Artists") {
+        second_artist = spotifyData.tracks[4].artists[0].name.capitalize()
+      } else if (spotifyData.tracks[5].artists[0].name !== "Various Artists") {
+        second_artist = spotifyData.tracks[5].artists[0].name.capitalize()
+      };
     };
 
     dispatch({
@@ -283,12 +263,10 @@ export function getUserID() {
     })
     .then(response => response.json())
     .then(function(user_info) {
-      const user_name = user_info.display_name;
-      const user_id = user_info.id
       dispatch({
           type: USER_INFO,
-          payload: user_name,
-          payload_id: user_id
+          payload: user_info.display_name,
+          payload_id: user_info.id
       })
       dispatch(playlistCreate());
     })

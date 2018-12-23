@@ -9,11 +9,11 @@ import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { getGenres,
-         getFractionNumbers,
+         getDanceability,
+         getEnergy,
          getBpmOptions,
-         getKeyOptions,
          getLoudnessOptions,
-         getModeOptions
+         getPositiveness
        } from './dialog_functions';
 
 const styles = dialogTheme => ({
@@ -55,7 +55,7 @@ function DialogBox(props) {
     menuItems =
     <Select native onChange={(event) => {props.handleDanceabilitySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
+      {getDanceability().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
   };
 
@@ -64,20 +64,11 @@ function DialogBox(props) {
     menuItems =
     <Select native onChange={(event) => {props.handleEnergySelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
+      {getEnergy().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
   };
 
   if (props.activeStep === 3) {
-    titleText = props.keyTitle;
-    menuItems =
-    <Select native onChange={(event) => {props.handleKeySelection(event.target.value)}} input={<Input />} >
-      <option value="" />
-      {getKeyOptions().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
-    </Select>
-  };
-
-  if (props.activeStep === 4) {
     titleText = props.loudnessTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleLoudnessSelection(event.target.value)}} input={<Input />} >
@@ -86,16 +77,7 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 5) {
-    titleText = props.modeTitle;
-    menuItems =
-    <Select native onChange={(event) => {props.handleModeSelection(event.target.value)}} input={<Input />} >
-      <option value="" />
-      {getModeOptions().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
-    </Select>
-  };
-
-  if (props.activeStep === 6) {
+  if (props.activeStep === 4) {
     titleText = props.tempoTitle;
     menuItems =
     <Select native onChange={(event) => {props.handleTempoSelection(event.target.value)}} input={<Input />} >
@@ -104,12 +86,12 @@ function DialogBox(props) {
     </Select>
   };
 
-  if (props.activeStep === 7) {
+  if (props.activeStep === 5) {
     titleText = props.positivenessTitle;
     menuItems =
     <Select native onChange={(event) => {props.handlePositivenessSelection(event.target.value)}} input={<Input />} >
       <option value="" />
-      {getFractionNumbers().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
+      {getPositiveness().map(e => <option key={shortid.generate()} value={e}>{e}</option>)}
     </Select>
   };
 

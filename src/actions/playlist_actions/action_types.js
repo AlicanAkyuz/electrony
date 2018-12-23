@@ -1,4 +1,5 @@
 export const CHARGING = "CHARGING";
+export const NO_RETURN = "NO_RETURN";
 export const PLAYLIST_FAILURE = "PLAYLIST_FAILURE";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const PLAYLIST_SUCCESS = "PLAYLIST_SUCCESS";

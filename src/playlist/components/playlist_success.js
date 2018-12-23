@@ -146,7 +146,6 @@ const styles = successTheme => ({
 
 export function PlaylistSuccess(props) {
   const { classes } = props;
-  const linkAddress = `/select_details#access_token=${props.token}`;
   const uriParts = props.playlistUri.split(':');
   const embedLink = `https://open.spotify.com/embed/${uriParts[1]}/${uriParts[2]}/${uriParts[3]}/${uriParts[4]}`;
 
@@ -197,6 +196,7 @@ export function PlaylistSuccess(props) {
             width="300"
             height="380"
             frameBorder="0"
+            title="Spotify Playlist"
             allowtransparency="true"
             allow="encrypted-media">
           </iframe>
@@ -205,7 +205,7 @@ export function PlaylistSuccess(props) {
       <div className={classes.buttonItem}>
         <div class="animated zoomInRight" style={{textAlign: 'center', marginTop: '2%'}}>
           <button className={classes.button}>
-            <Link to={linkAddress} className={classes.link}>CREATE ANOTHER PLAYLIST!</Link>
+            <Link to="/" className={classes.link}>CREATE ANOTHER PLAYLIST!</Link>
           </button>
         </div>
       </div>

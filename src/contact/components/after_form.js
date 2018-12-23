@@ -71,7 +71,6 @@ const afterformStyle = afterformStyle => ({
 
 function AfterForm(props) {
   const { classes } = props;
-  const linkAddress = `/select_details#access_token=${props.token}`;
   let showButton;
   let showCircle;
 
@@ -79,7 +78,7 @@ function AfterForm(props) {
     showButton =
     <div class="animated flip">
       <button onClick={props.onReset} className={classes.button} size="large" variant="contained">
-        <Link className={classes.links} to={linkAddress}>GO BACK!</Link>
+        <Link className={classes.links} to="/">GO BACK!</Link>
       </button>
     </div>
 

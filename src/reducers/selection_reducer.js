@@ -6,16 +6,13 @@ import {
   GENRE_SELECTED,
   DANCE_SELECTED,
   ENERGY_SELECTED,
-  KEY_SELECTED,
   LOUD_SELECTED,
-  MODE_SELECTED,
   TEMPO_SELECTED,
   POS_SELECTED,
   RESET
 } from '../actions/selection_actions/action_types';
 
 const initialState = {
-  welcomeText: "Now, let's get you what you want",
   select: {
     activeStep: 0,
     dialogOpen: false
@@ -24,21 +21,17 @@ const initialState = {
     genre: '',
     danceability: '',
     energy: '',
-    key: '',
     loudness: '',
-    mode: '',
     tempo: '',
     positiveness: ''
   },
   titles: {
     genre: "Select the genre that best describes what you are looking for",
     danceability: "Do you feel like taking the floor and dancing?",
-    energy: "Some songs are more energizing than energy drinks ;)",
-    key: "Do you need your playlsit to be in a particular key?",
+    energy: "How energetic would you like your playlist to be?",
     loudness: "There is no shame in wishing for some serenity!",
-    mode: "How about mode, if we may ask? ",
-    tempo: "You know, some people prefer it slow",
-    positiveness: "Music has a significant effect on one's mood, so...",
+    tempo: "Some people prefer it slow. What is your choice?",
+    positiveness: "Are you in a euphoric mood or kind of sad?",
   },
   user_data: {
     user_token: '',
@@ -87,19 +80,9 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       newState.user_selection.energy = action.payload;
       return newState;
     }
-    case KEY_SELECTED: {
-      const newState = Object.assign({}, state);
-      newState.user_selection.key = action.payload;
-      return newState;
-    }
     case LOUD_SELECTED: {
       const newState = Object.assign({}, state);
       newState.user_selection.loudness = action.payload;
-      return newState;
-    }
-    case MODE_SELECTED: {
-      const newState = Object.assign({}, state);
-      newState.user_selection.mode = action.payload;
       return newState;
     }
     case TEMPO_SELECTED: {
@@ -114,7 +97,12 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     }
     case RESET: {
       const newState = initialState;
-      newState.welcomeText = action.payload;
+      newState.user_selection.genre = action.payload
+      newState.user_selection.danceability = action.payload
+      newState.user_selection.energy = action.payload
+      newState.user_selection.loudness = action.payload
+      newState.user_selection.tempo = action.payload
+      newState.user_selection.positiveness = action.payload
       return newState;
     }
     default:

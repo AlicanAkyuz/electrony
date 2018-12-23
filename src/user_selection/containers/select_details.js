@@ -18,9 +18,7 @@ import { getUserData,
          handleGenreSelection,
          handleDanceabilitySelection,
          handleEnergySelection,
-         handleKeySelection,
          handleLoudnessSelection,
-         handleModeSelection,
          handleTempoSelection,
          handlePositivenessSelection,
          onStepsReset
@@ -32,7 +30,7 @@ const styles = theme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '3% 5% 5% 1% 1% 5% 4% 1% 66% 8%',
+    gridTemplateRows: '3% 5% 5% 1% 2% 6% 6% 1% 62% 8%',
     gridTemplateColumns: '4% 10% 10% 10% 32% 10% 10% 10% 4%',
     backgroundColor: '#0c0c0c'
   },
@@ -209,12 +207,9 @@ const styles = theme => ({
 });
 
 class Select extends React.Component {
-  componentWillMount() {
-    this.props.dispatch(onPlaylistReset())
-    if (this.props.playlist_created || this.props.positiveness) {
-      this.props.dispatch(onStepsReset())
-    };
-
+  componentDidMount() {
+    this.props.dispatch(onPlaylistReset());
+    this.props.dispatch(onStepsReset());
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(getUserData(accessToken))
@@ -258,7 +253,7 @@ class Select extends React.Component {
         </div>
 
         <div className={classes.firsttitleItem}>
-          <p className={classes.firstText}>Hi, {userName}! {this.props.welcomeText}</p>
+          <p className={classes.firstText}>Hi, {userName}! Let's try to get you what you want</p>
         </div>
         <div className={classes.hr}>
           <hr style={{width: '8.5em'}} />
@@ -291,9 +286,7 @@ class Select extends React.Component {
                       handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
                       handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
                       handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
-                      handleKeySelection={(value) => {this.props.dispatch(handleKeySelection(value))}}
                       handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
-                      handleModeSelection={(value) => {this.props.dispatch(handleModeSelection(value))}}
                       handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
                       handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
                       activeStep={this.props.activeStep}
@@ -301,9 +294,7 @@ class Select extends React.Component {
                       genreTitle={this.props.genreTitle}
                       danceabilityTitle={this.props.danceabilityTitle}
                       energyTitle={this.props.energyTitle}
-                      keyTitle={this.props.keyTitle}
                       loudnessTitle={this.props.loudnessTitle}
-                      modeTitle={this.props.modeTitle}
                       tempoTitle={this.props.tempoTitle}
                       positivenessTitle={this.props.positivenessTitle}
                     />
@@ -322,8 +313,6 @@ class Select extends React.Component {
 const mapStateToProps = state => {
   const info = state.SelectionReducer;
   return {
-    playlist_created: state.PlaylistReducer.playlist_created,
-    welcomeText: info.welcomeText,
     user_token: info.user_data.user_token,
     user_name: info.user_data.user_name,
     activeStep: info.select.activeStep,
@@ -334,12 +323,8 @@ const mapStateToProps = state => {
     danceabilityTitle: info.titles.danceability,
     energy: info.user_selection.energy,
     energyTitle: info.titles.energy,
-    key: info.user_selection.key,
-    keyTitle: info.titles.key,
     loudness: info.user_selection.loudness,
     loudnessTitle: info.titles.loudness,
-    mode: info.user_selection.mode,
-    modeTitle: info.titles.mode,
     tempo: info.user_selection.tempo,
     tempoTitle: info.titles.tempo,
     positiveness: info.user_selection.positiveness,

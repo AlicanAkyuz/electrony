@@ -114,8 +114,8 @@ export function About(props) {
             community of people who find an identity in their electronic sonic experience, Electrony is designed
             to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
             <br /><br />
-            Our service provides a set of musical parameters—genre, danceability, energy, key, loudness, mode,
-            tempo, and positiveness—which a user draws upon to specify the kind of electronic music they are seeking.
+            Our service provides a set of parameters (genre, danceability, energy, loudness,
+            tempo, and positiveness) which a user draws upon to specify the kind of electronic music they are seeking.
             In the background, Electrony evaluates the choices of the user to find electronic music tracks that
             closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
             be uploaded to the user's Spotify account.

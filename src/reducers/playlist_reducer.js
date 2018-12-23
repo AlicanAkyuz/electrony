@@ -1,5 +1,6 @@
 import {
   CHARGING,
+  NO_RETURN,
   PLAYLIST_FAILURE,
   FETCH_SUCCESS,
   PLAYLIST_SUCCESS,
@@ -22,6 +23,11 @@ const initialState = {
   playlist_charging_content: {
     title: "Finding Your Tune...",
     content: "Just a second!"
+  },
+  no_return: false,
+  no_return_content: {
+    title: "Oh wow!",
+    content: "It seems we couldn't find anything matching your choices!"
   },
   playlist_failure: false,
   playlist_failure_content: {
@@ -59,6 +65,11 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case CHARGING: {
       const newState = Object.assign({}, state);
       newState.playlist_charging = action.payload
+      return newState;
+    }
+    case NO_RETURN: {
+      const newState = Object.assign({}, state);
+      newState.no_return = action.payload
       return newState;
     }
     case PLAYLIST_FAILURE: {

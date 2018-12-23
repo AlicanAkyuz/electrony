@@ -113,6 +113,12 @@ class Playlist extends React.Component {
                           content={this.props.playlist_charging_content_content} />
       };
 
+    if (this.props.no_return) {
+      pageContent = <Load failure="failure"
+                          title={this.props.no_return_content_title}
+                          content={this.props.no_return_content_content} />
+      };
+
     if (this.props.playlist_failure) {
       pageContent = <Load token={this.props.token}
                           failure="failure"
@@ -222,6 +228,9 @@ const mapStateToProps = state => {
     playlist_charging: info.playlist_charging,
     playlist_charging_content_title: info.playlist_charging_content.title,
     playlist_charging_content_content: info.playlist_charging_content.content,
+    no_return: info.no_return,
+    no_return_content_title: info.no_return_content.title,
+    no_return_content_content: info.no_return_content.content,
     playlist_failure: info.playlist_failure,
     playlist_failure_content_title: info.playlist_failure_content.title,
     playlist_failure_content_content: info.playlist_failure_content.content,
