@@ -201,9 +201,9 @@ export function OurTeam(props) {
       <div className={classes.firstBackgroundItem}>
         <div class="animated fadeInUp delay-1s">
           <p className={classes.background}>
-            Tansu is a front-end Javascript developer. He likes using React.js because of its modular, scalable,
-            and flexible structure. He enjoys creating responsive and interactive user interfaces. He
-            studied and wrote his master thesis on twentieth-century electronic music. Tansu contributed to Electrony's
+            Tansu is a front-end Javascript developer based in Izmir, Turkey. He likes using React.js because of its modular, scalable,
+            and flexible structure. He enjoys creating responsive and interactive user interfaces. Tansu
+            studied and wrote his master thesis on twentieth-century electronic music and contributed to Electrony's
             project design and front-end development.
           </p>
         </div>

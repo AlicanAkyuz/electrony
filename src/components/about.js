@@ -110,15 +110,13 @@ export function About(props) {
       <div className={classes.aboutItem}>
         <div class="animated fadeIn">
           <p className={classes.about}>
-            Electrony celebrates electronic music. Not only as an aesthetic field, but also as a space for a
-            community of people who find an identity in their electronic sonic experience, Electrony is designed
-            to extend the reach of electronic music to people from all backgrounds, ages, and lifestyles.
+            As Karlheinz Stockhausen once said, we are interested when other musicians are trying to
+            discover new worlds of sound. We therefore celebrate electronic music due to the vast amount of
+            possibilities it brings forward for the aural expression of one's subjectivity.
             <br /><br />
-            Our service provides a set of parameters (genre, danceability, energy, loudness,
-            tempo, and positiveness) which a user draws upon to specify the kind of electronic music they are seeking.
-            In the background, Electrony evaluates the choices of the user to find electronic music tracks that
-            closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
-            be uploaded to the user's Spotify account.
+            Electrony is designed to extend the reach of electronic music to people from all backgrounds, ages,
+            and lifestyles, not only as an aesthetic field, but also as a space for a community of people who
+            find an identity in their electronic sonic experience.
             <br /><br />
             Our ears are capable of hearing sound frequencies from approximately 20 to 20,000 Hertz (Hz). Yet,
             historically, the expressions of sounds have been squeezed in by the capacity of acoustic instruments
@@ -126,13 +124,16 @@ export function About(props) {
             is designed to produce 440 Hz and its 50th key 466.164 Hz. What happens, then, to sounds at 450 or 451 Hz?
             Hence, our aural experience has been limited by the capacity of acoustic instruments when it came to music.
             <br /><br />
-            Electronic music is not limited to particular designs of musical instruments and therefore brings
-            liberations to sounds by making possible for each of them to vibrate through the air and reach to
+            Electronic music, on the other hand, is not limited to particular designs of musical instruments and therefore brings
+            liberation to sounds by making possible for each of them to vibrate through the air and reach to
             the human ear. With electronic music, the only restriction between the artist and the audience is the
             imagination of both.
             <br /><br />
-            “I'm always interested when other musicians are trying to discover new worlds of sound.”
-            <br />— Karlheinz Stockhausen
+            Our service provides a set of parameters (genre, danceability, energy, loudness,
+            tempo, and positiveness) which a user draws upon to specify the kind of electronic music they are seeking.
+            In the background, Electrony evaluates the choices of the user to find electronic music tracks that
+            closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
+            be uploaded to the user's Spotify account.            
           </p>
       </div>
       </div>

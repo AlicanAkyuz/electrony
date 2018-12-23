@@ -75,7 +75,7 @@ function PlaylistDetailsBox(props) {
     <div className={classes.container}>
       <Dialog className={classes.dialog} open={true}>
         <DialogTitle className={classes.dialogTitleHolder}>
-          <p className={classes.dialogTitle}>Your playlist is almost ready, {props.userName}!</p>
+          <p className={classes.dialogTitle}>Give your playlist a name and description</p>
         </DialogTitle>
         <DialogContent className={classes.dialogContent}>
           <FormControl className={classes.formControl}>

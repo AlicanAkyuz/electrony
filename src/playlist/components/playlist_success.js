@@ -11,7 +11,7 @@ const styles = successTheme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: "8% 5% 39% 5% 27% 4% 9% 3%",
+    gridTemplateRows: "8% 7% 38% 7% 27% 3% 7% 3%",
     gridTemplateColumns: '6% 8% 6% 2% 3% 1% 8% 32% 8% 3% 8% 3% 8% 4%',
     backgroundColor: '#0c0c0c'
   },
@@ -153,7 +153,6 @@ export function PlaylistSuccess(props) {
       <div className={classes.thirdButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
       </div>
-
       <div className={classes.playlistItem}>
         <Paper className={classes.playlistPaper} elevation={1}>
           <Typography variant="h5" component="h3" className={classes.playlistTitle}>
@@ -172,7 +171,6 @@ export function PlaylistSuccess(props) {
           </div>
         </Paper>
       </div>
-
       <div className={classes.paperItem}>
         <Paper className={classes.paper} elevation={5}>
           <Typography variant="h5" component="h3" className={classes.title}>
@@ -199,14 +197,11 @@ export function PlaylistSuccess(props) {
           </Typography>
         </Paper>
       </div>
-
-
-
       <div className={classes.buttonItem}>
         <Paper className={classes.buttonPaper} elevation={1}>
           <div class="animated flip">
             <button className={classes.button}>
-              <Link to="/" className={classes.link}>CREATE ANOTHER ONE!</Link>
+              <Link to="/" className={classes.link}>CREATE ANOTHER ONE</Link>
             </button>
           </div>
         </Paper>

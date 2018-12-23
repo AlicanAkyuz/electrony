@@ -30,7 +30,7 @@ const styles = theme => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '3% 5% 5% 1% 2% 6% 6% 1% 62% 8%',
+    gridTemplateRows: '3% 5% 6% 1% 2% 7% 6% 1% 62% 6%',
     gridTemplateColumns: '4% 10% 10% 10% 32% 10% 10% 10% 4%',
     backgroundColor: '#0c0c0c'
   },

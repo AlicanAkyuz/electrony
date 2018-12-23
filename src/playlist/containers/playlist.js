@@ -22,7 +22,7 @@ const playlistStyle = playlistStyle => ({
     display: 'grid',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '1% 95% 4%',
+    gridTemplateRows: '1% 1% 95% 3%',
     gridRowGap: '10px',
     gridTemplateColumns: '5% 10% 10% 10% 30% 10% 10% 10% 5%',
     backgroundColor: '#0c0c0c'
@@ -53,7 +53,7 @@ const playlistStyle = playlistStyle => ({
     paddingTop: '40%',
   },
   contentItem: {
-    gridRow: '2 / span 1',
+    gridRow: '3 / span 1',
     gridColumn: '2 / span 7',
   },
   hr: {
@@ -82,7 +82,7 @@ const playlistStyle = playlistStyle => ({
   title: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '2.5vmax',
+    fontSize: '2.2vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   },
@@ -147,7 +147,7 @@ class Playlist extends React.Component {
           <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
         </div>
         <div className={classes.contentItem}>
-          <p className={classes.title}>Here is the playlist specially crafted for you</p>
+          <p className={classes.title}>Here are the tracks specially crafted for your choices</p>
           <div>
             <hr className={classes.hr}/>
           </div>
