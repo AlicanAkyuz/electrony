@@ -96,7 +96,7 @@ function App(props) {
       </div>
       <div className={classes.buttonItem}>
           <div class="animated fadeInUpBig delay-1s">
-            <button onClick={() => window.location = 'http://electrony.space/login'} size="medium" className={classes.button}>GET STARTED</button>
+            <button onClick={() => window.location = 'https://electrony.herokuapp.com/login'} size="medium" className={classes.button}>GET STARTED</button>
           </div>
         </div>
       <div className={classes.copyrightItem}>

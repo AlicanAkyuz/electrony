@@ -84,7 +84,7 @@ export function fetchStart() {
       message: getState().ContactReducer.form.message
     };
     dispatch(onLoading());
-    fetch('http://localhost:3000/contact', {
+    fetch('https://electrony.herokuapp.com/contact', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
