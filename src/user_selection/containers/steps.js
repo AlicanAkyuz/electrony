@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import queryString from 'query-string';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -13,6 +12,7 @@ import { getSteps, getStepContent } from '../components/stepper_functions';
 import DialogBox from '../components/dialog_box';
 import { getUserData,
          onDialogOpen,
+         onBackdropClick,
          onDialogClose,
          onBackClick,
          handleGenreSelection,
@@ -80,7 +80,7 @@ const styles = theme => ({
   },
   stepperItem: {
     gridRow: '9 / span 1',
-    gridColumn: '2 / span 7',
+    gridColumn: '1 / span 9',
   },
 ///////////////////////////////////////////////////////////////////////////////
   logo: {
@@ -127,7 +127,7 @@ const styles = theme => ({
   stepperBody: {
     backgroundColor: '#353F3E',
     maxWidth: '100%',
-    borderRadius: '10px'
+    borderRadius: '5px'
   },
   stepLabel: {
     height: '5vw',
@@ -152,45 +152,40 @@ const styles = theme => ({
     textAlign: 'center'
   },
   selectButton: {
-    marginRight: '1.2%',
-    height: '2.5em',
-    width: '7em',
+    marginRight: '1.3%',
     borderRadius: '5px',
-    border: 'none',
     backgroundColor: '#00611C',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
     fontFamily: 'Montserrat',
-    fontSize: '1.5vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
   goBackButton: {
-    marginRight: '1%',
+    marginRight: '1.3%',
     marginTop: '1.3%',
-    height: '2em',
-    width: '7em',
     borderRadius: '5px',
-    border: 'none',
     backgroundColor: '#40664D',
     '&:hover': {
       backgroundColor: "#596C56",
     },
     fontFamily: 'Montserrat',
-    fontSize: '1.3vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
   doneButton: {
+    marginLeft: '1%',
     backgroundColor: '#00611C',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    height: '4em',
-    width: '19em',
-    borderRadius: '5px',
-    border: 'none',
+    borderRadius: '5px'
+  },
+  link: {
+    fontFamily: 'Montserrat',
+    textDecoration: 'none',
+    fontWeight: '800',
     color: '#C1CDC1',
   },
   finalLink: {
@@ -206,14 +201,16 @@ const styles = theme => ({
   },
 });
 
-class Select extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(onPlaylistReset());
-    this.props.dispatch(onStepsReset());
-    const parsed = queryString.parse(window.location.hash);
-    const accessToken = parsed.access_token;
-    this.props.dispatch(getUserData(accessToken))
-  };
+class Steps extends React.Component {
+   componentDidMount() {
+      const token = this.props.user_token;
+      this.props.dispatch(getUserData(token))
+   };
+
+   componentWillUnmount() {
+     this.props.dispatch(onStepsReset());
+     this.props.dispatch(onPlaylistReset());
+   }
 
   render() {
     const { classes } = this.props;
@@ -223,9 +220,9 @@ class Select extends React.Component {
     if (this.props.activeStep === getSteps().length) {
       createPlaylistButton =
       <div class="animated fadeInDownBig" style={{textAlign: 'center'}}>
-        <button variant="contained" className={classes.doneButton}>
-          <Link className={classes.finalLink} to="/playlist">GIVE ME SONGS!</Link>
-        </button>
+        <Button size="large" variant="contained" color="primary" className={classes.doneButton}>
+          <Link className={classes.link} to="/playlist">GIVE ME SONGS!</Link>
+        </Button>
       </div>
     };
 
@@ -233,7 +230,10 @@ class Select extends React.Component {
     if (this.props.activeStep > 0) {
       goBackButton =
       <div class="animated fadeInRightBig">
-        <button className={classes.goBackButton} onClick={() => {this.props.dispatch(onBackClick())}}>GO BACK</button>
+        <Button size="small" variant="contained" className={classes.goBackButton}
+                onClick={() => {this.props.dispatch(onBackClick())}}>
+          GO BACK
+        </Button>
       </div>
     };
 
@@ -275,13 +275,15 @@ class Select extends React.Component {
                   <StepContent className={classes.stepContent}>
                     <p className={classes.contentText}>{getStepContent(index)}</p>
                     <div class="animated fadeInLeftBig" style={{textAlign: 'center'}}>
-                      <button className={classes.selectButton} onClick={() => {this.props.dispatch(onDialogOpen())}}>
+                      <Button size="large" variant="contained" className={classes.selectButton}
+                              onClick={() => {this.props.dispatch(onDialogOpen())}}>
                         SELECT
-                      </button>
+                      </Button>
                     </div>
                     {goBackButton}
                     <DialogBox
                       handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
+                      handleBackdropClick={() => {this.props.dispatch(onBackdropClick())}}
                       handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
                       handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
                       handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
@@ -331,10 +333,10 @@ const mapStateToProps = state => {
   };
 };
 
-Select.propTypes = {
+Steps.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const withstyles = withStyles(styles)(Select);
+const withstyles = withStyles(styles)(Steps);
 const selectConnected = connect(mapStateToProps)(withstyles);
 export default selectConnected;

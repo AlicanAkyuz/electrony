@@ -59,8 +59,55 @@ const playlistStyle = playlistStyle => ({
   hr: {
   width: '8.5em',
   },
-
   /////////////////////////////////////////
+  cardHolder: {
+    display: 'grid',
+    gridTemplateRows: '100%',
+    gridTemplateColumns: '5% 15% 60% 15% 5%',
+    marginTop: '2%'
+  },
+  numberCard: {
+    gridRow: '1 / span 1',
+    gridColumn: '2 / span 1',
+    backgroundColor: '#353F3E',
+    width: '100%'
+  },
+  cardNumber: {
+    fontFamily: 'Roboto',
+    fontSize: '3.8vmax',
+    fontWeight: '800',
+    color: '#CFDBC5',
+    textAlign: 'center'
+  },
+  contentCard: {
+    gridRow: '1 / span 1',
+    gridColumn: '3 / span 1',
+    backgroundColor: '#191919',
+    width: '100%'
+  },
+  trackName: {
+    fontFamily: 'Roboto',
+    fontSize: '2vmax',
+    color: '#c5c5c5',
+    marginLeft: '3%'
+  },
+  artistAndAlbumName: {
+    fontFamily: 'Roboto',
+    fontSize: '1.5vmax',
+    color: '#c5c5c5',
+    marginLeft: '3%'
+  },
+  imageCard: {
+    gridRow: '1 / span 1',
+    gridColumn: '4 / span 1',
+    backgroundColor: '#0c0c0c',
+    width: '100%'
+  },
+  cardMedia: {
+    width: '13vmax',
+    height: '13vmax',
+    borderRadius: '5px'
+  },
   logo: {
     textAlign: 'center',
     fontFamily: 'Roboto',
@@ -91,14 +138,10 @@ const playlistStyle = playlistStyle => ({
     '&:hover': {
       backgroundColor: "#4A7023",
     },
-    height: '3em',
-    width: '14em',
     fontFamily: 'Montserrat',
     fontWeight: '800',
-    fontSize: '1.5vmax',
     textTransform: 'none',
     borderRadius: '5px',
-    border: 'none',
     color: '#C1CDC1',
   }
 });
@@ -152,29 +195,31 @@ class Playlist extends React.Component {
             <hr className={classes.hr}/>
           </div>
           <div class="animated flip" style={{textAlign: 'center', marginTop: '2%'}}>
-            <button onClick={() => this.props.dispatch(details_box_open())} className={classes.button}>
+            <Button size="large" variant="contained" className={classes.button}
+                    onClick={() => this.props.dispatch(details_box_open())}>
               UPLOAD TO SPOTIFY!
-            </button>
+            </Button>
           </div>
           {tracks.map((track, index) =>
-          <div style={{display: 'grid', gridTemplateRows: '100%', gridTemplateColumns: '5% 15% 60% 15% 5%', marginTop: '2%', }}>
-            <Card style={{gridRow: '1 / span 1', gridColumn: '2 / span 1', backgroundColor: '#353F3E', width: '100%'}}>
-              <p style={{fontFamily: 'Roboto', fontSize: '3.8vmax', fontWeight: '800', color: '#CFDBC5', textAlign: 'center'}}>{index + 1}</p>
+          <div className={classes.cardHolder}>
+            <Card className={classes.numberCard}>
+              <p className={classes.cardNumber}>{index + 1}</p>
             </Card>
-            <Card style={{gridRow: '1 / span 1', gridColumn: '3 / span 1', backgroundColor: '#191919', width: '100%'}}>
-              <p style={{fontFamily: 'Roboto', fontSize: '2vmax', color: '#c5c5c5', marginLeft: '3%'}}>{track.name}</p>
-              <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Artist: {track.album.artists[0].name}</p>
-              <p style={{fontFamily: 'Roboto', fontSize: '1.5vmax', color: '#c5c5c5', marginLeft: '3%'}}>Album: {track.album.name}</p>
+            <Card className={classes.contentCard}>
+              <p className={classes.trackName}>{track.name}</p>
+              <p className={classes.artistAndAlbumName}>Artist: {track.album.artists[0].name}</p>
+              <p className={classes.artistAndAlbumName}>Album: {track.album.name}</p>
             </Card>
-            <Card style={{gridRow: '1 / span 1', gridColumn: '4 / span 1', backgroundColor: '#0c0c0c', width: '100%'}}>
-              <CardMedia style={{width: '13vmax', height: '13vmax', borderRadius: '5px'}} image={track.album.images[1].url} title="alican"/>
+            <Card className={classes.imageCard}>
+              <CardMedia className={classes.cardMedia} image={track.album.images[1].url} title="albumImage"/>
             </Card>
           </div>
           )};
           <div class="animated infinite jello" style={{textAlign: 'center', marginTop: '2%'}}>
-            <button onClick={() => this.props.dispatch(details_box_open())} className={classes.button}>
+            <Button size="large" variant="contained" className={classes.button}
+                    onClick={() => this.props.dispatch(details_box_open())}>
               UPLOAD TO SPOTIFY!
-            </button>
+            </Button>
           </div>
         </div>
       </div>

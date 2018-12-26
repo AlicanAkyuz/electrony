@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
@@ -53,25 +54,30 @@ const styles = theme => ({
     fontWeight: '400',
     color: '#838B83'
   },
-  button: {
-    height: '2.9em',
-    width: '9em',
-    borderRadius: '8px',
-    border: 'none',
-    backgroundColor: '#00611C',
-    '&:hover': {
-      backgroundColor: "#4A7023",
-    },
-    fontFamily: 'Montserrat',
-    fontSize: '1.4vmax',
-    fontWeight: '800',
-    color: '#C1CDC1'
-  },
+
+  margin: {
+   margin: theme.spacing.unit,
+   borderRadius: '3px',
+   backgroundColor: "#00611C",
+   '&:hover': {
+     backgroundColor: "#4A7023",
+   },
+   color: '#C1CDC1',
+   fontFamily: 'Montserrat',
+   fontWeight: '800'
+ },
   copyright: {
     fontFamily: 'Montserrat',
     fontSize: '0.8vmax',
     fontWeight: '400',
     color: '#838B83'
+  },
+  link: {
+    textDecoration: 'none',
+    fontFamily: 'Montserrat',
+    fontSize: '0.9vmax',
+    fontWeight: '400',
+    color: '#9ba29b'
   }
 });
 
@@ -96,12 +102,15 @@ function App(props) {
       </div>
       <div className={classes.buttonItem}>
           <div class="animated fadeInUpBig delay-1s">
-            <button onClick={() => window.location = 'https://electrony.herokuapp.com/login'} size="medium" className={classes.button}>GET STARTED</button>
+            <Button variant="contained" color="primary" className={classes.margin}
+                    onClick={() => window.location = 'https://electrony.herokuapp.com/login'}>
+              GET STARTED
+            </Button>
           </div>
         </div>
       <div className={classes.copyrightItem}>
         <div class="animated flip">
-          <p className={classes.copyright}>©Copyright 2018 Alican Akyuz</p>
+          <p className={classes.copyright}>©Copyright 2018, <a className={classes.link} href="http://alicanakyuz.tech/" target="_blank"> Alican Akyuz</a></p>
         </div>
       </div>
     </div>

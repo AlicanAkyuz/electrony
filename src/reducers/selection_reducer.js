@@ -1,6 +1,8 @@
 import {
+  TOKEN,
   USER_DATA,
   DIALOG_OPEN,
+  BACKDROP_CLICK,
   DIALOG_CLOSE,
   BACK_CLICK,
   GENRE_SELECTED,
@@ -42,16 +44,26 @@ const initialState = {
 
 function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), action) {
   switch (action.type) {
+    case TOKEN: {
+      const newState = Object.assign({}, state);
+      newState.user_data.user_token = action.payload
+      return newState;
+    }
     case USER_DATA: {
       const newState = Object.assign({}, state);
-      newState.user_data.user_token = action.payload.token;
-      newState.user_data.user_name = action.payload.user_name;
-      newState.user_data.user_id = action.payload.user_id;
+      newState.user_data.user_token = action.payload.user_token
+      newState.user_data.user_name = action.payload.user_name
+      newState.user_data.user_id = action.payload.user_id
       return newState;
     }
     case DIALOG_OPEN: {
       const newState = Object.assign({}, state);
       newState.select.dialogOpen = action.payload
+      return newState;
+    }
+    case BACKDROP_CLICK: {
+      const newState = Object.assign({}, state);
+      newState.select.dialogOpen = action.payload;
       return newState;
     }
     case DIALOG_CLOSE: {
@@ -96,13 +108,8 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       return newState;
     }
     case RESET: {
-      const newState = initialState;
-      newState.user_selection.genre = action.payload
-      newState.user_selection.danceability = action.payload
-      newState.user_selection.energy = action.payload
-      newState.user_selection.loudness = action.payload
-      newState.user_selection.tempo = action.payload
-      newState.user_selection.positiveness = action.payload
+      const newState = Object.assign({}, state);
+      newState.select.activeStep = action.payload
       return newState;
     }
     default:

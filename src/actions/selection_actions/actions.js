@@ -1,6 +1,8 @@
 import {
+  TOKEN,
   USER_DATA,
   DIALOG_OPEN,
+  BACKDROP_CLICK,
   DIALOG_CLOSE,
   BACK_CLICK,
   GENRE_SELECTED,
@@ -12,6 +14,15 @@ import {
   RESET
 } from './action_types';
 
+export function onTokenReceived(token) {
+  return function (dispatch) {
+    dispatch({
+        type: TOKEN,
+        payload: token
+    })
+  }
+};
+
 export function getUserData(token) {
   return function (dispatch) {
     fetch("https://api.spotify.com/v1/me", {
@@ -22,7 +33,7 @@ export function getUserData(token) {
       dispatch({
           type: USER_DATA,
           payload: {
-            token: token,
+            user_token: token,
             user_name: userData.display_name,
             user_id: userData.id
           }
@@ -37,6 +48,15 @@ export function onDialogOpen() {
     dispatch({
         type: DIALOG_OPEN,
         payload: true
+    })
+  }
+};
+
+export function onBackdropClick () {
+  return function (dispatch, getState) {
+    dispatch({
+      type: BACKDROP_CLICK,
+      payload: false,
     })
   }
 };
@@ -119,7 +139,7 @@ export function onStepsReset() {
   return function (dispatch) {
     dispatch({
         type: RESET,
-        payload: ''
+        payload: 0
     })
   }
 };

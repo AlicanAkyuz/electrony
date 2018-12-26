@@ -1,5 +1,7 @@
 export const USER_DATA = "USER_DATA";
+export const TOKEN = "TOKEN";
 export const DIALOG_OPEN = "DIALOG_OPEN";
+export const BACKDROP_CLICK = "BACKDROP_CLICK";
 export const DIALOG_CLOSE = "DIALOG_CLOSE";
 export const BACK_CLICK = "BACK_CLICK";
 export const GENRE_SELECTED = "GENRE_SELECTED";

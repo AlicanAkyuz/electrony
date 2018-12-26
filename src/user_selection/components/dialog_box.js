@@ -24,7 +24,7 @@ const styles = dialogTheme => ({
   popUpTitle: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '1.7vmax',
+    fontSize: '16px',
     color: '#C1CDC1'
   },
   dialogContent: {
@@ -100,7 +100,9 @@ function DialogBox(props) {
   };
 
   return (
-    <Dialog open={props.dialogOpen}>
+    <Dialog onBackdropClick={() => {props.handleBackdropClick()}}
+            onEscapeKeyDown={() => {props.handleBackdropClick()}} 
+            open={props.dialogOpen}>
       <DialogTitle className={classes.dialogTitle}>
         <p className={classes.popUpTitle}>{titleText}</p>
       </DialogTitle>

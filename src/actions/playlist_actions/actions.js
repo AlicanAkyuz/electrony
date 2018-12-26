@@ -33,9 +33,9 @@ export function handleSelectionSubmit() {
     };
 
     let genreParam;
-    if (data.genre === "Surprise me") {
+    if (data.genre === "No choice, surprise me") {
       genreParam = "&seed_genres=detroit-techno"
-    } else if (data.genre === "electronic-dance") {
+    } else if (data.genre === "Electronic-dance (Edm)") {
       genreParam = "&seed_genres=edm"
     } else {
       genreParam = `&seed_genres=${data.genre}`
@@ -52,6 +52,8 @@ export function handleSelectionSubmit() {
       danceParam = "&target_danceability=0.8"
     } else if (data.danceability === "I was born dancing, give me the most danceable tracks") {
       danceParam = "&target_danceability=1"
+    } else if (data.danceability === "I have no choice") {
+      danceParam = "&target_danceability=0.7"
     }
 
     let energyParam;
@@ -64,7 +66,9 @@ export function handleSelectionSubmit() {
     } else if (data.energy === "I would like to have some aural energy") {
       energyParam = "&target_energy=0.8"
     } else if (data.energy === "I want most energetic tracks ever") {
-      energyParam = "&min_energy=1"
+      energyParam = "&target_energy=1"
+    } else if (data.energy === "I have no choice") {
+      energyParam = "&target_energy=0.9"
     }
 
     let loudnessParam;
@@ -76,7 +80,9 @@ export function handleSelectionSubmit() {
       loudnessParam = "&target_loudness=-10"
     } else if (data.loudness === "My ears can take the loudest tracks ever") {
       loudnessParam = "&target_loudness=0"
-    };
+    } else if (data.loudness === "I have no choice") {
+      loudnessParam = "&target_loudness=0"
+    }
 
     let tempoParam;
     if (data.tempo === "I prefer it slow") {
@@ -86,8 +92,10 @@ export function handleSelectionSubmit() {
     } else if (data.tempo === "I prefer it fast") {
       tempoParam = "&target_tempo=125"
     } else if (data.tempo === "I prefer it really fast") {
-      tempoParam = "&min_tempo=150"
-    };
+      tempoParam = "&target_tempo=150"
+    } else if (data.tempo === "I have no choice") {
+      tempoParam = "&target_tempo=120"
+    }
 
     let positivenessParam;
     if (data.positiveness === "I prefer melancholic tracks") {
@@ -100,7 +108,9 @@ export function handleSelectionSubmit() {
       positivenessParam = "&target_valence=0.8"
     } else if (data.positiveness === "Make me the happiest person on earth!") {
       positivenessParam = "&target_valence=1"
-    };
+    } else if (data.positiveness === "I have no choice") {
+      positivenessParam = "&target_valence=0.9"
+    }
 
     const setParams = {
       acousticness: "&max_acousticness=0.4",
@@ -109,13 +119,12 @@ export function handleSelectionSubmit() {
 
     const root_endpoint = 'https://api.spotify.com/v1/recommendations?limit=21';
     const final_endpoint = `${root_endpoint}${genreParam}${danceParam}${setParams.acousticness}${setParams.instrumentalness}${energyParam}${loudnessParam}${tempoParam}${positivenessParam}`
-    console.log(final_endpoint);
+
     fetch(final_endpoint, {
       headers: {'Authorization': "Bearer " + token}
     })
     .then(response => response.json())
     .then(function(spotifyData) {
-      console.log(spotifyData);
       spotifyData.tracks.length === 0 ? dispatch(onNoReturn()) : dispatch(fetch_success(spotifyData));
     })
     .catch(function(error) {

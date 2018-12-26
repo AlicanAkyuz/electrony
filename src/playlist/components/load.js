@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
 const afterformStyle = afterformStyle => ({
@@ -48,21 +49,16 @@ const afterformStyle = afterformStyle => ({
     color: '#C1CDC1',
   },
   button: {
-    height: '3.8em',
-    width: '12em',
     backgroundColor: '#00611C',
-    borderRadius: '7px',
-    border: 'none',
+    borderRadius: '5px',
     '&:hover': {
       backgroundColor: "#4A7023",
     },
   },
   links: {
     fontFamily: 'Montserrat',
-    fontSize: '1.3vmax',
     fontWeight: '800',
     textDecoration: 'none',
-    textTransform: 'none',
     color: '#C1CDC1',
   },
   progress: {
@@ -82,9 +78,9 @@ function Load(props) {
   if (props.failure) {
     showButton =
     <div class="animated flip">
-      <button onClick={props.onReset} className={classes.button} size="large" variant="contained">
+      <Button onClick={props.onReset} size="medium" variant="contained" color="primary" className={classes.button}>
         <Link className={classes.links} to="/">TRY AGAIN!</Link>
-      </button>
+      </Button>
     </div>
 
   };

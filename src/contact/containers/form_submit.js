@@ -17,7 +17,7 @@ const styles = submitTheme => ({
     height: '100vh',
     gridTemplateRows: '10% 7% 10% 5% 10% 5% 17% 17% 10% 9%',
     gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
-    backgroundColor: '#0c0c0c'
+    backgroundColor: '#0c0c0c',
   },
   logoItem: {
     gridRow: '1 / span 1',
@@ -45,15 +45,21 @@ const styles = submitTheme => ({
   },
   nameItem: {
     gridRow: '3 / span 1',
-    gridColumn: '7 / span 1',
+    gridColumn: '4 / span 7',
+    width: '100%',
+    textAlign: 'center'
   },
   emailItem: {
     gridRow: '5 / span 1',
-    gridColumn: '7 / span 1',
+    gridColumn: '4 / span 7',
+    width: '100%',
+    textAlign: 'center',
   },
   messageItem: {
     gridRow: '7 / span 1',
-    gridColumn: '7 / span 1',
+    gridColumn: '4 / span 7',
+    width: '100%',
+    textAlign: 'center',
   },
   buttonItem: {
     gridRow: '9 / span 1',
@@ -79,13 +85,17 @@ const styles = submitTheme => ({
     },
   },
   textField: {
-    backgroundColor: '#CFDBC5',
+    backgroundColor: '#F0FFF0',
     borderRadius: '5px',
     width: '100%',
+    maxWidth: '500px',
+    textAlign: 'center'
+  },
+  errorText: {
+    borderRadius: '5px',
+    textAlign: 'center'
   },
   button: {
-    height: '3.5em',
-    width: '8em',
     color: '#F0FFF0',
     backgroundColor: '#00611C',
     borderRadius: '5px',
@@ -154,25 +164,51 @@ class FormSubmit extends React.Component {
         </div>
         <div className={classes.nameItem}>
           <div class="animated fadeIn">
-            <TextField className={classes.textField} name="name" label="Name" required margin="normal" value={this.props.name} onChange={this.handleChange} error={!!showNameError} />
-            <FormHelperText error>{showNameError}</FormHelperText>
+            <TextField className={classes.textField}
+                       name="name"
+                       label="Name"
+                       required
+                       margin="normal"
+                       variant="filled"
+                       value={this.props.name}
+                       onChange={this.handleChange}
+                       error={!!showNameError} />
+            <FormHelperText className={classes.errorText} error>{showNameError}</FormHelperText>
           </div>
         </div>
         <div className={classes.emailItem}>
           <div class="animated fadeIn">
-            <TextField className={classes.textField} name="email" label="Email" required margin="normal"value={this.props.email} onChange={this.handleChange} error={!!showEmailError} />
-            <FormHelperText error>{showEmailError}</FormHelperText>
+            <TextField className={classes.textField}
+                       name="email"
+                       label="Email"
+                       required
+                       margin="normal"
+                       variant="filled"
+                       value={this.props.email}
+                       onChange={this.handleChange}
+                       error={!!showEmailError} />
+            <FormHelperText className={classes.errorText} error>{showEmailError}</FormHelperText>
           </div>
         </div>
         <div className={classes.messageItem}>
           <div class="animated fadeIn">
-            <TextField className={classes.textField} name="message" label="Message" multiline required margin="normal" rows="8" value={this.props.message} onChange={this.handleChange} error={!!showMessageError} />
-            <FormHelperText error>{showMessageError}</FormHelperText>
+            <TextField className={classes.textField}
+                       name="message"
+                       label="Message"
+                       multiline
+                       required
+                       margin="normal"
+                       variant="filled"
+                       rows="8"
+                       value={this.props.message}
+                       onChange={this.handleChange}
+                       error={!!showMessageError} />
+            <FormHelperText className={classes.errorText} error>{showMessageError}</FormHelperText>
           </div>
         </div>
         <div className={classes.buttonItem}>
           <div class="animated fadeInUpBig delay-1s">
-            <Button onClick={this.handleSubmit} position="center" size="medium" className={classes.button}>Submit</Button>
+            <Button onClick={this.handleSubmit} position="center" size="large" className={classes.button}>Submit</Button>
           </div>
         </div>
       </div>
