@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -14,74 +15,108 @@ import { onNameUpdated,
 const styles = submitTheme => ({
   container: {
     display: 'grid',
-    height: '100vh',
-    gridTemplateRows: '10% 7% 10% 5% 10% 5% 17% 17% 10% 9%',
-    gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
+    width: '100%',
+    height: 'auto',
+    minHeight: '100vh',
+    gridTemplateRows: '10vmin 7vmin 15vmin 1vmin 15vmin 1vmin 35vmin 2vmin 10vmin 3vmin',
+    gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c',
+  },
+  firstRow: {
+    gridRow: '1 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0f0f0f',
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 3',
-    placeSelf: 'center',
-    paddingTop: '5%'
+    gridColumn: '1 / span 3',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '8 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '4 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '10 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '5 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '12 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '6 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
+  fourthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fifthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '8 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+
+
   nameItem: {
     gridRow: '3 / span 1',
-    gridColumn: '4 / span 7',
+    gridColumn: '2 / span 9',
     width: '100%',
     textAlign: 'center'
   },
   emailItem: {
     gridRow: '5 / span 1',
-    gridColumn: '4 / span 7',
+    gridColumn: '2 / span 9',
     width: '100%',
     textAlign: 'center',
   },
   messageItem: {
     gridRow: '7 / span 1',
-    gridColumn: '4 / span 7',
+    gridColumn: '2 / span 9',
     width: '100%',
     textAlign: 'center',
   },
+
   buttonItem: {
     gridRow: '9 / span 1',
-    gridColumn: '4 / span 7',
+    gridColumn: '2 / span 9',
     placeSelf: 'center',
   },
   logo: {
-    textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3.2vmax',
+    fontSize: '2.4vmax',
     fontWeight: '800',
+    marginTop: '4%',
+    marginLeft: '15%'
+  },
+  logoLink: {
+    textDecoration: 'none',
     color: '#4A7023',
   },
   links: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
     color: '#CFDBC5',
     '&:hover': {
       color: "#00611C",
+    },
+  },
+  selectedLink: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#00611C',
+    '&:hover': {
+      color: "#CFDBC5",
     },
   },
   textField: {
@@ -150,17 +185,26 @@ class FormSubmit extends React.Component {
 
     return (
       <div className={classes.container}>
+        <div className={classes.firstRow}></div>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electrony</p>
+          <Typography className={classes.logo}>
+            <Link className={classes.logoLink} to="/">Electrony</Link>
+          </Typography>
         </div>
         <div className={classes.firstButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
         </div>
         <div className={classes.secondButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/steps">PLAYLIST</Link></Button>
         </div>
         <div className={classes.thirdButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+        </div>
+        <div className={classes.fourthButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        </div>
+        <div className={classes.fifthButtonItem}>
+          <Button disabled position="center" size="medium"><Link className={classes.selectedLink} to="/contact">CONTACT</Link></Button>
         </div>
         <div className={classes.nameItem}>
           <div class="animated fadeIn">
@@ -199,7 +243,7 @@ class FormSubmit extends React.Component {
                        required
                        margin="normal"
                        variant="filled"
-                       rows="8"
+                       rows="4"
                        value={this.props.message}
                        onChange={this.handleChange}
                        error={!!showMessageError} />

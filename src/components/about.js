@@ -3,65 +3,85 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const styles = aboutTheme => ({
   container: {
     display: 'grid',
-    height: '100vh',
-    gridTemplateRows: '10% 5% 8% 3% 6% 50% 18%',
-    gridTemplateColumns: '5% 8% 2% 8% 2% 8% 34% 8% 2% 8% 2% 8% 5%',
+    width: '100%',
+    height: 'auto',
+    minHeight: '100vh',
+    gridTemplateRows: '10vmin 10vmin 2vmin 2vmin 35vmin 3vmin',
+    gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
+  },
+  firstRow: {
+    gridRow: '1 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0f0f0f',
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 3',
-    placeSelf: 'center',
-    paddingTop: '10%'
+    gridColumn: '1 / span 3',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '8 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '4 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '10 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '5 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '12 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '6 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fourthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fifthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '8 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   aboutTitleItem: {
-    gridRow: '3 / span 1',
-    gridColumn: '7 / span 1',
-    placeSelf: 'center',
+    gridRow: '2 / span 1',
+    gridColumn: '5 / span 3',
   },
   hr: {
-    gridRow: '4 / span 1',
-    gridColumn: '7 / span 1',
+    gridRow: '3 / span 1',
+    gridColumn: '5 / span 3',
     placeSelf: 'center'
   },
   aboutItem: {
-    gridRow: '6 / span 1',
-    gridColumn: '4 / span 7',
-    placeSelf: 'center'
+    gridRow: '5 / span 1',
+    gridColumn: '3 / span 7',
   },
-//////////////////////////////////////////
+//////////////////////////////  ITEMs  ///////////////////////////////////////
   logo: {
-    textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3.2vmax',
+    fontSize: '2.4vmax',
     fontWeight: '800',
+    marginTop: '4%',
+    marginLeft: '15%'
+  },
+  logoLink: {
+    textDecoration: 'none',
     color: '#4A7023',
   },
   links: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -70,16 +90,26 @@ const styles = aboutTheme => ({
       color: "#00611C",
     },
   },
+  selectedLink: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#00611C',
+    '&:hover': {
+      color: "#CFDBC5",
+    },
+  },
   aboutTitle: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '2.8vmax',
+    fontSize: '2.5vmax',
     fontWeight: '800',
     color: '#C1CDC1',
   },
   about: {
     fontFamily: 'Roboto',
-    fontSize: '1.3vmax',
+    fontSize: '2.2vmin',
     fontWeight: '400',
     color: '#C1CDC1',
   }
@@ -89,27 +119,36 @@ export function About(props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
+      <div className={classes.firstRow}></div>
       <div className={classes.logoItem}>
-        <p className={classes.logo}>Electrony</p>
+        <Typography className={classes.logo}>
+          <Link className={classes.logoLink} to="/">Electrony</Link>
+        </Typography>
       </div>
       <div className={classes.firstButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
       </div>
       <div className={classes.secondButtonItem}>
-        <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        <Button position="center" size="medium"><Link className={classes.links} to="/steps">PLAYLIST</Link></Button>
       </div>
       <div className={classes.thirdButtonItem}>
+        <Button disabled position="center" size="medium"><Link className={classes.selectedLink} to="/about">ABOUT</Link></Button>
+      </div>
+      <div className={classes.fourthButtonItem}>
+        <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+      </div>
+      <div className={classes.fifthButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
       </div>
       <div className={classes.aboutTitleItem}>
         <p className={classes.aboutTitle}>About</p>
       </div>
       <div className={classes.hr}>
-        <hr style={{width: '8.5em'}} />
+        <hr style={{width: '16vmin'}} />
       </div>
       <div className={classes.aboutItem}>
         <div class="animated fadeIn">
-          <p className={classes.about}>
+          <Typography className={classes.about}>
             As Karlheinz Stockhausen once said, we are interested when other musicians are trying to
             discover new worlds of sound. We therefore celebrate electronic music due to the vast amount of
             possibilities it brings forward for the aural expression of one's subjectivity.
@@ -133,8 +172,8 @@ export function About(props) {
             tempo, and positiveness) which a user draws upon to specify the kind of electronic music they are seeking.
             In the background, Electrony evaluates the choices of the user to find electronic music tracks that
             closely correspond to the quest of the user. Electrony then curates a list of tracks which can finally
-            be uploaded to the user's Spotify account.            
-          </p>
+            be uploaded to the user's Spotify account.
+          </Typography>
       </div>
       </div>
     </div>

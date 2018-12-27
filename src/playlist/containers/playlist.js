@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Link } from 'react-router-dom';
@@ -20,44 +21,56 @@ import { handleSelectionSubmit,
 const playlistStyle = playlistStyle => ({
   container: {
     display: 'grid',
+    width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '1% 1% 95% 3%',
+    gridTemplateRows: '10vmin 2vmin 97% 3%',
     gridRowGap: '10px',
-    gridTemplateColumns: '5% 10% 10% 10% 30% 10% 10% 10% 5%',
+    gridTemplateColumns: '5% 10% 10% 10% 10% 10% 10% 10% 10% 10% 5%',
     backgroundColor: '#0c0c0c'
+  },
+  firstRow: {
+    gridRow: '1 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0f0f0f',
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 2',
-    placeSelf: 'center',
-    paddingTop: '20%',
-    marginLeft: '5%'
+    gridColumn: '1 / span 3',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '6 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%'
+    gridColumn: '4 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '7 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%',
+    gridColumn: '5 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
+    gridColumn: '6 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fourthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fifthButtonItem: {
+    gridRow: '1 / span 1',
     gridColumn: '8 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   contentItem: {
     gridRow: '3 / span 1',
-    gridColumn: '2 / span 7',
-  },
-  hr: {
-  width: '8.5em',
+    gridColumn: '2 / span 9',
   },
   /////////////////////////////////////////
   cardHolder: {
@@ -69,7 +82,7 @@ const playlistStyle = playlistStyle => ({
   numberCard: {
     gridRow: '1 / span 1',
     gridColumn: '2 / span 1',
-    backgroundColor: '#353F3E',
+    backgroundColor: '#111111',
     width: '100%'
   },
   cardNumber: {
@@ -77,7 +90,8 @@ const playlistStyle = playlistStyle => ({
     fontSize: '3.8vmax',
     fontWeight: '800',
     color: '#CFDBC5',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: '3%'
   },
   contentCard: {
     gridRow: '1 / span 1',
@@ -89,7 +103,8 @@ const playlistStyle = playlistStyle => ({
     fontFamily: 'Roboto',
     fontSize: '2vmax',
     color: '#c5c5c5',
-    marginLeft: '3%'
+    marginLeft: '3%',
+    marginTop: '2%'
   },
   artistAndAlbumName: {
     fontFamily: 'Roboto',
@@ -109,15 +124,19 @@ const playlistStyle = playlistStyle => ({
     borderRadius: '5px'
   },
   logo: {
-    textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3.2vmax',
+    fontSize: '2.4vmax',
     fontWeight: '800',
+    marginTop: '4%',
+    marginLeft: '15%'
+  },
+  logoLink: {
+    textDecoration: 'none',
     color: '#4A7023',
   },
   links: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -126,12 +145,22 @@ const playlistStyle = playlistStyle => ({
       color: "#00611C",
     },
   },
-  title: {
-    textAlign: 'center',
+  selectedLink: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#00611C',
+    '&:hover': {
+      color: "#CFDBC5",
+    },
+  },
+  titleText: {
     fontFamily: 'Montserrat',
-    fontSize: '2.2vmax',
+    fontSize: '1.8vmax',
     fontWeight: '400',
     color: '#C1CDC1',
+    textAlign: 'center'
   },
   button: {
     backgroundColor: '#00611C',
@@ -177,23 +206,31 @@ class Playlist extends React.Component {
     if (this.props.playlist_success) {
       pageContent =
       <div className={classes.container}>
+        <div className={classes.firstRow}></div>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electrony</p>
+          <Typography className={classes.logo}>
+            <Link className={classes.logoLink} to="/">Electrony</Link>
+          </Typography>
         </div>
         <div className={classes.firstButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
         </div>
         <div className={classes.secondButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+          <Button disabled position="center" size="medium"><Link className={classes.selectedLink} to="/steps">PLAYLIST</Link></Button>
         </div>
         <div className={classes.thirdButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+        </div>
+        <div className={classes.fourthButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        </div>
+        <div className={classes.fifthButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
         </div>
+
+
         <div className={classes.contentItem}>
-          <p className={classes.title}>Here are the tracks specially crafted for your choices</p>
-          <div>
-            <hr className={classes.hr}/>
-          </div>
+          <Typography className={classes.titleText}>Here are the tracks specially crafted for your choices!</Typography>
           <div class="animated flip" style={{textAlign: 'center', marginTop: '2%'}}>
             <Button size="large" variant="contained" className={classes.button}
                     onClick={() => this.props.dispatch(details_box_open())}>
@@ -203,12 +240,12 @@ class Playlist extends React.Component {
           {tracks.map((track, index) =>
           <div className={classes.cardHolder}>
             <Card className={classes.numberCard}>
-              <p className={classes.cardNumber}>{index + 1}</p>
+              <Typography className={classes.cardNumber}>{index + 1}</Typography>
             </Card>
             <Card className={classes.contentCard}>
-              <p className={classes.trackName}>{track.name}</p>
-              <p className={classes.artistAndAlbumName}>Artist: {track.album.artists[0].name}</p>
-              <p className={classes.artistAndAlbumName}>Album: {track.album.name}</p>
+              <Typography className={classes.trackName}>{track.name}</Typography>
+              <Typography className={classes.artistAndAlbumName}>Artist: {track.album.artists[0].name}</Typography>
+              <Typography className={classes.artistAndAlbumName}>Album: {track.album.name}</Typography>
             </Card>
             <Card className={classes.imageCard}>
               <CardMedia className={classes.cardMedia} image={track.album.images[1].url} title="albumImage"/>

@@ -79,7 +79,7 @@ function Load(props) {
     showButton =
     <div class="animated flip">
       <Button onClick={props.onReset} size="medium" variant="contained" color="primary" className={classes.button}>
-        <Link className={classes.links} to="/">TRY AGAIN!</Link>
+        <Link className={classes.links} to="/steps">TRY AGAIN!</Link>
       </Button>
     </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Stepper from '@material-ui/core/Stepper';
@@ -28,79 +29,82 @@ import { onPlaylistReset } from '../../actions/playlist_actions/actions';
 const styles = theme => ({
   container: {
     display: 'grid',
+    width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '3% 5% 6% 1% 2% 7% 6% 1% 62% 6%',
-    gridTemplateColumns: '4% 10% 10% 10% 32% 10% 10% 10% 4%',
+    gridTemplateRows: '10vmin 5vmin 7vmin 2vmin 2vmin 5vmin 120vmin 5vmin',
+    gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
+  },
+  firstRow: {
+    gridRow: '1 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0f0f0f',
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 2',
-    placeSelf: 'center',
-    paddingTop: '20%',
+    gridColumn: '1 / span 3',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '6 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%'
+    gridColumn: '4 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '7 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%'
+    gridColumn: '5 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
+    gridColumn: '6 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fourthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fifthButtonItem: {
+    gridRow: '1 / span 1',
     gridColumn: '8 / span 1',
-    placeSelf: 'center',
-    paddingTop: '40%'
+    marginTop: '17%',
+    justifySelf: 'center'
   },
-  firsttitleItem: {
+
+  titleItem: {
     gridRow: '3 / span 1',
-    gridColumn: '3 / span 5',
-    placeSelf: 'center'
-  },
-  hr: {
-    gridRow: '5 / span 1',
-    gridColumn: '4 / span 3',
-    placeSelf: 'center'
-  },
-  secondtitleItem: {
-    gridRow: '6 / span 1',
-    gridColumn: '3 / span 5',
-    placeSelf: 'center'
+    gridColumn: '2 / span 9',
+    textAlign: 'center'
   },
   arrowItem: {
-    gridRow: '7 / span 1',
-    gridColumn: '5 / span 1',
+    gridRow: '5 / span 1',
+    gridColumn: '6 / span 1',
     placeSelf: 'center'
   },
   stepperItem: {
-    gridRow: '9 / span 1',
-    gridColumn: '1 / span 9',
+    gridRow: '7 / span 1',
+    gridColumn: '2 / span 9',
   },
 ///////////////////////////////////////////////////////////////////////////////
   logo: {
-    textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3.2vmax',
+    fontSize: '2.4vmax',
     fontWeight: '800',
+    marginTop: '4%',
+    marginLeft: '15%'
+  },
+  logoLink: {
+    textDecoration: 'none',
     color: '#4A7023',
   },
-  firstText: {
-    textAlign: 'center',
+  titleText: {
     fontFamily: 'Montserrat',
-    fontSize: '2.5vmax',
-    fontWeight: '400',
-    color: '#C1CDC1',
-  },
-  secondText: {
-    textAlign: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: '2.5vmax',
+    fontSize: '1.8vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   },
@@ -108,14 +112,9 @@ const styles = theme => ({
     width: '2.8vmax',
     height: '2.3vmax'
   },
-  button: {
-    height: '2.5em',
-    width: '5.5em',
-    borderRadius: '8px',
-  },
   links: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -124,8 +123,18 @@ const styles = theme => ({
       color: "#00611C",
     },
   },
+  selectedLink: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#00611C',
+    '&:hover': {
+      color: "#CFDBC5",
+    },
+  },
   stepperBody: {
-    backgroundColor: '#353F3E',
+    backgroundColor: '#191919',
     maxWidth: '100%',
     borderRadius: '5px'
   },
@@ -137,7 +146,7 @@ const styles = theme => ({
   },
   labelText: {
     fontFamily: 'Roboto',
-    fontSize: '2.2vmax',
+    fontSize: '2vmax',
     fontWeight: '400',
     color: '#c6c6c6',
   },
@@ -145,20 +154,24 @@ const styles = theme => ({
     textAlign: 'center',
   },
   contentText: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.5vmax',
+    fontFamily: 'Roboto',
+    fontSize: '1.2vmax',
     fontWeight: '400',
     color: '#c6c6c6',
     textAlign: 'center'
   },
   selectButton: {
-    marginRight: '1.3%',
+    marginRight: '1.8%',
+    width: '2vmax',
     borderRadius: '5px',
     backgroundColor: '#00611C',
     '&:hover': {
       backgroundColor: "#4A7023",
-    },
+    }
+  },
+  select: {
     fontFamily: 'Montserrat',
+    fontSize: '15px',
     fontWeight: '800',
     color: '#C1CDC1'
   },
@@ -239,30 +252,32 @@ class Steps extends React.Component {
 
     return (
       <div className={classes.container}>
+        <div className={classes.firstRow}></div>
         <div className={classes.logoItem}>
-          <p className={classes.logo}>Electrony</p>
+          <Typography className={classes.logo}>
+            <Link className={classes.logoLink} to="/">Electrony</Link>
+          </Typography>
         </div>
         <div className={classes.firstButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+          <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
         </div>
         <div className={classes.secondButtonItem}>
-          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+          <Button disabled position="center" size="medium"><Link className={classes.selectedLink} to="/steps">PLAYLIST</Link></Button>
         </div>
         <div className={classes.thirdButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+        </div>
+        <div className={classes.fourthButtonItem}>
+          <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        </div>
+        <div className={classes.fifthButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
         </div>
-
-        <div className={classes.firsttitleItem}>
-          <p className={classes.firstText}>Hi, {userName}! Let's try to get you what you want</p>
-        </div>
-        <div className={classes.hr}>
-          <hr style={{width: '8.5em'}} />
+        <div className={classes.titleItem}>
+          <Typography className={classes.titleText}>Hi, {userName}! Follow the guide below to define your tune</Typography>
         </div>
         <div className={classes.arrowItem}>
           <img className={classes.arrow} src="./arrow.png" alt="arrow" />
-        </div>
-        <div className={classes.secondtitleItem}>
-          <p className={classes.secondText}>Follow the guide below to define your tune</p>
         </div>
         <div className={classes.stepperItem}>
           <Stepper className={classes.stepperBody} activeStep={this.props.activeStep} orientation="vertical">
@@ -277,7 +292,7 @@ class Steps extends React.Component {
                     <div class="animated fadeInLeftBig" style={{textAlign: 'center'}}>
                       <Button size="large" variant="contained" className={classes.selectButton}
                               onClick={() => {this.props.dispatch(onDialogOpen())}}>
-                        SELECT
+                        <Typography className={classes.select}>SELECT</Typography>
                       </Button>
                     </div>
                     {goBackButton}
