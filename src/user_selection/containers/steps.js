@@ -13,7 +13,7 @@ import { getSteps, getStepContent } from '../components/stepper_functions';
 import DialogBox from '../components/dialog_box';
 import { getUserData,
          onDialogOpen,
-         onBackdropClick,
+         onEscape,
          onDialogClose,
          onBackClick,
          handleGenreSelection,
@@ -75,7 +75,6 @@ const styles = theme => ({
     marginTop: '17%',
     justifySelf: 'center'
   },
-
   titleItem: {
     gridRow: '3 / span 1',
     gridColumn: '2 / span 9',
@@ -162,7 +161,6 @@ const styles = theme => ({
   },
   selectButton: {
     marginRight: '1.8%',
-    width: '2vmax',
     borderRadius: '5px',
     backgroundColor: '#00611C',
     '&:hover': {
@@ -298,7 +296,7 @@ class Steps extends React.Component {
                     {goBackButton}
                     <DialogBox
                       handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
-                      handleBackdropClick={() => {this.props.dispatch(onBackdropClick())}}
+                      handleEscape={() => {this.props.dispatch(onEscape())}}
                       handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
                       handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
                       handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}

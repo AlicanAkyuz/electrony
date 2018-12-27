@@ -61,8 +61,6 @@ const styles = submitTheme => ({
     marginTop: '17%',
     justifySelf: 'center'
   },
-
-
   nameItem: {
     gridRow: '3 / span 1',
     gridColumn: '2 / span 9',
@@ -81,7 +79,6 @@ const styles = submitTheme => ({
     width: '100%',
     textAlign: 'center',
   },
-
   buttonItem: {
     gridRow: '9 / span 1',
     gridColumn: '2 / span 9',

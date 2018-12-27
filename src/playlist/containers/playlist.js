@@ -12,6 +12,7 @@ import PlaylistSuccess from '../components/playlist_success';
 import { connect } from 'react-redux';
 import { handleSelectionSubmit,
          details_box_open,
+         onEscape,
          handleNameChange,
          handleDescriptionChange,
          handleClickBox,
@@ -72,7 +73,12 @@ const playlistStyle = playlistStyle => ({
     gridRow: '3 / span 1',
     gridColumn: '2 / span 9',
   },
-  /////////////////////////////////////////
+  lastRow: {
+    gridRow: '4 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0c0c0c',
+  },
+  /////////////////////////// ITEMS  ///////////////////////////
   cardHolder: {
     display: 'grid',
     gridTemplateRows: '100%',
@@ -259,6 +265,7 @@ class Playlist extends React.Component {
             </Button>
           </div>
         </div>
+        <div className={classes.lastRow}></div>
       </div>
     };
 
@@ -271,6 +278,7 @@ class Playlist extends React.Component {
                           handleDescriptionChange={(value) => {this.props.dispatch(handleDescriptionChange(value))}}
                           checkBoxState={this.props.check_box_state}
                           handleClickBox={() => {this.props.dispatch(handleClickBox())}}
+                          handleEscape={() => {this.props.dispatch(onEscape())}}
                           handleDetailsSubmit={() => {this.props.dispatch(handleDetailsSubmit())}} />
     };
 
@@ -288,19 +296,9 @@ class Playlist extends React.Component {
     };
 
     if (this.props.playlist_created) {
-      let stateOfPrivate;
-      this.props.check_box_state === true ? stateOfPrivate = "Yes" : stateOfPrivate = "No";
-      const artists = `${this.props.first_artist} and ${this.props.second_artist}`;
       pageContent = <PlaylistSuccess token={this.props.token}
                                      userName={this.props.user_name}
-                                     playlistName={this.props.playlist_name}
-                                     playlistDescription={this.props.playlist_description}
-                                     private={stateOfPrivate}
-                                     artists={artists}
-                                     genre={this.props.genre}
-                                     playlistUri={this.props.playlist_uri}
-                                     playlistUrl={this.props.playlist_url}
-                                    />
+                                     playlistUri={this.props.playlist_uri} />
     };
 
     return (<div>{pageContent}</div>)
@@ -312,7 +310,6 @@ class Playlist extends React.Component {
 const mapStateToProps = state => {
   const info = state.PlaylistReducer;
   return {
-    genre: state.SelectionReducer.user_selection.genre,
     token: state.SelectionReducer.user_data.user_token,
     playlist_charging: info.playlist_charging,
     playlist_charging_content_title: info.playlist_charging_content.title,
@@ -325,15 +322,12 @@ const mapStateToProps = state => {
     playlist_failure_content_content: info.playlist_failure_content.content,
     playlist_success: info.playlist_success,
     tracks: info.tracks,
-    first_artist: info.first_artist,
-    second_artist: info.second_artist,
     details_box: info.details_box,
     user_name: info.user_name,
     playlist_name: info.playlist_name,
     playlist_description: info.playlist_description,
     check_box_state: info.check_box_state,
     playlist_uri: info.playlist_uri,
-    playlist_url: info.playlist_url,
     uploading: info.uploading,
     uploading_content_title: info.uploading_content.title,
     uploading_content_content: info.uploading_content.content,

@@ -1,71 +1,107 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const styles = successTheme => ({
   container: {
     display: 'grid',
+    width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: "8% 7% 38% 7% 27% 3% 7% 3%",
-    gridTemplateColumns: '6% 8% 6% 2% 3% 1% 8% 32% 8% 3% 8% 3% 8% 4%',
+    gridTemplateRows: '10vmin 3vmin 500px 3vmin 7vmin 2vmin',
+    gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
+  },
+  firstRow: {
+    gridRow: '1 / span 1',
+    gridColumn: '1 / span 11',
+    backgroundColor: '#0f0f0f',
   },
   logoItem: {
     gridRow: '1 / span 1',
-    gridColumn: '2 / span 2',
-    placeSelf: 'center',
-    paddingTop: '7%',
-    marginLeft: '15%'
+    gridColumn: '1 / span 3',
   },
   firstButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '9 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '4 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   secondButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '11 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '5 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   thirdButtonItem: {
     gridRow: '1 / span 1',
-    gridColumn: '13 / span 1',
-    placeSelf: 'center',
-    paddingTop: '15%'
+    gridColumn: '6 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fourthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '7 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
+  },
+  fifthButtonItem: {
+    gridRow: '1 / span 1',
+    gridColumn: '8 / span 1',
+    marginTop: '17%',
+    justifySelf: 'center'
   },
   playlistItem: {
     gridRow: '3 / span 1',
-    gridColumn: '7 / span 3',
-    placeSelf: 'center'
-  },
-  paperItem: {
-    gridRow: '5 / span 1',
-    gridColumn: '1 / span 14',
-    placeSelf: 'center'
+    gridColumn: '2 / span 9',
+    placeSelf: 'center',
+    textAlign: 'center'
   },
   buttonItem: {
-    gridRow: '7 / span 1',
-    gridColumn: '7 / span 3',
+    gridRow: '5 / span 1',
+    gridColumn: '2 / span 9',
     placeSelf: 'center'
   },
-//////////////////////////////////////////
+////////////////////////////// ITEMS //////////////////////////////////////////
   logo: {
-    textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '3vmax',
+    fontSize: '2.4vmax',
     fontWeight: '800',
+    marginTop: '4%',
+    marginLeft: '15%'
+  },
+  logoLink: {
+    textDecoration: 'none',
     color: '#4A7023',
   },
-  links: {
+  playlistTitle: {
     fontFamily: 'Montserrat',
-    fontSize: '1.3vmax',
+    fontSize: '1.7vmax',
+    fontWeight: '400',
+    color: '#C1CDC1',
+  },
+  button: {
+    marginRight: '1.8%',
+    borderRadius: '5px',
+    backgroundColor: '#00611C',
+    '&:hover': {
+      backgroundColor: "#4A7023",
+    }
+  },
+  link: {
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    fontWeight: '800',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#C1CDC1'
+  },
+  links: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     fontWeight: '800',
     textDecoration: 'none',
     textTransform: 'none',
@@ -74,62 +110,14 @@ const styles = successTheme => ({
       color: "#00611C",
     },
   },
-  paper: {
-    backgroundColor: '#191919',
-    borderRadius: '5px',
-    ...successTheme.mixins.gutters(),
-    paddingTop: successTheme.spacing.unit * 2,
-    paddingBottom: successTheme.spacing.unit * 2,
-  },
-  playlistPaper: {
-    backgroundColor: '#191919',
-    borderRadius: '5px',
-    ...successTheme.mixins.gutters(),
-    paddingTop: successTheme.spacing.unit * 2,
-    paddingBottom: successTheme.spacing.unit * 1,
-  },
-  buttonPaper: {
-    backgroundColor: '#00611C',
-    ...successTheme.mixins.gutters(),
-    paddingTop: successTheme.spacing.unit * 1,
-    paddingBottom: successTheme.spacing.unit * 1,
-  },
-  title: {
-    textAlign: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: '1.6vmax',
-    fontWeight: '400',
-    color: '#c5c5c5',
-  },
-  texts: {
-    fontFamily: 'Montserrat',
-    fontSize: '1.2vmax',
-    fontWeight: '400',
-    color: '#CFDBC5',
-  },
-  playlistTitle: {
-    textAlign: 'center',
-    fontFamily: 'Montserrat',
-    fontSize: '1.6vmax',
-    fontWeight: '400',
-    color: '#c5c5c5',
-  },
-  button: {
-    backgroundColor: '#00611C',
-    height: '100%',
-    width: '100%',
-    borderRadius: '5px',
-    border: 'none'
-  },
-  link: {
-    fontFamily: 'Montserrat',
-    fontSize: '12px',
-    fontWeight: '800',
+  selectedLink: {
+    fontFamily: 'Roboto',
+    fontSize: '1vmax',
     textDecoration: 'none',
     textTransform: 'none',
-    color: '#CFDBC5',
+    color: '#00611C',
     '&:hover': {
-      color: "#c5c5c5",
+      color: "#CFDBC5",
     },
   },
 });
@@ -141,70 +129,49 @@ export function PlaylistSuccess(props) {
 
   return (
     <div className={classes.container}>
+      <div className={classes.firstRow}></div>
       <div className={classes.logoItem}>
-        <p className={classes.logo}>Electronify</p>
+        <Typography className={classes.logo}>
+          <Link className={classes.logoLink} to="/">Electrony</Link>
+        </Typography>
       </div>
       <div className={classes.firstButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/">HOME</Link></Button>
       </div>
       <div className={classes.secondButtonItem}>
-        <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+        <Button disabled position="center" size="medium"><Link className={classes.selectedLink} to="/steps">PLAYLIST</Link></Button>
       </div>
       <div className={classes.thirdButtonItem}>
+        <Button position="center" size="medium"><Link className={classes.links} to="/about">ABOUT</Link></Button>
+      </div>
+      <div className={classes.fourthButtonItem}>
+        <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">TEAM</Link></Button>
+      </div>
+      <div className={classes.fifthButtonItem}>
         <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
       </div>
       <div className={classes.playlistItem}>
-        <Paper className={classes.playlistPaper} elevation={1}>
-          <Typography variant="h5" component="h3" className={classes.playlistTitle}>
-            Here is your playlist, {props.userName}:
-          </Typography>
-          <br />
-          <div class="animated zoomIn delay-1s">
-            <iframe src={embedLink}
-              width="300"
-              height="230"
-              frameBorder="0"
-              title="Spotify Playlist"
-              allowtransparency="true"
-              allow="encrypted-media">
-            </iframe>
-          </div>
-        </Paper>
-      </div>
-      <div className={classes.paperItem}>
-        <Paper className={classes.paper} elevation={5}>
-          <Typography variant="h5" component="h3" className={classes.title}>
-             Your playlist's details:
-          </Typography>
-          <br />
-          <Typography component="p" className={classes.texts}>
-            Name:&nbsp; {props.playlistName}
-          </Typography>
-          <Typography component="p" className={classes.texts}>
-            Description:&nbsp; {props.playlistDescription}
-          </Typography>
-          <Typography component="p" className={classes.texts}>
-            Private:&nbsp; {props.private}
-          </Typography>
-          <Typography component="p" className={classes.texts}>
-            Notable Artists:&nbsp; {props.artists}
-          </Typography>
-          <Typography component="p" className={classes.texts}>
-            Dominant Genre:&nbsp; {props.genre}
-          </Typography>
-          <Typography component="p" className={classes.texts}>
-            Spotify Link:&nbsp; <a style={{textDecoration: 'none', color: '#308014'}} target="_blank" href={props.playlistUrl}>Click Here.</a>
-          </Typography>
-        </Paper>
+        <Typography variant="h5" component="h3" className={classes.playlistTitle}>
+          Here is your playlist, {props.userName}!
+        </Typography>
+        <br />
+        <div class="animated zoomIn delay-1s">
+          <iframe src={embedLink}
+            width="300"
+            height="450"
+            frameBorder="0"
+            title="Spotify Playlist"
+            allowtransparency="true"
+            allow="encrypted-media">
+          </iframe>
+        </div>
       </div>
       <div className={classes.buttonItem}>
-        <Paper className={classes.buttonPaper} elevation={1}>
-          <div class="animated flip">
-            <button className={classes.button}>
-              <Link to="/" className={classes.link}>CREATE ANOTHER ONE</Link>
-            </button>
-          </div>
-        </Paper>
+        <div class="animated flip">
+          <Button size="large" variant="contained" className={classes.button}>
+            <Link className={classes.link} to="/steps">CREATE ANOTHER ONE</Link>
+          </Button>
+        </div>
       </div>
     </div>
   )

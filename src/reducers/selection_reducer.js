@@ -2,7 +2,7 @@ import {
   TOKEN,
   USER_DATA,
   DIALOG_OPEN,
-  BACKDROP_CLICK,
+  ESCAPED,
   DIALOG_CLOSE,
   BACK_CLICK,
   GENRE_SELECTED,
@@ -61,7 +61,7 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
       newState.select.dialogOpen = action.payload
       return newState;
     }
-    case BACKDROP_CLICK: {
+    case ESCAPED: {
       const newState = Object.assign({}, state);
       newState.select.dialogOpen = action.payload;
       return newState;

@@ -7,6 +7,7 @@ import { CHARGING,
          NAME_CHANGED,
          DESCRIPTION_CHANGED,
          CHECK_BOX,
+         ESCAPED,
          DETAILS_BOX_CLOSE,
          UPLOADING,
          USER_INFO,
@@ -163,36 +164,9 @@ export function playlist_failure() {
 
 export function fetch_success(spotifyData) {
   return function (dispatch) {
-    String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-    };
-
-    let first_artist;
-    let second_artist;
-
-    if (spotifyData.tracks.length > 5) {
-      if (spotifyData.tracks[0].artists[0].name !== "Various Artists") {
-        first_artist = spotifyData.tracks[0].artists[0].name.capitalize()
-      } else if (spotifyData.tracks[1].artists[0].name !== "Various Artists") {
-        first_artist = spotifyData.tracks[1].artists[0].name.capitalize()
-      } else if (spotifyData.tracks[2].artists[0].name !== "Various Artists") {
-        first_artist = spotifyData.tracks[2].artists[0].name.capitalize()
-      };
-
-      if (spotifyData.tracks[3].artists[0].name !== "Various Artists") {
-        second_artist = spotifyData.tracks[3].artists[0].name.capitalize()
-      } else if (spotifyData.tracks[4].artists[0].name !== "Various Artists") {
-        second_artist = spotifyData.tracks[4].artists[0].name.capitalize()
-      } else if (spotifyData.tracks[5].artists[0].name !== "Various Artists") {
-        second_artist = spotifyData.tracks[5].artists[0].name.capitalize()
-      };
-    };
-
     dispatch({
         type: FETCH_SUCCESS,
-        payload: spotifyData.tracks,
-        first_artist: first_artist,
-        second_artist: second_artist
+        payload: spotifyData.tracks
     })
     dispatch(playlist_success());
   }
@@ -240,6 +214,15 @@ export function handleClickBox() {
     dispatch({
         type: CHECK_BOX,
         payload: value,
+    })
+  }
+};
+
+export function onEscape() {
+  return function (dispatch) {
+    dispatch({
+        type: ESCAPED,
+        payload: false,
     })
   }
 };
@@ -294,10 +277,12 @@ export function playlistCreate() {
     const user_id = info.user_id;
 
     let playlist_name;
-    info.playlist_name ? playlist_name = info.playlist_name : playlist_name = `My Awesome ${getState().SelectionReducer.user_selection.genre} Playlist`;
+    info.playlist_name ? playlist_name = info.playlist_name :
+    playlist_name = `My Awesome ${getState().SelectionReducer.user_selection.genre} Playlist`;
 
     let playlist_description;
-    info.playlist_description ? playlist_description = `${info.playlist_description} @Created by Electronify.` : playlist_description = '@Created by Electronify.'
+    info.playlist_description ? playlist_description = `${info.playlist_description} @Created by Electronify.` :
+    playlist_description = '@Created by Electronify.'
 
     dispatch({
         type: FINAL_DETAILS,
@@ -327,8 +312,7 @@ export function playlistCreate() {
       dispatch({
           type: PLAYLIST_INFO,
           payload: data.id,
-          playlist_uri: data.uri,
-          playlist_url: data.external_urls.spotify
+          playlist_uri: data.uri
       });
       dispatch(pushTracks());
     })

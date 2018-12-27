@@ -2,7 +2,7 @@ import {
   TOKEN,
   USER_DATA,
   DIALOG_OPEN,
-  BACKDROP_CLICK,
+  ESCAPED,
   DIALOG_CLOSE,
   BACK_CLICK,
   GENRE_SELECTED,
@@ -52,10 +52,10 @@ export function onDialogOpen() {
   }
 };
 
-export function onBackdropClick () {
+export function onEscape () {
   return function (dispatch, getState) {
     dispatch({
-      type: BACKDROP_CLICK,
+      type: ESCAPED,
       payload: false,
     })
   }

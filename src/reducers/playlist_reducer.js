@@ -8,6 +8,7 @@ import {
   NAME_CHANGED,
   DESCRIPTION_CHANGED,
   CHECK_BOX,
+  ESCAPED,
   DETAILS_BOX_CLOSE,
   UPLOADING,
   USER_INFO,
@@ -35,8 +36,6 @@ const initialState = {
     content: "Sorry, there has been a server problem. Please try again."
   },
   tracks: [],
-  first_artist: '',
-  second_artist: '',
   playlist_success: false,
   details_box: false,
   playlist_name: "",
@@ -56,7 +55,6 @@ const initialState = {
   user_id: '',
   playlist_id : '',
   playlist_uri: '',
-  playlist_url: '',
   playlist_created: false
 };
 
@@ -80,8 +78,6 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case FETCH_SUCCESS: {
       const newState = Object.assign({}, state);
       newState.tracks = action.payload
-      newState.first_artist = action.first_artist
-      newState.second_artist = action.second_artist
       return newState;
     }
     case PLAYLIST_SUCCESS: {
@@ -107,6 +103,11 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
     case CHECK_BOX: {
       const newState = Object.assign({}, state);
       newState.check_box_state = action.payload
+      return newState;
+    }
+    case ESCAPED: {
+      const newState = Object.assign({}, state);
+      newState.details_box = action.payload;
       return newState;
     }
     case DETAILS_BOX_CLOSE: {
@@ -135,7 +136,6 @@ function PlaylistReducer(state = JSON.parse(JSON.stringify(initialState)), actio
       const newState = Object.assign({}, state);
       newState.playlist_id = action.payload
       newState.playlist_uri = action.playlist_uri
-      newState.playlist_url = action.playlist_url
       return newState;
     }
     case UPLOAD_FAILURE: {

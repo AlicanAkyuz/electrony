@@ -2,6 +2,7 @@ import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -24,7 +25,7 @@ const styles = dialogTheme => ({
   popUpTitle: {
     textAlign: 'center',
     fontFamily: 'Montserrat',
-    fontSize: '16px',
+    fontSize: '17px',
     color: '#C1CDC1'
   },
   dialogContent: {
@@ -100,11 +101,11 @@ function DialogBox(props) {
   };
 
   return (
-    <Dialog onBackdropClick={() => {props.handleBackdropClick()}}
-            onEscapeKeyDown={() => {props.handleBackdropClick()}} 
+    <Dialog onBackdropClick={() => {props.handleEscape()}}
+            onEscapeKeyDown={() => {props.handleEscape()}} 
             open={props.dialogOpen}>
       <DialogTitle className={classes.dialogTitle}>
-        <p className={classes.popUpTitle}>{titleText}</p>
+        <Typography className={classes.popUpTitle}>{titleText}</Typography>
       </DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <FormControl onChange={() => {props.handleDialogClose()}} className={classes.formControl}>

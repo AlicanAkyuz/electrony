@@ -247,33 +247,33 @@ export function OurTeam(props) {
       </div>
       <div className={classes.firstLogoItem}>
         <div class="animated fadeIn delay-1s">
-          <a href="https://github.com/mtisikli" target="_blank">
+          <a href="https://github.com/mtisikli" target="_blank" rel="noopener noreferrer">
             <img src="github.png" alt="github" height="4%" width="22%" />
           </a>
           <br />
-          <a href="https://tr.linkedin.com/in/mehmet-tansu-i%C5%9F%C4%B1kl%C4%B1-5a27b114b" target="_blank">
+          <a href="https://tr.linkedin.com/in/mehmet-tansu-i%C5%9F%C4%B1kl%C4%B1-5a27b114b" target="_blank" rel="noopener noreferrer">
             <img src="linkedin.png" alt="linkedin" height="10%" width="25%" />
           </a>
         </div>
       </div>
       <div className={classes.secondLogoItem}>
         <div class="animated fadeIn delay-1s">
-          <a href="https://github.com/AlicanAkyuz" target="_blank">
+          <a href="https://github.com/AlicanAkyuz" target="_blank" rel="noopener noreferrer">
             <img src="github.png" alt="github" height="4%" width="22%" />
           </a>
           <br />
-          <a href="https://www.linkedin.com/in/alican-akyuz-80b67416b/" target="_blank">
+          <a href="https://www.linkedin.com/in/alican-akyuz-80b67416b/" target="_blank" rel="noopener noreferrer">
             <img src="linkedin.png" alt="linkedin" height="10%" width="25%" />
           </a>
         </div>
       </div>
       <div className={classes.thirdLogoItem}>
         <div class="animated fadeIn delay-1s">
-          <a href="https://github.com/tolgaakyuz" target="_blank">
+          <a href="https://github.com/tolgaakyuz" target="_blank" rel="noopener noreferrer">
             <img src="github.png" alt="github" height="4%" width="22%" />
           </a>
           <br />
-          <a href="https://www.linkedin.com/in/tolgaakyuz" target="_blank">
+          <a href="https://www.linkedin.com/in/tolgaakyuz" target="_blank" rel="noopener noreferrer">
             <img src="linkedin.png" alt="linkedin" height="10%" width="25%" />
           </a>
         </div>

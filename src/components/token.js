@@ -1,13 +1,13 @@
 import React from 'react';
 import queryString from 'query-string';
 import { onTokenReceived } from '../actions/selection_actions/actions';
-import Steps from '../user_selection/containers/steps';
 import { connect } from 'react-redux';
 
 class Token extends React.Component {
   componentDidMount() {
+    console.log(this.props.user_token);
     this.props.history.push('/steps')
-  }
+  };
 
   render() {
     const parsed = queryString.parse(window.location.hash);
@@ -18,7 +18,9 @@ class Token extends React.Component {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    user_token: state.SelectionReducer.user_data.user_token,
+  };
 };
 
 const tokenConnect = connect(mapStateToProps)(Token);

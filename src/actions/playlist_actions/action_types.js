@@ -7,6 +7,7 @@ export const DETAILS_BOX_OPEN = "DETAILS_BOX_OPEN";
 export const NAME_CHANGED = "NAME_CHANGED";
 export const DESCRIPTION_CHANGED = "DESCRIPTION_CHANGED";
 export const CHECK_BOX = "CHECK_BOX";
+export const ESCAPED = "ESCAPED";
 export const DETAILS_BOX_CLOSE = "DETAILS_BOX_CLOSE";
 export const UPLOADING = "UPLOADING";
 export const USER_INFO = "USER_INFO";

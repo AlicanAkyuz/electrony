@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   container: {
@@ -87,17 +88,17 @@ function App(props) {
     <div className={classes.container}>
       <div className={classes.electronyItem}>
         <div class="animated fadeInRightBig">
-          <p className={classes.electronyTitle}>Electrony</p>
+          <Typography className={classes.electronyTitle}>Electrony</Typography>
         </div>
       </div>
       <div className={classes.subtextItem}>
         <div class="animated fadeInLeftBig">
-          <p className={classes.subTitle}>A playlist creator for electronic music lovers</p>
+          <Typography className={classes.subTitle}>A playlist creator for electronic music lovers</Typography>
         </div>
       </div>
       <div className={classes.explanationItem}>
         <div class="animated fadeInUpBig delay-1s">
-          <p className={classes.explanation}>To continue, login to Spotify.</p>
+          <Typography className={classes.explanation}>To continue, login to Spotify.</Typography>
         </div>
       </div>
       <div className={classes.buttonItem}>
@@ -110,7 +111,9 @@ function App(props) {
         </div>
       <div className={classes.copyrightItem}>
         <div class="animated flip">
-          <p className={classes.copyright}>©Copyright 2018, <a className={classes.link} href="http://alicanakyuz.tech/" target="_blank"> Alican Akyuz</a></p>
+          <Typography className={classes.copyright}>©Copyright 2018,
+            <a className={classes.link} href="http://alicanakyuz.tech/" target="_blank" rel="noopener noreferrer"> Alican Akyuz</a>
+          </Typography>
         </div>
       </div>
     </div>
