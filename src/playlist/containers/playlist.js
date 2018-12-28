@@ -192,19 +192,19 @@ class Playlist extends React.Component {
     let pageContent;
 
     if (this.props.playlist_charging) {
-      pageContent = <Load title={this.props.playlist_charging_content_title}
+      pageContent = <Load showCircle="showCircle"
+                          title={this.props.playlist_charging_content_title}
                           content={this.props.playlist_charging_content_content} />
       };
 
     if (this.props.no_return) {
-      pageContent = <Load failure="failure"
+      pageContent = <Load noReturn="noReturn"
                           title={this.props.no_return_content_title}
                           content={this.props.no_return_content_content} />
       };
 
     if (this.props.playlist_failure) {
-      pageContent = <Load token={this.props.token}
-                          failure="failure"
+      pageContent = <Load failure="failure"
                           title={this.props.playlist_failure_content_title}
                           content={this.props.playlist_failure_content_content} />
     };
@@ -284,13 +284,13 @@ class Playlist extends React.Component {
 
 
     if (this.props.uploading) {
-      pageContent = <Load title={this.props.uploading_content_title}
+      pageContent = <Load showCircle="showCircle"
+                          title={this.props.uploading_content_title}
                           content={this.props.uploading_content_content} />
     };
 
     if (this.props.uploading_failure) {
       pageContent = <Load failure="failure"
-                          token={this.props.token}
                           title={this.props.uploading_failure_content_title}
                           content={this.props.uploading_failure_content_content} />
     };

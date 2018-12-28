@@ -70,16 +70,26 @@ function Load(props) {
   const { classes } = props;
 
   let showCircle;
-  if (props.failure !== "failure") {
+  if (props.showCircle) {
     showCircle = <CircularProgress className={classes.progress} size={60} thickness={3} />
   }
 
   let showButton;
+  if (props.noReturn) {
+    showButton =
+    <div class="animated flip">
+      <Button size="medium" variant="contained" color="primary" className={classes.button}>
+        <Link className={classes.links} to="/steps">TRY AGAIN!</Link>
+      </Button>
+    </div>
+
+  };
+
   if (props.failure) {
     showButton =
     <div class="animated flip">
-      <Button onClick={props.onReset} size="medium" variant="contained" color="primary" className={classes.button}>
-        <Link className={classes.links} to="/steps">TRY AGAIN!</Link>
+      <Button size="medium" variant="contained" color="primary" className={classes.button}>
+        <Link className={classes.links} to="/">TRY AGAIN!</Link>
       </Button>
     </div>
 
