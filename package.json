@@ -9,7 +9,6 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mailgun-js": "^0.22.0",
     "query-string": "^6.2.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
@@ -18,8 +17,7 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "shortid": "^2.2.14",
-    "validator": "^10.9.0"
+    "shortid": "^2.2.14"
   },
   "scripts": {
     "start": "react-scripts start",

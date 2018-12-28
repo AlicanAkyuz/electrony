@@ -32,7 +32,7 @@ const styles = theme => ({
     width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '10vmin 5vmin 7vmin 2vmin 2vmin 5vmin 120vmin 5vmin',
+    gridTemplateRows: '10vmin 5vmin 8vmin 3vmin 2vmin 5vmin 150vmin 10vmin',
     gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
   },
@@ -160,7 +160,9 @@ const styles = theme => ({
     textAlign: 'center'
   },
   selectButton: {
-    marginRight: '1.8%',
+    marginTop: theme.spacing.unit,
+    marginRight: theme.spacing.unit + 5,
+    width: '18%',
     borderRadius: '5px',
     backgroundColor: '#00611C',
     '&:hover': {
@@ -169,19 +171,23 @@ const styles = theme => ({
   },
   select: {
     fontFamily: 'Montserrat',
-    fontSize: '15px',
+    fontSize: '1.2vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
   goBackButton: {
-    marginRight: '1.3%',
-    marginTop: '1.3%',
+    marginTop: theme.spacing.unit,
+    marginRight: theme.spacing.unit + 5,
+    width: '15%',
     borderRadius: '5px',
     backgroundColor: '#40664D',
     '&:hover': {
       backgroundColor: "#596C56",
     },
+  },
+  goBack: {
     fontFamily: 'Montserrat',
+    fontSize: '1vmax',
     fontWeight: '800',
     color: '#C1CDC1'
   },
@@ -221,7 +227,7 @@ class Steps extends React.Component {
    componentWillUnmount() {
      this.props.dispatch(onStepsReset());
      this.props.dispatch(onPlaylistReset());
-   }
+   };
 
   render() {
     const { classes } = this.props;
@@ -240,10 +246,10 @@ class Steps extends React.Component {
     let goBackButton;
     if (this.props.activeStep > 0) {
       goBackButton =
-      <div class="animated fadeInRightBig">
+      <div class="animated fadeInRightBig" style={{textAlign: 'center', width: '100%'}}>
         <Button size="small" variant="contained" className={classes.goBackButton}
                 onClick={() => {this.props.dispatch(onBackClick())}}>
-          GO BACK
+          <Typography className={classes.goBack}>GO BACK</Typography>
         </Button>
       </div>
     };
@@ -283,16 +289,19 @@ class Steps extends React.Component {
               return (
                 <Step className={classes.step} key={label}>
                   <StepLabel icon className={classes.stepLabel}>
-                    <p className={classes.labelText}>{label}</p>
+                    <Typography className={classes.labelText}>
+                      {label}
+                    </Typography>
                   </StepLabel>
                   <StepContent className={classes.stepContent}>
-                    <p className={classes.contentText}>{getStepContent(index)}</p>
-                    <div class="animated fadeInLeftBig" style={{textAlign: 'center'}}>
-                      <Button size="large" variant="contained" className={classes.selectButton}
+                    <Typography className={classes.contentText}>{getStepContent(index)}</Typography>
+                    <div class="animated fadeInLeftBig" style={{textAlign: 'center', width: '100%'}}>
+                      <Button size="small" variant="contained" className={classes.selectButton}
                               onClick={() => {this.props.dispatch(onDialogOpen())}}>
                         <Typography className={classes.select}>SELECT</Typography>
                       </Button>
                     </div>
+
                     {goBackButton}
                     <DialogBox
                       handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}

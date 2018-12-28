@@ -25,7 +25,7 @@ const playlistStyle = playlistStyle => ({
     width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '10vmin 2vmin 97% 3%',
+    gridTemplateRows: '10vmin 2vmin 95% 10vmin',
     gridRowGap: '10px',
     gridTemplateColumns: '5% 10% 10% 10% 10% 10% 10% 10% 10% 10% 5%',
     backgroundColor: '#0c0c0c'

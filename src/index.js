@@ -7,7 +7,7 @@ import store from './store';
 import App from './components/app';
 import About from './components/about';
 import OurTeam from './components/ourteam';
-import Contact from './contact/containers/contact';
+import Contact from './components/contact';
 import Token from './components/token';
 import Steps from './user_selection/containers/steps';
 import Playlist from './playlist/containers/playlist';

@@ -149,7 +149,7 @@ export function About(props) {
       <div className={classes.aboutItem}>
         <div class="animated fadeIn">
           <Typography className={classes.about}>
-            As Karlheinz Stockhausen once said, we are interested when other musicians are trying to
+            As Stockhausen once said, we are interested when other musicians are trying to
             discover new worlds of sound. We therefore celebrate electronic music due to the vast amount of
             possibilities it brings forward for the aural expression of one's subjectivity.
             <br /><br />
