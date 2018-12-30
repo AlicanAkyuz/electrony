@@ -232,6 +232,10 @@ const styles = theme => ({
 });
 
 class Steps extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getUserData(this.props.user_token));
+  };
+
    componentWillUnmount() {
      this.props.dispatch(onStepsReset());
      this.props.dispatch(onPlaylistReset());
@@ -246,7 +250,9 @@ class Steps extends React.Component {
       this.props.dispatch(onTokenReceived(token));
     };
 
-    this.props.dispatch(getUserData(this.props.user_token));
+    if (this.props.user_token) {
+      this.props.dispatch(getUserData(this.props.user_token))
+    };
 
     let createPlaylistButton;
     if (this.props.activeStep === getSteps().length) {
