@@ -232,10 +232,6 @@ const styles = theme => ({
 });
 
 class Steps extends React.Component {
-  componentDidMount() {
-    this.props.dispatch(getUserData(this.props.user_token));
-  };
-
    componentWillUnmount() {
      this.props.dispatch(onStepsReset());
      this.props.dispatch(onPlaylistReset());
@@ -248,9 +244,10 @@ class Steps extends React.Component {
     if (!this.props.user_token) {
       const token = localStorage.getItem('token');
       this.props.dispatch(onTokenReceived(token));
+      this.props.dispatch(getUserData(token));
     };
 
-    if (this.props.user_token) {
+    if (this.props.user_token && !this.props.user_name) {
       this.props.dispatch(getUserData(this.props.user_token))
     };
 
