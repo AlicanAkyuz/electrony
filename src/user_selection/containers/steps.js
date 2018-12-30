@@ -273,7 +273,7 @@ class Steps extends React.Component {
     };
 
     let body;
-    if (this.props.user_token) {
+    if (this.props.user_name) {
       body =
         <div className={classes.stepperItem}>
           <div class="animated fadeIn">
