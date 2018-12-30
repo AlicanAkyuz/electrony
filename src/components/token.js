@@ -9,7 +9,6 @@ class Token extends React.Component {
     this.updateToken = this.updateToken.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.user_token);
     this.props.history.push('/steps')
   };
 
@@ -20,6 +19,8 @@ class Token extends React.Component {
   render() {
     const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
+
+
     this.props.dispatch(onTokenReceived(accessToken));
     this.updateToken('token', accessToken);
     return (<div></div>)

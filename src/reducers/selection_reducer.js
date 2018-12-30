@@ -51,9 +51,8 @@ function SelectionReducer(state = JSON.parse(JSON.stringify(initialState)), acti
     }
     case USER_DATA: {
       const newState = Object.assign({}, state);
-      newState.user_data.user_token = action.payload.user_token
-      newState.user_data.user_name = action.payload.user_name
-      newState.user_data.user_id = action.payload.user_id
+      newState.user_data.user_name = action.payload_name
+      newState.user_data.user_id = action.payload_id
       return newState;
     }
     case DIALOG_OPEN: {

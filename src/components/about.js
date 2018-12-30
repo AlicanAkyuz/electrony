@@ -11,7 +11,7 @@ const styles = aboutTheme => ({
     width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '10vmin 10vmin 2vmin 2vmin 35vmin 3vmin',
+    gridTemplateRows: '10vmin 10vmin 2vmin 2vmin 60vmin 3vmin',
     gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
   },
@@ -109,7 +109,7 @@ const styles = aboutTheme => ({
   },
   about: {
     fontFamily: 'Roboto',
-    fontSize: '2.2vmin',
+    fontSize: '1.18vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   }
@@ -160,7 +160,7 @@ export function About(props) {
             Our ears are capable of hearing sound frequencies from approximately 20 to 20,000 Hertz (Hz). Yet,
             historically, the expressions of sounds have been squeezed in by the capacity of acoustic instruments
             such that a piano, for example, could not produce sounds at the frequency of 450 Hz, since its 49th key
-            is designed to produce 440 Hz and its 50th key 466.164 Hz. What happens, then, to sounds at 450 or 451 Hz?
+            is designed to produce 440 Hz and its 50th key 466.164 Hz.
             Hence, our aural experience has been limited by the capacity of acoustic instruments when it came to music.
             <br /><br />
             Electronic music, on the other hand, is not limited to particular designs of musical instruments and therefore brings

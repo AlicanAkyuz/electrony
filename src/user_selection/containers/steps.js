@@ -244,10 +244,9 @@ class Steps extends React.Component {
     if (!this.props.user_token) {
       const token = localStorage.getItem('token');
       this.props.dispatch(onTokenReceived(token));
-    } else {
-      const accessToken = this.props.user_token;
-      this.props.dispatch(getUserData(accessToken))
     };
+
+    this.props.dispatch(getUserData(this.props.user_token));
 
     let createPlaylistButton;
     if (this.props.activeStep === getSteps().length) {

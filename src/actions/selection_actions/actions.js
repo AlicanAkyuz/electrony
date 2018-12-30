@@ -32,11 +32,8 @@ export function getUserData(token) {
     .then(function(userData) {
       dispatch({
           type: USER_DATA,
-          payload: {
-            user_token: token,
-            user_name: userData.display_name,
-            user_id: userData.id
-          }
+          payload_name: userData.display_name,
+          payload_id: userData.id
       });
     })
     .catch(error => console.error('Error:', error));
