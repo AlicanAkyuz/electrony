@@ -148,6 +148,7 @@ class Contact extends React.Component {
         </div>
         <div className={classes.formItem}>
           <div class="animated fadeIn">
+
             <form className={classes.form} method="POST" action="https://formspree.io/alicakyz@gmail.com">
               <TextField className={classes.textField}
                          required
@@ -170,6 +171,7 @@ class Contact extends React.Component {
                          label="Your Message" />
               <Button className={classes.button} type="submit">Submit</Button>
             </form>
+
           </div>
         </div>
       </div>

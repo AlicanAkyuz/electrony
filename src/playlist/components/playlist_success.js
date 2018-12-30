@@ -155,7 +155,7 @@ export function PlaylistSuccess(props) {
           Here is your playlist, {props.userName}!
         </Typography>
         <br />
-        <div class="animated zoomIn delay-1s">
+        <div class="animated zoomIn">
           <iframe src={embedLink}
             width="300"
             height="450"

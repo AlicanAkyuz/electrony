@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -34,9 +35,10 @@ const styles = theme => ({
   },
   copyrightItem: {
     gridRow: '8 / span 1',
-    gridColumn: '4 / span 1',
+    gridColumn: '2 / span 5',
     placeSelf: 'center'
   },
+  ////////////////////////// ITEMs //////////////////////////
   electronyTitle: {
     fontFamily: 'Roboto',
     fontSize: '11vmax',
@@ -55,7 +57,6 @@ const styles = theme => ({
     fontWeight: '400',
     color: '#838B83'
   },
-
   margin: {
    margin: theme.spacing.unit,
    borderRadius: '3px',
@@ -78,8 +79,22 @@ const styles = theme => ({
     fontFamily: 'Montserrat',
     fontSize: '0.9vmax',
     fontWeight: '400',
-    color: '#9ba29b'
-  }
+    color: '#9ba29b',
+    '&:hover': {
+      color: "#00611C",
+    },
+  },
+  links: {
+    fontFamily: 'Roboto',
+    fontSize: '0.8vmax',
+    fontWeight: '400',
+    textDecoration: 'none',
+    textTransform: 'none',
+    color: '#9ba29b',
+    '&:hover': {
+      color: "#00611C",
+    },
+  },
 });
 
 function App(props) {
@@ -110,9 +125,12 @@ function App(props) {
           </div>
         </div>
       <div className={classes.copyrightItem}>
-        <div class="animated flip">
+        <div class="animated fadeInUpBig delay-1s">
           <Typography className={classes.copyright}>©Copyright 2018,
-            <a className={classes.link} href="http://alicanakyuz.tech/" target="_blank" rel="noopener noreferrer"> Alican Akyuz</a>
+            <a className={classes.link} href="http://alicanakyuz.tech/" target="_blank" rel="noopener noreferrer">&nbsp; Alican Akyuz</a>
+            <Button position="center" size="medium"><Link className={classes.links} to="/about">•&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ABOUT</Link></Button>
+            <Button position="center" size="medium"><Link className={classes.links} to="/ourteam">•&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; TEAM</Link></Button>
+            <Button position="center" size="medium"><Link className={classes.links} to="/contact">•&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CONTACT</Link></Button>
           </Typography>
         </div>
       </div>

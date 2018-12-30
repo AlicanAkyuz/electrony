@@ -11,7 +11,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import { getSteps, getStepContent } from '../components/stepper_functions';
 import DialogBox from '../components/dialog_box';
-import { getUserData,
+import { onTokenReceived,
+         getUserData,
          onDialogOpen,
          onEscape,
          onDialogClose,
@@ -32,7 +33,7 @@ const styles = theme => ({
     width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '10vmin 5vmin 8vmin 3vmin 2vmin 5vmin 150vmin 10vmin',
+    gridTemplateRows: '10vmin 5vmin 150vmin 5vmin',
     gridTemplateColumns: '10% 10% 5% 10% 10% 10% 10% 10% 5% 10% 10% ',
     backgroundColor: '#0c0c0c'
   },
@@ -75,19 +76,10 @@ const styles = theme => ({
     marginTop: '17%',
     justifySelf: 'center'
   },
-  titleItem: {
+  stepperItem: {
     gridRow: '3 / span 1',
     gridColumn: '2 / span 9',
     textAlign: 'center'
-  },
-  arrowItem: {
-    gridRow: '5 / span 1',
-    gridColumn: '6 / span 1',
-    placeSelf: 'center'
-  },
-  stepperItem: {
-    gridRow: '7 / span 1',
-    gridColumn: '2 / span 9',
   },
 ///////////////////////////////////////////////////////////////////////////////
   logo: {
@@ -106,10 +98,31 @@ const styles = theme => ({
     fontSize: '1.8vmax',
     fontWeight: '400',
     color: '#C1CDC1',
+    marginBottom: '3%'
   },
+  loginText: {
+    fontFamily: 'Montserrat',
+    fontSize: '1.8vmax',
+    fontWeight: '400',
+    color: '#C1CDC1',
+    marginTop: '7%',
+    marginBottom: '10%'
+  },
+  loginButton: {
+   margin: theme.spacing.unit,
+   borderRadius: '3px',
+   backgroundColor: "#00611C",
+   '&:hover': {
+     backgroundColor: "#4A7023",
+   },
+   color: '#C1CDC1',
+   fontFamily: 'Montserrat',
+   fontWeight: '800'
+ },
   arrow: {
     width: '2.8vmax',
-    height: '2.3vmax'
+    height: '2.3vmax',
+    marginBottom: '3%'
   },
   links: {
     fontFamily: 'Roboto',
@@ -160,8 +173,8 @@ const styles = theme => ({
     textAlign: 'center'
   },
   selectButton: {
-    marginTop: theme.spacing.unit,
-    marginRight: theme.spacing.unit + 5,
+    marginTop: theme.spacing.unit + 3,
+    marginRight: theme.spacing.unit + 6,
     width: '18%',
     borderRadius: '5px',
     backgroundColor: '#00611C',
@@ -215,15 +228,10 @@ const styles = theme => ({
     '&:hover': {
       color: "#c5c5c5",
     },
-  },
+  }
 });
 
 class Steps extends React.Component {
-   componentDidMount() {
-      const token = this.props.user_token;
-      this.props.dispatch(getUserData(token))
-   };
-
    componentWillUnmount() {
      this.props.dispatch(onStepsReset());
      this.props.dispatch(onPlaylistReset());
@@ -232,6 +240,14 @@ class Steps extends React.Component {
   render() {
     const { classes } = this.props;
     const userName = this.props.user_name;
+
+    if (!this.props.user_token) {
+      const token = localStorage.getItem('token');
+      this.props.dispatch(onTokenReceived(token));
+    } else {
+      const accessToken = this.props.user_token;
+      this.props.dispatch(getUserData(accessToken))
+    };
 
     let createPlaylistButton;
     if (this.props.activeStep === getSteps().length) {
@@ -250,6 +266,68 @@ class Steps extends React.Component {
         <Button size="small" variant="contained" className={classes.goBackButton}
                 onClick={() => {this.props.dispatch(onBackClick())}}>
           <Typography className={classes.goBack}>GO BACK</Typography>
+        </Button>
+      </div>
+    };
+
+    let body;
+    if (this.props.user_token) {
+      body =
+        <div className={classes.stepperItem}>
+          <div class="animated fadeIn">
+            <Typography className={classes.titleText}>Hi, {userName}! Follow the guide below to define your tune</Typography>
+            <img className={classes.arrow} src="./arrow.png" alt="arrow" />
+          </div>
+          <Stepper className={classes.stepperBody} activeStep={this.props.activeStep} orientation="vertical">
+            {getSteps().map((label, index) => {
+              return (
+                <Step className={classes.step} key={label}>
+                  <StepLabel icon className={classes.stepLabel}>
+                    <Typography className={classes.labelText}>
+                      {label}
+                    </Typography>
+                  </StepLabel>
+                  <StepContent className={classes.stepContent}>
+                    <Typography className={classes.contentText}>{getStepContent(index)}</Typography>
+                    <div class="animated fadeInLeftBig" style={{textAlign: 'center', width: '100%'}}>
+                      <Button size="small" variant="contained" className={classes.selectButton}
+                              onClick={() => {this.props.dispatch(onDialogOpen())}}>
+                        <Typography className={classes.select}>SELECT</Typography>
+                      </Button>
+                    </div>
+                    {goBackButton}
+                    <DialogBox
+                      handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
+                      handleEscape={() => {this.props.dispatch(onEscape())}}
+                      handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
+                      handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
+                      handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
+                      handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
+                      handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
+                      handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
+                      handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
+                      activeStep={this.props.activeStep}
+                      dialogOpen={this.props.dialogOpen}
+                      genreTitle={this.props.genreTitle}
+                      danceabilityTitle={this.props.danceabilityTitle}
+                      energyTitle={this.props.energyTitle}
+                      loudnessTitle={this.props.loudnessTitle}
+                      tempoTitle={this.props.tempoTitle}
+                      positivenessTitle={this.props.positivenessTitle} />
+                  </StepContent>
+                </Step>
+              );
+            })}
+            {createPlaylistButton}
+          </Stepper>
+        </div>
+    } else {
+      body =
+      <div className={classes.stepperItem}>
+        <Typography className={classes.loginText}>To create a playlist, please login to Spotify:</Typography>
+        <Button variant="contained" color="primary" className={classes.loginButton}
+                onClick={() => window.location = 'https://electrony.herokuapp.com/login'}>
+          Login to Spotify
         </Button>
       </div>
     };
@@ -277,57 +355,7 @@ class Steps extends React.Component {
         <div className={classes.fifthButtonItem}>
           <Button position="center" size="medium"><Link className={classes.links} to="/contact">CONTACT</Link></Button>
         </div>
-        <div className={classes.titleItem}>
-          <Typography className={classes.titleText}>Hi, {userName}! Follow the guide below to define your tune</Typography>
-        </div>
-        <div className={classes.arrowItem}>
-          <img className={classes.arrow} src="./arrow.png" alt="arrow" />
-        </div>
-        <div className={classes.stepperItem}>
-          <Stepper className={classes.stepperBody} activeStep={this.props.activeStep} orientation="vertical">
-            {getSteps().map((label, index) => {
-              return (
-                <Step className={classes.step} key={label}>
-                  <StepLabel icon className={classes.stepLabel}>
-                    <Typography className={classes.labelText}>
-                      {label}
-                    </Typography>
-                  </StepLabel>
-                  <StepContent className={classes.stepContent}>
-                    <Typography className={classes.contentText}>{getStepContent(index)}</Typography>
-                    <div class="animated fadeInLeftBig" style={{textAlign: 'center', width: '100%'}}>
-                      <Button size="small" variant="contained" className={classes.selectButton}
-                              onClick={() => {this.props.dispatch(onDialogOpen())}}>
-                        <Typography className={classes.select}>SELECT</Typography>
-                      </Button>
-                    </div>
-
-                    {goBackButton}
-                    <DialogBox
-                      handleDialogOpen={() => {this.props.dispatch(onDialogOpen())}}
-                      handleEscape={() => {this.props.dispatch(onEscape())}}
-                      handleDialogClose={() => {this.props.dispatch(onDialogClose())}}
-                      handleGenreSelection={(value) => {this.props.dispatch(handleGenreSelection(value))}}
-                      handleDanceabilitySelection={(value) => {this.props.dispatch(handleDanceabilitySelection(value))}}
-                      handleEnergySelection={(value) => {this.props.dispatch(handleEnergySelection(value))}}
-                      handleLoudnessSelection={(value) => {this.props.dispatch(handleLoudnessSelection(value))}}
-                      handleTempoSelection={(value) => {this.props.dispatch(handleTempoSelection(value))}}
-                      handlePositivenessSelection={(value) => {this.props.dispatch(handlePositivenessSelection(value))}}
-                      activeStep={this.props.activeStep}
-                      dialogOpen={this.props.dialogOpen}
-                      genreTitle={this.props.genreTitle}
-                      danceabilityTitle={this.props.danceabilityTitle}
-                      energyTitle={this.props.energyTitle}
-                      loudnessTitle={this.props.loudnessTitle}
-                      tempoTitle={this.props.tempoTitle}
-                      positivenessTitle={this.props.positivenessTitle} />
-                  </StepContent>
-                </Step>
-              );
-            })}
-            {createPlaylistButton}
-          </Stepper>
-        </div>
+        {body}
       </div>
     );
   };

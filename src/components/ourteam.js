@@ -12,7 +12,7 @@ const styles = aboutTheme => ({
     width: '100%',
     height: 'auto',
     minHeight: '100vh',
-    gridTemplateRows: '10vmin 10vmin 2vmin 2vmin 20vmin 4vmin 1vmin 13vmin 38vmin ',
+    gridTemplateRows: '10vmin 10vmin 2vmin 2vmin 20vmin 4vmin 1vmin 11vmin 39vmin ',
     gridTemplateColumns: '5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%',
     backgroundColor: '#0c0c0c'
   },
@@ -178,7 +178,7 @@ const styles = aboutTheme => ({
   background: {
     textAlign: 'center',
     fontFamily: 'Roboto',
-    fontSize: '1.1vmax',
+    fontSize: '1.15vmax',
     fontWeight: '400',
     color: '#C1CDC1',
   }
@@ -281,7 +281,7 @@ export function OurTeam(props) {
       <div className={classes.firstBackgroundItem}>
         <div class="animated fadeInUp delay-1s">
           <Typography className={classes.background}>
-            Tansu is a front-end Javascript developer based in Izmir, Turkey. He likes using React.js because of its modular, scalable,
+            Tansu is a full-stack Javascript developer based in Izmir, Turkey. He likes using React.js because of its modular, scalable,
             and flexible structure. He enjoys creating responsive and interactive user interfaces. Tansu
             studied and wrote his master thesis on twentieth-century electronic music and contributed to Electrony's
             project design and front-end development.
@@ -291,7 +291,7 @@ export function OurTeam(props) {
       <div className={classes.secondBackgroundItem}>
         <div class="animated fadeInUp delay-1s">
           <Typography className={classes.background}>
-            Alican is a full-stack Javascript web developer currently based in Oregon, USA.
+            Alican is a full-stack developer currently based in Oregon, USA.
             He works primarily on front-end development with React.js and Material Design, and
             enjoys solving UX problems. Alican is also interested in the history of electronic music.
             He made contributions to the development
