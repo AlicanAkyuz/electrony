@@ -281,8 +281,8 @@ export function playlistCreate() {
     playlist_name = `My Awesome ${getState().SelectionReducer.user_selection.genre} Playlist`;
 
     let playlist_description;
-    info.playlist_description ? playlist_description = `${info.playlist_description} @Created by Electronify.` :
-    playlist_description = '@Created by Electronify.'
+    info.playlist_description ? playlist_description = `${info.playlist_description} @Created by Electrony.space.` :
+    playlist_description = '@Created by Electrony.space.'
 
     dispatch({
         type: FINAL_DETAILS,
