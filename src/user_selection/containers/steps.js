@@ -247,10 +247,6 @@ class Steps extends React.Component {
       this.props.dispatch(getUserData(token));
     };
 
-    if (this.props.user_token && !this.props.user_name) {
-      this.props.dispatch(getUserData(this.props.user_token))
-    };
-
     let createPlaylistButton;
     if (this.props.activeStep === getSteps().length) {
       createPlaylistButton =
@@ -273,7 +269,7 @@ class Steps extends React.Component {
     };
 
     let body;
-    if (this.props.user_name) {
+    if (this.props.user_token) {
       body =
         <div className={classes.stepperItem}>
           <div class="animated fadeIn">
