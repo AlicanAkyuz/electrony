@@ -126,7 +126,9 @@ function App(props) {
             variant="contained"
             color="primary"
             className={classes.margin}
-            onClick={() => (window.location = "http://electrony.space/login")}
+            onClick={() =>
+              (window.location = "https://electrony.herokuapp.com/login")
+            }
           >
             GET STARTED
           </Button>
