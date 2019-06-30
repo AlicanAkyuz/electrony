@@ -20,8 +20,8 @@ class Token extends React.Component {
   }
 
   render() {
-    const parsed = queryString.parse(location.hash);
-    console.log(parsed);
+    console.log(window.location.hash);
+    const parsed = queryString.parse(window.location.hash);
     const accessToken = parsed.access_token;
     this.props.dispatch(onTokenReceived(accessToken));
     this.props.dispatch(getUserData(accessToken));
