@@ -140,7 +140,7 @@ function App(props) {
             ©Copyright 2018,
             <a
               className={classes.link}
-              href="http://alicanakyuz.tech/"
+              href="https://alicanakyuz.tech/"
               target="_blank"
               rel="noopener noreferrer"
             >
